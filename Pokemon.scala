@@ -9,6 +9,7 @@ case class Breeding(eggGroup: String, malePercentage: Double, femalePercentage: 
 }
 
 trait PokemonCharacteristic
+{
 	val name: String
 	val pokemonType: Iterable[String] 
 	val species: String 
