@@ -1,0 +1,23 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\myapp_2.12-1.2.3.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	OOP\mainApp$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\mainApp$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	OOP\Bird.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Bird.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	OOP[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP[0m
+[0m[[0m[0mdebug[0m] [0m[0m	OOP\Wings.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Wings.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	OOP\Animal.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Animal.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	OOP\mainApp$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\mainApp$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	OOP\Features.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Features.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	OOP\Features$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Features$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	OOP\mainApp.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\mainApp.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	OOP\Mammal.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Mammal.class[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
