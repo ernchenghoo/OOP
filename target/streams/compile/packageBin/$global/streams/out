@@ -1,23 +1,21 @@
-[0m[[0m[0minfo[0m] [0m[0mPackaging C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\oop_2.12-0.1.0-SNAPSHOT.jar ...[0m
+[0m[[0m[0minfo[0m] [0m[0mPackaging C:\sbt\bin\myProjects\OOP\target\scala-2.12\myapp_2.12-1.2.3.jar ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	OOP\mainApp$delayedInit$body.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\mainApp$delayedInit$body.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	OOP\Bird.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Bird.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	OOP[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP[0m
-[0m[[0m[0mdebug[0m] [0m[0m	OOP\Wings.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Wings.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	OOP\Animal.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Animal.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	OOP\mainApp$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\mainApp$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	OOP\Features.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Features.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	OOP\Features$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Features$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	OOP\mainApp.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\mainApp.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	OOP\Mammal.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\src\main\scala\OOP\target\scala-2.12\classes\OOP\Mammal.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	mainSystem\MainApp$$anon$1$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\mainSystem\MainApp$$anon$1$$anon$2.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	mainSystem\MainApp$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\mainSystem\MainApp$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	mainSystem\MainApp.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\mainSystem\MainApp.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	scenes[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\scenes[0m
+[0m[[0m[0mdebug[0m] [0m[0m	scenes\PersonOverview.fxml[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\scenes\PersonOverview.fxml[0m
+[0m[[0m[0mdebug[0m] [0m[0m	scenes\RootLayout.fxml[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\scenes\RootLayout.fxml[0m
+[0m[[0m[0mdebug[0m] [0m[0m	mainSystem\MainApp$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\mainSystem\MainApp$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	mainSystem[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\mainSystem[0m
+[0m[[0m[0mdebug[0m] [0m[0m	mainSystem\MainApp$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\mainSystem\MainApp$$anon$1.class[0m
 [0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m

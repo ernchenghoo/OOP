@@ -1,4 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0mC:\sbt\bin\src\main\scala\OOP\mainClass.scala:6:18: value Features is not a member of OOP.Mammal[0m
-[0m[[0m[31merror[0m] [0m[0m  println (tiger.Features)[0m
-[0m[[0m[31merror[0m] [0m[0m                 ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m

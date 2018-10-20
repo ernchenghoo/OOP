@@ -1,2 +1,4 @@
 [0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
-[0m[[0m[0mdebug[0m] [0m[0m	[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\sbt\bin\myProjects\OOP\src\main\resources\scenes,C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\scenes)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\sbt\bin\myProjects\OOP\src\main\resources\scenes\PersonOverview.fxml,C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\scenes\PersonOverview.fxml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\sbt\bin\myProjects\OOP\src\main\resources\scenes\RootLayout.fxml,C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\scenes\RootLayout.fxml)[0m
