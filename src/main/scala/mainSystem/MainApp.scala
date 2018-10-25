@@ -20,11 +20,19 @@ object MainApp extends JFXApp {
     }
   }
   def showPersonOverview() = {
-    val resource = getClass.getResource("/scenes/PersonOverview.fxml")
+    val resource = getClass.getResource("/scenes/mainMenu.fxml")
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
     val roots = loader.getRoot[jfxs.layout.AnchorPane]
     this.roots.setCenter(roots)
   } 
   showPersonOverview()
+
+  def goToCheckoutMenu() = {
+      val resource = getClass.getResource("/scenes/CheckoutOverview.fxml")
+      val loader = new FXMLLoader(resource, NoDependencyResolver)
+      loader.load();
+      val roots = loader.getRoot[jfxs.layout.AnchorPane]
+      this.roots.setCenter(roots)
+    } 
 }
