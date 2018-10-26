@@ -1,5 +1,11 @@
 [0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
-[0m[[0m[0mdebug[0m] [0m[0m	(C:\sbt\bin\myProjects\OOP\src\main\resources\scenes,C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\scenes)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(C:\sbt\bin\myProjects\OOP\src\main\resources\scenes\CheckoutOverview.fxml,C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\scenes\CheckoutOverview.fxml)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(C:\sbt\bin\myProjects\OOP\src\main\resources\scenes\mainMenu.fxml,C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\scenes\mainMenu.fxml)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(C:\sbt\bin\myProjects\OOP\src\main\resources\scenes\RootLayout.fxml,C:\sbt\bin\myProjects\OOP\target\scala-2.12\classes\scenes\RootLayout.fxml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\Frost\sbt\bin\POS\OOP\src\main\resources\Views,C:\Users\Frost\sbt\bin\POS\OOP\target\scala-2.12\classes\Views)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\Frost\sbt\bin\POS\OOP\src\main\resources\Views\Account,C:\Users\Frost\sbt\bin\POS\OOP\target\scala-2.12\classes\Views\Account)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\Frost\sbt\bin\POS\OOP\src\main\resources\Views\Checkout,C:\Users\Frost\sbt\bin\POS\OOP\target\scala-2.12\classes\Views\Checkout)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\Frost\sbt\bin\POS\OOP\src\main\resources\Views\Checkout\CheckoutOverview.fxml,C:\Users\Frost\sbt\bin\POS\OOP\target\scala-2.12\classes\Views\Checkout\CheckoutOverview.fxml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\Frost\sbt\bin\POS\OOP\src\main\resources\Views\Inventory,C:\Users\Frost\sbt\bin\POS\OOP\target\scala-2.12\classes\Views\Inventory)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\Frost\sbt\bin\POS\OOP\src\main\resources\Views\Return_Item,C:\Users\Frost\sbt\bin\POS\OOP\target\scala-2.12\classes\Views\Return_Item)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\Frost\sbt\bin\POS\OOP\src\main\resources\Views\Shared,C:\Users\Frost\sbt\bin\POS\OOP\target\scala-2.12\classes\Views\Shared)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\Frost\sbt\bin\POS\OOP\src\main\resources\Views\Shared\mainMenu.fxml,C:\Users\Frost\sbt\bin\POS\OOP\target\scala-2.12\classes\Views\Shared\mainMenu.fxml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\Frost\sbt\bin\POS\OOP\src\main\resources\Views\Shared\RootLayout.fxml,C:\Users\Frost\sbt\bin\POS\OOP\target\scala-2.12\classes\Views\Shared\RootLayout.fxml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\Frost\sbt\bin\POS\OOP\src\main\resources\Views\Tracking_Report,C:\Users\Frost\sbt\bin\POS\OOP\target\scala-2.12\classes\Views\Tracking_Report)[0m
