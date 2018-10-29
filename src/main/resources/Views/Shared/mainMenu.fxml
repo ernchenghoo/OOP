@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="360.0" prefWidth="660.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainMenuController">
    <children>
       <Button fx:id="checkout" layoutX="51.0" layoutY="89.0" mnemonicParsing="false" onAction="#moveToCheckoutScreen" prefHeight="26.0" prefWidth="126.0" snapToPixel="false" text="Check-out" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="89.0" />
-      <Label layoutX="51.0" layoutY="36.0" prefHeight="34.0" prefWidth="257.0" text="Point of sales System">
+      <Label layoutX="51.0" layoutY="36.0" prefHeight="34.0" prefWidth="257.0" text="Point of sales System" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="36.0">
          <font>
             <Font size="18.0" />
          </font>
