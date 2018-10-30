@@ -11,19 +11,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CheckoutController">
+<AnchorPane prefHeight="400.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CheckoutController">
    <children>
-      <SplitPane dividerPositions="0.3" layoutX="-1.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.31605351170568563" layoutX="-1.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <AnchorPane prefHeight="398.0" prefWidth="94.0">
+            <AnchorPane prefHeight="398.0" prefWidth="209.0">
                <children>
-                  <TextField layoutX="8.0" layoutY="30.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="19.19999999999999" />
-                  <Label layoutX="8.0" layoutY="4.0" prefHeight="18.0" prefWidth="66.0" text="Find Item">
+                  <TextField fx:id="findItemTextbox" layoutX="7.0" layoutY="30.0" prefHeight="26.0" prefWidth="136.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="51.0" />
+                  <Label fx:id="t" layoutX="8.0" layoutY="4.0" prefHeight="18.0" prefWidth="66.0" text="Find Item">
                      <font>
                         <Font size="14.0" />
                      </font></Label>
                   <Button layoutX="8.0" layoutY="364.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#moveToMainMenu" prefHeight="26.0" prefWidth="57.0" text="Back" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" />
-                  <Button fx:id="connectDbButton" layoutX="62.0" layoutY="123.0" mnemonicParsing="false" onAction="#connectDB" prefHeight="62.0" prefWidth="90.0" text="connect DB" />
+                  <Button fx:id="connectDbButton" layoutX="140.0" layoutY="30.0" mnemonicParsing="false" onAction="#checkoutItem" prefHeight="26.0" prefWidth="45.0" text="Go" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="30.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="398.0" prefWidth="135.0">
@@ -56,9 +56,9 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label text="ID" />
-                                    <Label prefHeight="18.0" prefWidth="38.0" text="Name" GridPane.columnIndex="1" />
-                                    <Label prefHeight="18.0" prefWidth="45.0" text="Price" GridPane.columnIndex="2" />
+                                    <Label prefHeight="18.0" prefWidth="100.0" text="ID" />
+                                    <Label prefHeight="18.0" prefWidth="116.0" text="Name" GridPane.columnIndex="1" />
+                                    <Label prefHeight="18.0" prefWidth="110.0" text="Price" GridPane.columnIndex="2" />
                                     <Label fx:id="firstID" text="Label" visible="false" GridPane.rowIndex="1" />
                                     <Label fx:id="firstName" text="Label" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label fx:id="firstPrice" text="Label" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
