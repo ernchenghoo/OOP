@@ -1,32 +1,31 @@
 package Database
 import java.sql.{Connection,DriverManager}
-import scala.collection.mutable.Set
+import Models.Inventory
+import scala.collection.mutable.MutableList
 
 class InventoryDB{   
 
-    val myDatabaseDetails = new myDBDetails
-
     try {
-        Class.forName(myDatabaseDetails.driver)
-        myDatabaseDetails.connection = DriverManager.getConnection(myDatabaseDetails.url, myDatabaseDetails.username,
-            myDatabaseDetails.password)
+        Class.forName(myDBDetails.driver)
+        myDBDetails.connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username,
+            myDBDetails.password)
         println("connection successful")
     }
     catch {
         case e: Exception => e.printStackTrace
     }
 
-    val statement = myDatabaseDetails.connection.createStatement
+    val statement = myDBDetails.connection.createStatement
     val rs = statement.executeQuery("select * from inventory")
-    var idSet = Set[String]()
+    var inventoryList: MutableList[Inventory] = MutableList()
+
     while (rs.next) {
-         var id = rs.getInt("id").toString
-         idSet.add(id)
+        inventoryList += new Inventory (rs.getString("name"), rs.getInt("id"), rs.getDouble("price"))
     }
 
     def checkItemExistence(ID: String): Boolean = {
-        idSet.contains(ID)
+        inventoryList.filter(_.id.toString == ID).nonEmpty
     }
 
-    myDatabaseDetails.connection.close
+    myDBDetails.connection.close
 }

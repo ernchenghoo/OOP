@@ -37,7 +37,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <GridPane layoutX="8.0" layoutY="46.0" prefWidth="390.0">
+                              <GridPane fx:id="checkoutGrid" layoutX="14.0" layoutY="59.0" prefWidth="390.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -59,12 +59,6 @@
                                     <Label prefHeight="18.0" prefWidth="100.0" text="ID" />
                                     <Label prefHeight="18.0" prefWidth="116.0" text="Name" GridPane.columnIndex="1" />
                                     <Label prefHeight="18.0" prefWidth="110.0" text="Price" GridPane.columnIndex="2" />
-                                    <Label fx:id="firstID" text="Label" visible="false" GridPane.rowIndex="1" />
-                                    <Label fx:id="firstName" text="Label" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label fx:id="firstPrice" text="Label" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Label fx:id="secondID" text="Label" visible="false" GridPane.rowIndex="2" />
-                                    <Label fx:id="secondName" text="Label" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label fx:id="secondPrice" text="Label" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </children>
