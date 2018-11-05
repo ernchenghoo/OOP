@@ -15,7 +15,7 @@ object MainApp extends JFXApp {
   val roots = loader.getRoot[jfxs.layout.BorderPane]
   
   stage = new PrimaryStage {
-    title = "AddressApp"
+    title = "POSsystem"
     scene = new Scene {
       root = roots
     }
@@ -36,4 +36,13 @@ object MainApp extends JFXApp {
       val roots = loader.getRoot[jfxs.layout.AnchorPane]
       this.roots.setCenter(roots)
     } 
+
+    def goToPaymentMenu() = {
+      val resource = getClass.getResource("/Views/Checkout/PaymentOverview.fxml")
+      val loader = new FXMLLoader(resource, NoDependencyResolver)
+      loader.load();
+      val roots = loader.getRoot[jfxs.layout.AnchorPane]
+      this.roots.setCenter(roots)
+    } 
+
 }

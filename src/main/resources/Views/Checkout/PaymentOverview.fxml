@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="919.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PaymentController">
+   <children>
+      <Label layoutX="35.0" layoutY="22.0" prefHeight="35.0" prefWidth="103.0" text="Payment">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <GridPane fx:id="paymentGrid" layoutX="35.0" layoutY="57.0" maxHeight="477.0" mouseTransparent="true" prefHeight="22.0" prefWidth="518.0" vgap="2.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.20001220703125" minWidth="10.0" prefWidth="61.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="86.99998779296877" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.6" minWidth="10.0" prefWidth="73.40001220703124" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00001525878906" minWidth="10.0" prefWidth="34.000024414062494" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00001525878906" minWidth="10.0" prefWidth="85.20003356933591" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="ID">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Label text="Name" GridPane.columnIndex="1" />
+            <Label text="Unit Price" GridPane.columnIndex="2">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <Label layoutX="165.0" layoutY="17.0" text="Qty" GridPane.columnIndex="3" />
+            <Label layoutX="160.0" layoutY="17.0" text="Line Amount" GridPane.columnIndex="4" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
