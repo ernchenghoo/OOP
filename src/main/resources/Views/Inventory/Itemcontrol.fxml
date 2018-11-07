@@ -17,7 +17,7 @@
             <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="104.0" text="Price" />
         </columns>
       </TableView>
-      <Button layoutX="353.0" layoutY="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Add Item" />
+      <Button layoutX="353.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleAddItem" prefHeight="25.0" prefWidth="77.0" text="Add Item" />
       <Label layoutX="9.0" layoutY="4.0" text="Item List">
          <font>
             <Font size="16.0" />

@@ -51,7 +51,7 @@ object MainApp extends JFXApp {
     this.roots.setCenter(roots)
   }
 
-  def showItemEditDialog(item: Item): Boolean = {
+  def showItemEditDialog(item: Item,addoredit: String): Boolean = {
     val resource = getClass.getResource("/Views/Inventory/Itemeditdialog.fxml")
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
@@ -66,6 +66,7 @@ object MainApp extends JFXApp {
       }
     }
     control.dialogStage = dialog
+    control.addoredit = addoredit
     control.initializeitemdata(item)
     dialog.showAndWait()
 

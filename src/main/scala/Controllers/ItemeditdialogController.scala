@@ -18,16 +18,30 @@ class ItemeditdialogController (
 	) {	
 
 	var  dialogStage : Stage  = null
+	var addoredit:String = null
 	var  okClicked = false
 
 
 	//initialze the data
 	def initializeitemdata(item: Item){
 
-		itemidinputbox.text.value = item.id.getValue().toString()
-		itemnameinputbox.text.value = item.name.getValue()
-		itemdescinputbox.text.value = item.desc.getValue()
-		itempriceinputbox.text.value = item.price.getValue().toString()
+		if(addoredit == "add"){
+			var maxid = 0
+			for(item <-InventoryDatabase.Itemlist){
+				if(item.id.getValue() > maxid){
+					maxid = item.id.getValue()
+				}
+			}
+			//new id
+			maxid = maxid + 1
+			itemidinputbox.text.value = maxid.toString()
+
+		}else{
+			itemidinputbox.text.value = item.id.getValue().toString()
+			itemnameinputbox.text.value = item.name.getValue()
+			itemdescinputbox.text.value = item.desc.getValue()
+			itempriceinputbox.text.value = item.price.getValue().toString()
+		}	
 	}
 
 	def submit(action :ActionEvent){
@@ -38,7 +52,14 @@ class ItemeditdialogController (
 			var desc = itemdescinputbox.text.value
 			var price = itempriceinputbox.text.value.toDouble
 			//edit data in database
-			InventoryDatabase.EditfromItemlist(id,name,desc,price)
+
+			if(addoredit == "add"){
+				InventoryDatabase.AddtoItemlist(id,name,desc,price)
+			}else{
+				InventoryDatabase.EditfromItemlist(id,name,desc,price)
+			}
+
+			
 
 	      	okClicked = true;
 	      	dialogStage.close()

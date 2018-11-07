@@ -52,6 +52,16 @@ object InventoryDatabase{
 		UpdateItemlist()
 	}
 
+	def AddtoItemlist(itemid: Int,itemname: String,itemdesc: String,itemprice: Double) = {
+		Class.forName(myDBDetails.driver)
+		myDBDetails.connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
+		val statement = myDBDetails.connection.createStatement
+		statement.executeUpdate(s"Insert into item Values(${itemid},'${itemname}','${itemdesc}',${itemprice})")	
+
+		myDBDetails.connection.close()
+		UpdateItemlist()
+	}
+
 
 
 }

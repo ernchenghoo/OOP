@@ -64,7 +64,7 @@ class ItemcontrolController (
 	    if (selectedIndex >= 0) {
 	    	var selecteditem:Item = InventoryDatabase.Itemlist.get(selectedIndex)
 
-	    	val okClicked: Boolean = MainApp.showItemEditDialog(selecteditem)
+	    	val okClicked: Boolean = MainApp.showItemEditDialog(selecteditem,"edit")
 
 	    	if(okClicked){
 	    		//refrest the table data
@@ -80,6 +80,16 @@ class ItemcontrolController (
 	        contentText = "Please select a item in the table."
 	      }.showAndWait()
 	    }
+	}
+
+	def handleAddItem(action : ActionEvent) = {
+
+	    val okClicked: Boolean = MainApp.showItemEditDialog(null,"add")
+
+    	if(okClicked){
+    		//refrest the table data
+    		RefreshItemlist()
+    	}
 	    
 
 	}
