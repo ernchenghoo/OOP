@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="9.0" layoutY="4.0" text="Stock Edit History">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="401.0" layoutY="4.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Add Stock" />
+      <Button layoutX="501.0" layoutY="4.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Minus Stock" />
+      <TableView layoutY="38.0" prefHeight="293.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="77.0" text="Date" />
+          <TableColumn prefWidth="111.0" text="Item" />
+            <TableColumn prefWidth="93.0" text="Branch" />
+            <TableColumn prefWidth="91.0" text="Amount" />
+            <TableColumn prefWidth="227.0" text="Description" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

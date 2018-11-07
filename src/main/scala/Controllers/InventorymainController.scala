@@ -11,7 +11,9 @@ import javafx.{scene => jfxs}
 @sfxml
 class InventorymainController (val anchorpanetab: AnchorPane) {	
 	
-	
+	//initial select itemcontrol 
+	changeitemcontrol()
+
 	def backtoMainmenu() = {
 		MainApp.showPersonOverview()
 
