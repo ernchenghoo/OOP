@@ -18,4 +18,8 @@ class MainMenuController (val checkout2: Button) {
 	def moveToMainMenu() = {
 		MainApp.showPersonOverview()
 	}
+
+	def movetotest() = {
+		MainApp.goToInventoryMain()
+	}
 }	

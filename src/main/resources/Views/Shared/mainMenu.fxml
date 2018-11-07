@@ -13,5 +13,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button layoutX="51.0" layoutY="142.0" mnemonicParsing="false" onAction="#movetotest" prefHeight="25.0" prefWidth="126.0" text="Inventory" />
    </children>
 </AnchorPane>
