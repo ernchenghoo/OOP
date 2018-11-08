@@ -2,6 +2,7 @@ package MainSystem
 
 import Models.Item
 import Controllers.ItemeditdialogController
+import Controllers.StockeditdialogController
 
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -68,6 +69,28 @@ object MainApp extends JFXApp {
     control.dialogStage = dialog
     control.addoredit = addoredit
     control.initializeitemdata(item)
+    dialog.showAndWait()
+
+    control.okClicked
+  } 
+
+  def showStockEditDialog(addorminus: String): Boolean = {
+    val resource = getClass.getResource("/Views/Inventory/Stockeditdialog.fxml")
+    val loader = new FXMLLoader(resource, NoDependencyResolver)
+    loader.load();
+    val roots2  = loader.getRoot[jfxs.Parent]
+    val control = loader.getController[StockeditdialogController#Controller]
+
+    val dialog = new Stage() {
+      initModality(Modality.APPLICATION_MODAL)
+      initOwner(stage)
+      scene = new Scene {
+        root = roots2
+      }
+    }
+    control.dialogStage = dialog
+    control.addorminus = addorminus
+    control.initializedata()
     dialog.showAndWait()
 
     control.okClicked

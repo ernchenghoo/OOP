@@ -11,10 +11,11 @@ import scalafx.event.ActionEvent
 
 @sfxml
 class ItemeditdialogController (
+	val title: Label,
 	val itemidinputbox: TextField,
 	val itemnameinputbox: TextField,
 	val itemdescinputbox: TextArea,
-	val itempriceinputbox: TextField,
+	val itempriceinputbox: TextField
 	) {	
 
 	var  dialogStage : Stage  = null
@@ -26,6 +27,7 @@ class ItemeditdialogController (
 	def initializeitemdata(item: Item){
 
 		if(addoredit == "add"){
+			title.setText("Add Item")
 			var maxid = 0
 			for(item <-InventoryDatabase.Itemlist){
 				if(item.id.getValue() > maxid){
@@ -37,6 +39,7 @@ class ItemeditdialogController (
 			itemidinputbox.text.value = maxid.toString()
 
 		}else{
+			title.setText("Edit Item")
 			itemidinputbox.text.value = item.id.getValue().toString()
 			itemnameinputbox.text.value = item.name.getValue()
 			itemdescinputbox.text.value = item.desc.getValue()

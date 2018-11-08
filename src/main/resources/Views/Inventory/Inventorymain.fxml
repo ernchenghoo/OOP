@@ -27,7 +27,7 @@
                <HBox.margin>
                   <Insets left="10.0" top="5.0" />
                </HBox.margin></Button>
-            <Button mnemonicParsing="false" prefWidth="130.0" text="Stock control">
+            <Button mnemonicParsing="false" onAction="#changestockcontrol" prefWidth="130.0" text="Stock control">
                <HBox.margin>
                   <Insets left="10.0" top="5.0" />
                </HBox.margin></Button>
