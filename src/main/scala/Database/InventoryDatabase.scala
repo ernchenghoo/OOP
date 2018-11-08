@@ -104,11 +104,13 @@ object InventoryDatabase{
 			var stockeditid = queryresult.getInt("stockeditid")
 			var date = queryresult.getTimestamp("date")
 			var itemid = queryresult.getInt("itemid")
+			var itemname = queryresult.getString("itemname")
 			var branchid = queryresult.getInt("branchid")
+			var branchlocation = queryresult.getString("branchlocation")
 			var amount = queryresult.getInt("amount")
 			var desc = queryresult.getString("description")
 
-			var stockeditobject = new stockedithistory(stockeditid,date,itemid,branchid,amount,desc)
+			var stockeditobject = new stockedithistory(stockeditid,date,itemid,itemname,branchid,branchlocation,amount,desc)
 
 			Stockhistorylist += stockeditobject
 		}	

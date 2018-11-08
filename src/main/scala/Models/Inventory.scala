@@ -25,11 +25,13 @@ class Itemstock(_itemid:Int, _branchid: Int, _numofstock: Int){
 	var numofstock = ObjectProperty[Int](_numofstock)
 }
 
-class stockedithistory( _stockeditid: Int, _date: Timestamp, _itemid: Int, _branchid: Int, val _amount: Int,val _description:String){
+class stockedithistory( _stockeditid: Int, _date: Timestamp, _itemid: Int, _itemnamefromtable:String,  _branchid: Int, _branchlocationfromtable:String, val _amount: Int,val _description:String){
 	var stockeditid = ObjectProperty[Int](_stockeditid)
 	var date = ObjectProperty[Timestamp](_date)
 	var itemid = ObjectProperty[Int](_itemid)
+	var itemnamefromtable = new StringProperty(_itemnamefromtable)
 	var branchid = ObjectProperty[Int](_branchid)
+	var branchlocationfromtable = new StringProperty(_branchlocationfromtable)
 	var amount = ObjectProperty[Int](_amount)
 	var description = new StringProperty(_description)
 
@@ -42,21 +44,34 @@ class stockedithistory( _stockeditid: Int, _date: Timestamp, _itemid: Int, _bran
 	def getItemname():StringProperty = {
 		var itemname = new StringProperty("ItemID not found") 
 
+		//get the lastest itemname from itemID
 		for(item <- InventoryDatabase.Itemlist){
 			if(item.id.getValue() == itemid.getValue())
 				itemname = item.name
 		}
-		itemname
+
+		//if ItemID still available in item table get lastest itemname
+		//if string still is itemid not found the use then itemname from stockedithistory table
+		if(itemname.getValue() == "ItemID not found")
+			return itemnamefromtable
+		else
+			return itemname
 	}
 
-	def getBranchname():StringProperty = {
+	def getBranchlocation():StringProperty = {
 		var branchlocation = new StringProperty("BranchID not found") 
 
 		for(branch <- InventoryDatabase.Branchlist){
 			if(branch.branchid.getValue() == branchid.getValue())
 				branchlocation = branch.location
 		}
-		branchlocation
+
+		//if branchID still available in branch table get lastest branchlocation
+		//if string still is BranchID not found then use the branchlocation from stockedithistory table
+		if(branchlocation.getValue() == "BranchID not found")
+			return branchlocationfromtable
+		else
+			return branchlocation
 	}
 
 	

@@ -38,7 +38,7 @@ class StockcontrolController (
 		idColumn.cellValueFactory = {_.value.stockeditid}
 	  	dateColumn.cellValueFactory = {_.value.DatetoString()}
 	  	itemColumn.cellValueFactory = {_.value.getItemname()}
-	  	branchColumn.cellValueFactory = {_.value.getBranchname()}
+	  	branchColumn.cellValueFactory = {_.value.getBranchlocation()}
 	  	amountColumn.cellValueFactory = {_.value.amount}
 	  	descriptionColumn.cellValueFactory = {_.value.description}
 	}
