@@ -27,12 +27,12 @@
                   <Button fx:id="connectDbButton" defaultButton="true" layoutX="179.0" layoutY="91.0" mnemonicParsing="false" onAction="#checkoutItem" prefHeight="26.0" prefWidth="45.0" text="Go" AnchorPane.rightAnchor="5.800000000000011" AnchorPane.topAnchor="91.0" />
                   <Label layoutX="8.0" layoutY="35.0" text="ID: " />
                   <Label layoutX="157.0" layoutY="34.0" text="Qty:" AnchorPane.rightAnchor="51.800000000000004" />
-                  <TextField fx:id="quantityField" layoutX="187.0" layoutY="30.0" prefHeight="26.0" prefWidth="29.0" AnchorPane.rightAnchor="13.800000000000004" />
+                  <TextField fx:id="quantityField" layoutX="187.0" layoutY="30.0" prefHeight="26.0" prefWidth="29.0" text="1" AnchorPane.rightAnchor="13.800000000000004" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="398.0" prefWidth="135.0">
                <children>
-                  <ScrollPane layoutX="14.0" prefHeight="574.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane layoutX="14.0" prefHeight="438.0" prefWidth="570.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <content>
                       <AnchorPane prefHeight="564.0" prefWidth="565.0">
                            <children>
@@ -41,11 +41,11 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <GridPane fx:id="checkoutGrid" layoutX="14.0" layoutY="58.0" maxHeight="477.0" mouseTransparent="true" prefHeight="30.0" prefWidth="463.0" vgap="5.0">
+                              <GridPane fx:id="checkoutGrid" layoutX="14.0" layoutY="58.0" maxHeight="477.0" mouseTransparent="true" prefWidth="463.0" vgap="5.0">
                                 <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.20001220703125" minWidth="10.0" prefWidth="27.200028228759763" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.19997177124021" minWidth="10.0" prefWidth="123.19997177124021" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.0" minWidth="10.0" prefWidth="86.99998779296877" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.19997177124021" minWidth="10.0" prefWidth="76.80003662109374" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.59996337890624" minWidth="10.0" prefWidth="140.59996337890624" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.6" minWidth="10.0" prefWidth="73.40001220703124" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00001525878906" minWidth="10.0" prefWidth="34.000024414062494" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.00001525878906" minWidth="10.0" prefWidth="85.20003356933591" />
@@ -70,11 +70,11 @@
                                     <Label layoutX="45.0" layoutY="16.0" prefHeight="18.0" prefWidth="27.0" text="No." />
                                  </children>
                               </GridPane>
-                              <Button fx:id="checkoutButton" layoutX="500.0" layoutY="524.0" mnemonicParsing="false" onAction="#moveToPayment" text="Checkout" AnchorPane.bottomAnchor="14.399999999999977" AnchorPane.rightAnchor="13.600000000000023" />
                            </children>
                         </AnchorPane>
                     </content>
                   </ScrollPane>
+                  <Button mnemonicParsing="false" onAction="#moveToPayment" text="Checkout" AnchorPane.bottomAnchor="14.399999999999977" AnchorPane.rightAnchor="13.600000000000023" />
                </children>
             </AnchorPane>
          </items>
