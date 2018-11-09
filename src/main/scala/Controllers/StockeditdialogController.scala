@@ -2,6 +2,7 @@ package Controllers
 
 import Models.Item
 import Database.InventoryDatabase
+import Database.BranchDatabase
 
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
@@ -56,7 +57,7 @@ class StockeditdialogController (
 		//initialize branch choose
 		branchdropdown.getItems().add("Select Branch");
 		branchdropdown.setValue("Select Branch")
-		for(branch <- InventoryDatabase.Branchlist){
+		for(branch <- BranchDatabase.Branchlist){
 			branchdropdown.getItems().add(branch.location.getValue());
 		}
 	}
@@ -84,7 +85,7 @@ class StockeditdialogController (
 
 			//find branchid with branch name
 			var branchid = 0
-			for(branch <- InventoryDatabase.Branchlist){
+			for(branch <- BranchDatabase.Branchlist){
 				if(branch.location.getValue() == branchlocation)
 					branchid = branch.branchid.getValue()
 			}
@@ -158,7 +159,7 @@ class StockeditdialogController (
 						itemid = item.id.getValue()
 				}
 
-				for(branch <- InventoryDatabase.Branchlist){
+				for(branch <- BranchDatabase.Branchlist){
 					if(branch.location.getValue() == branchdropdown.getValue())
 						branchid = branch.branchid.getValue()
 				}

@@ -1,8 +1,11 @@
 package Database
 
+import Database.BranchDatabase
 import Models.Item
 import Models.stockedithistory
 import Models.branch
+import Models.Itemstock
+
 
 import java.sql.{Connection,DriverManager}
 import scalafx.collections.ObservableBuffer
@@ -17,8 +20,7 @@ object InventoryDatabase{
 	//for storing stockedithistory from database
 	var Stockhistorylist: ObservableBuffer[stockedithistory] = new ObservableBuffer[stockedithistory]()
 
-	//for storing branchlist from database
-	var Branchlist: ObservableBuffer[branch] = new ObservableBuffer[branch]()
+	var Stocklist:ObservableBuffer[Itemstock] = new ObservableBuffer[Itemstock]()
 
 
 	//for Itemlist function
@@ -191,28 +193,31 @@ object InventoryDatabase{
 	
 	//end Stockhistoryfunction
 
-	//for branchlist function
-	def UpdateBranchlist() = {
-		Branchlist.clear()
+	
+
+	//for Stocklist function
+	def UpdateStocklist() = {
+		Stocklist.clear()
 
 		Class.forName(myDBDetails.driver)
 		myDBDetails.connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
 		val statement = myDBDetails.connection.createStatement
-		val queryresult = statement.executeQuery("select * from branch")		
+		val queryresult = statement.executeQuery("select * from itemstock")		
 
 		while (queryresult.next){
+			var itemid = queryresult.getInt("itemid")
 			var branchid = queryresult.getInt("branchid")
-			var location = queryresult.getString("location")
+			var numofstock = queryresult.getInt("numofstock")
+	
 
-			var branchobject = new branch(branchid,location)
+			var itemstockobject = new Itemstock(itemid,branchid,numofstock)
 
-			Branchlist += branchobject
+			Stocklist += itemstockobject
 		}	
 
 		myDBDetails.connection.close()
 	}
-
-	//branchlist function end
+	//Stocklist function end
 
 
 

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StockcontrolController">
+<AnchorPane prefHeight="331.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StockcontrolController">
    <children>
       <Label layoutX="9.0" layoutY="4.0" text="Stock Edit History">
          <font>
@@ -16,7 +16,7 @@
       </Label>
       <Button layoutX="401.0" layoutY="4.0" mnemonicParsing="false" onAction="#addstock" prefHeight="25.0" prefWidth="90.0" text="Add Stock" />
       <Button layoutX="501.0" layoutY="4.0" mnemonicParsing="false" onAction="#minusstock" prefHeight="25.0" prefWidth="90.0" text="Minus Stock" />
-      <TableView fx:id="stocktableview" layoutY="38.0" prefHeight="293.0" prefWidth="600.0">
+      <TableView fx:id="stocktableview" layoutY="38.0" prefHeight="293.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="67.0" text="ID" />
             <TableColumn fx:id="dateColumn" prefWidth="87.0" text="Date" />

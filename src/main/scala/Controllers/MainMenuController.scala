@@ -19,7 +19,11 @@ class MainMenuController (val checkout2: Button) {
 		MainApp.showPersonOverview()
 	}
 
-	def movetotest() = {
+	def movetoInventory() = {
 		MainApp.goToInventoryMain()
+	}
+
+	def movetoBranch() = {
+		MainApp.goToBranchMain()
 	}
 }	

@@ -1,16 +1,14 @@
 package Models 
 
 import Database.InventoryDatabase
+import Database.BranchDatabase
 
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import scalafx.beans.property.{StringProperty, IntegerProperty, ObjectProperty}
 import java.time.format.DateTimeFormatter
 
-class branch(_branchid: Int, _location:String){
-	var branchid = ObjectProperty[Int](_branchid)
-	var location = new StringProperty(_location)
-}
+
 
 class Item(_id: Int,_name: String, _desc: String, _price: Double){
 	var id = ObjectProperty[Int](_id)
@@ -23,6 +21,29 @@ class Itemstock(_itemid:Int, _branchid: Int, _numofstock: Int){
 	var itemid = ObjectProperty[Int](_itemid)
 	var branchid = ObjectProperty[Int](_branchid)
 	var numofstock = ObjectProperty[Int](_numofstock)
+
+	def getItemname():StringProperty = {
+		var itemname = new StringProperty("ItemID not found") 
+
+		//get the lastest itemname from itemID
+		for(item <- InventoryDatabase.Itemlist){
+			if(item.id.getValue() == itemid.getValue())
+				itemname = item.name
+		}
+
+		itemname
+	}
+
+	def getBranchlocation():StringProperty = {
+		var branchlocation = new StringProperty("BranchID not found") 
+
+		for(branch <- BranchDatabase.Branchlist){
+			if(branch.branchid.getValue() == branchid.getValue())
+				branchlocation = branch.location
+		}
+
+		branchlocation
+	}
 }
 
 class stockedithistory( _stockeditid: Int, _date: Timestamp, _itemid: Int, _itemnamefromtable:String,  _branchid: Int, _branchlocationfromtable:String, val _amount: Int,val _description:String){
@@ -61,7 +82,7 @@ class stockedithistory( _stockeditid: Int, _date: Timestamp, _itemid: Int, _item
 	def getBranchlocation():StringProperty = {
 		var branchlocation = new StringProperty("BranchID not found") 
 
-		for(branch <- InventoryDatabase.Branchlist){
+		for(branch <- BranchDatabase.Branchlist){
 			if(branch.branchid.getValue() == branchid.getValue())
 				branchlocation = branch.location
 		}

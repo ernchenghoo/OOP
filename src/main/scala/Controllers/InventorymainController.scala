@@ -2,6 +2,7 @@ package Controllers
 
 import MainSystem.MainApp
 import Database.InventoryDatabase
+import Database.BranchDatabase
 
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
@@ -14,7 +15,7 @@ class InventorymainController (val anchorpanetab: AnchorPane) {
 	//get all data for inventory related table to list
 	InventoryDatabase.UpdateItemlist()
 	InventoryDatabase.UpdateStockhistorylist()
-	InventoryDatabase.UpdateBranchlist()
+	BranchDatabase.UpdateBranchlist()
 
 
 	//initial select itemcontrol 
@@ -23,7 +24,6 @@ class InventorymainController (val anchorpanetab: AnchorPane) {
 	def backtoMainmenu() = {
 		MainApp.showPersonOverview()
 
-		InventoryDatabase.UpdateItemlist()
 	}
 
 	def changeitemcontrol() = {
@@ -49,6 +49,19 @@ class InventorymainController (val anchorpanetab: AnchorPane) {
 
 		anchorpanetab.getChildren().clear()
         anchorpanetab.getChildren().add(stockcontrolroot)
+
+	}
+
+	def changestockcheck() = {
+		val resource = getClass.getResource("/Views/Inventory/StockCheck.fxml")
+    	val loader = new FXMLLoader(resource, NoDependencyResolver)
+
+    	loader.load()
+
+    	val stockcheckroot = loader.getRoot[jfxs.layout.AnchorPane]
+
+		anchorpanetab.getChildren().clear()
+        anchorpanetab.getChildren().add(stockcheckroot)
 
 	}
 }	

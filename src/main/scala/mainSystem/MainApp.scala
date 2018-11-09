@@ -1,8 +1,10 @@
 package MainSystem
 
 import Models.Item
+import Models.branch
 import Controllers.ItemeditdialogController
 import Controllers.StockeditdialogController
+import Controllers.BrancheditdialogController
 
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -48,7 +50,7 @@ object MainApp extends JFXApp {
     val resource = getClass.getResource("/Views/Inventory/Inventorymain.fxml")
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
-    val roots = loader.getRoot[jfxs.layout.FlowPane]
+    val roots = loader.getRoot[jfxs.layout.AnchorPane]
     this.roots.setCenter(roots)
   }
 
@@ -95,4 +97,39 @@ object MainApp extends JFXApp {
 
     control.okClicked
   } 
+  //Inventory end
+
+  //branch
+  def goToBranchMain() = {
+    val resource = getClass.getResource("/Views/Branch/Branchmain.fxml")
+    val loader = new FXMLLoader(resource, NoDependencyResolver)
+    loader.load();
+    val roots = loader.getRoot[jfxs.layout.AnchorPane]
+    this.roots.setCenter(roots)
+  }
+
+  def showBranchEditDialog(branch:branch,addoredit: String): Boolean = {
+    val resource = getClass.getResource("/Views/Branch/Brancheditdialog.fxml")
+    val loader = new FXMLLoader(resource, NoDependencyResolver)
+    loader.load();
+    val roots2  = loader.getRoot[jfxs.Parent]
+    val control = loader.getController[BrancheditdialogController#Controller]
+
+    val dialog = new Stage() {
+      initModality(Modality.APPLICATION_MODAL)
+      initOwner(stage)
+      scene = new Scene {
+        root = roots2
+      }
+    }
+
+    control.dialogStage = dialog
+    control.addoredit = addoredit
+    control.initializedata(branch)
+    dialog.showAndWait()
+
+    control.okClicked
+  } 
+  //branch end
+
 }
