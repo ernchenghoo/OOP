@@ -29,7 +29,7 @@ class StockeditdialogController (
 
 
 	//initialze the data
-	def initializedata(){
+	def initializedata() = {
 		//set title label
 		if(addorminus == "add")
 			title.setText("Add stock")
@@ -62,7 +62,7 @@ class StockeditdialogController (
 		}
 	}
 
-	def submit(action :ActionEvent){
+	def submit(action :ActionEvent) = {
 		
 		if (checkinput()) {
 			var stockeditid = idinputbox.text.value.toInt
@@ -104,7 +104,7 @@ class StockeditdialogController (
 	    
 	}
 
-	def cancel(action :ActionEvent) {
+	def cancel(action :ActionEvent) = {
 	   dialogStage.close();
 	}
 

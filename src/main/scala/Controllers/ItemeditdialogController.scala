@@ -24,7 +24,7 @@ class ItemeditdialogController (
 
 
 	//initialze the data
-	def initializeitemdata(item: Item){
+	def initializeitemdata(item: Item) = {
 
 		if(addoredit == "add"){
 			title.setText("Add Item")
@@ -47,7 +47,7 @@ class ItemeditdialogController (
 		}	
 	}
 
-	def submit(action :ActionEvent){
+	def submit(action :ActionEvent) = {
 		if (checkinput()) {
 
 			var id = itemidinputbox.text.value.toInt
@@ -69,7 +69,7 @@ class ItemeditdialogController (
 	    }
 	}
 
-	def cancel(action :ActionEvent) {
+	def cancel(action :ActionEvent) = {
 	   dialogStage.close();
 	}
 
