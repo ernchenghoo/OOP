@@ -5,6 +5,7 @@ import Models.branch
 import Controllers.ItemeditdialogController
 import Controllers.StockeditdialogController
 import Controllers.BrancheditdialogController
+import Controllers.SearchReportController
 
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -131,5 +132,34 @@ object MainApp extends JFXApp {
     control.okClicked
   } 
   //branch end
+
+  //Report
+  def goToSearchReport() = {
+    val resource = getClass.getResource("/Views/Tracking_Report/SearchReport.fxml")
+    val loader = new FXMLLoader(resource, NoDependencyResolver)
+    loader.load();
+    val roots = loader.getRoot[jfxs.layout.AnchorPane]
+    this.roots.setCenter(roots)
+  }
+
+  def showReport() = {
+    val resource= getClass.getResource("/Views/Tracking_Report/Report.fxml")
+    val loader = new FXMLLoader(resource, NoDependencyResolver)
+    loader.load();
+    val root2 = loader.getRoot[jfxs.Parent]
+    val control = loader.getController[SearchReportController#Controller]
+
+    val dialog = new Stage() {
+      initModality(Modality.APPLICATION_MODAL)
+      initOwner(stage)
+      scene = new Scene {
+        root = root2
+      }
+    }
+
+    control.dialogStage = dialog
+    dialog.showAndWait()
+    control.okClicked
+  }
 
 }

@@ -26,4 +26,8 @@ class MainMenuController (val checkout2: Button) {
 	def movetoBranch() = {
 		MainApp.goToBranchMain()
 	}
+
+	def moveToSearchReport() = {
+		MainApp.goToSearchReport()
+	}
 }	

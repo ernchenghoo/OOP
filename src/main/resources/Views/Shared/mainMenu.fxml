@@ -15,5 +15,6 @@
       </Label>
       <Button layoutX="51.0" layoutY="142.0" mnemonicParsing="false" onAction="#movetoInventory" prefHeight="25.0" prefWidth="126.0" text="Inventory" />
       <Button layoutX="51.0" layoutY="180.0" mnemonicParsing="false" onAction="#movetoBranch" prefHeight="25.0" prefWidth="126.0" text="Branch" />
+      <Button layoutX="51.0" layoutY="225.0" mnemonicParsing="false" onAction="#moveToSearchReport" prefHeight="25.0" prefWidth="126.0" text="Report" />
    </children>
 </AnchorPane>
