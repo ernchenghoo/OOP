@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorpanetab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorpanetab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReturnitemController">
    <children>
       <BorderPane layoutX="2.0" layoutY="1.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -24,6 +24,7 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
@@ -36,24 +37,30 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Authorize Personnel" textAlignment="CENTER" wrappingWidth="290.609375" GridPane.rowIndex="1">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Item Desc" textAlignment="CENTER" wrappingWidth="290.609375" GridPane.rowIndex="2">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reasons" textAlignment="CENTER" wrappingWidth="290.609375" GridPane.rowIndex="2">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price" textAlignment="CENTER" wrappingWidth="290.609375" GridPane.rowIndex="3">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" />
+                  <TextField fx:id="itemnameinputbox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name" textAlignment="CENTER" wrappingWidth="290.609375" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="itemidinputbox" GridPane.columnIndex="1" />
+                  <TextField fx:id="itempriceinputbox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextArea fx:id="itemdescinputbox" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </center>
          <bottom>
-            <Button mnemonicParsing="false" text="Return" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#submit" text="Return" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="15.0" />
                </BorderPane.margin>
