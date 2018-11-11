@@ -6,6 +6,7 @@ import Controllers.ItemeditdialogController
 import Controllers.StockeditdialogController
 import Controllers.BrancheditdialogController
 import Controllers.SearchReportController
+import Controllers.ReturnitemController
 
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -99,6 +100,16 @@ object MainApp extends JFXApp {
     control.okClicked
   } 
   //Inventory end
+
+  //Return Item
+   def goToReturnItem() = {
+    val resource = getClass.getResource("/Views/Return_Item/Returnitem.fxml")
+    val loader = new FXMLLoader(resource, NoDependencyResolver)
+    loader.load();
+    val roots = loader.getRoot[jfxs.layout.AnchorPane]
+    this.roots.setCenter(roots)
+  }
+  //end Return Item
 
   //branch
   def goToBranchMain() = {

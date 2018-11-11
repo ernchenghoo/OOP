@@ -23,6 +23,10 @@ class MainMenuController (val checkout2: Button) {
 		MainApp.goToInventoryMain()
 	}
 
+	def movetoReturnItem() = {
+		MainApp.goToReturnItem()
+	}
+
 	def movetoBranch() = {
 		MainApp.goToBranchMain()
 	}
