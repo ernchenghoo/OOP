@@ -6,6 +6,7 @@ import Controllers.ItemeditdialogController
 import Controllers.StockeditdialogController
 import Controllers.BrancheditdialogController
 import Controllers.SearchReportController
+import Controllers.ReportController
 
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -14,7 +15,7 @@ import scalafx.Includes._
 import scalafxml.core.{NoDependencyResolver, FXMLView, FXMLLoader}
 import javafx.{scene => jfxs}
 import scalafx.stage.{Modality, Stage}
-
+import java.time.LocalDate
 
 object MainApp extends JFXApp {
   
@@ -139,15 +140,17 @@ object MainApp extends JFXApp {
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
     val roots = loader.getRoot[jfxs.layout.AnchorPane]
+    val control = loader.getController[SearchReportController#Controller]
     this.roots.setCenter(roots)
+    control.initializebranch()
   }
 
-  def showReport() = {
+  def showReport(fromDate1:LocalDate,toDate1:LocalDate,branchdropdown1:String) = {
     val resource= getClass.getResource("/Views/Tracking_Report/Report.fxml")
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
     val root2 = loader.getRoot[jfxs.Parent]
-    val control = loader.getController[SearchReportController#Controller]
+    val control = loader.getController[ReportController#Controller]
 
     val dialog = new Stage() {
       initModality(Modality.APPLICATION_MODAL)
@@ -156,10 +159,13 @@ object MainApp extends JFXApp {
         root = root2
       }
     }
-
-    control.dialogStage = dialog
+    control.fromDate = fromDate1
+    control.toDate = toDate1
+    control.from_date()
+    control.to_date()
+    control.setbranch(branchdropdown1)
     dialog.showAndWait()
-    control.okClicked
+  
   }
 
 }
