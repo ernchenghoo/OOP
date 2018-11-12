@@ -7,6 +7,7 @@ import scalafx.scene.layout._
 import scalafx.scene.Node
 import scalafx.Includes._
 import scalafx.event.ActionEvent
+import scalafx.geometry.HPos
 import scalafxml.core.macros.sfxml
 import java.sql.{Connection,DriverManager}
 import scalafx.scene.control.Alert.AlertType
@@ -25,15 +26,15 @@ class CheckoutController (
 		myDBDetails.connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
 		val statement = myDBDetails.connection.createStatement
 		//variables			
-		var itemRow: Int = 1			
+		var itemRow: Int = 1		
 		var rowLabels = ListBuffer[Label]()
 		var idLabels = ListBuffer[Label]()
 		var nameLabels = ListBuffer[Label]()
 		var unitPriceLabels = ListBuffer[Label]()
 		var qtyLabels = ListBuffer[Label]()
 		var lineAmountLabels = ListBuffer[Label]()
-		var deleteHyperlinks = ListBuffer[Hyperlink]()	
-
+		var deleteButtons = ListBuffer[Hyperlink]()
+		
 		def moveToMainMenu() = {
 			MainApp.showMainMenu()
 			myDBDetails.connection.close
@@ -95,32 +96,45 @@ class CheckoutController (
 			}				
 
 			duplicate match {
-				case false => {
+				case false => {					
 					Checkout.listOfCheckedoutItems += _checkedOutItems
 					//create labels									
 					idLabels  += new Label(_checkedOutItems.id.toString)
-					nameLabels  += new Label(_checkedOutItems.name.toString)
-					unitPriceLabels  += new Label(_checkedOutItems.price.toString)
-					qtyLabels  += new Label(_checkedOutItems.quantity.toString)
-					lineAmountLabels  += new Label(_checkedOutItems.lineAmount.toString)
-					var deleteHyperlink = new Hyperlink ("Delete line")
-					
-					checkoutGrid.addRow(itemRow, idLabels(itemRow-1), nameLabels(itemRow-1), 
-										unitPriceLabels(itemRow-1), qtyLabels(itemRow-1), lineAmountLabels(itemRow-1))
+					GridPane.setConstraints(idLabels(itemRow-1), 0, itemRow)
+					GridPane.setHalignment(idLabels(itemRow-1), HPos.CENTER)
 
-					deleteHyperlink.onAction = (e:ActionEvent) => {									
+					nameLabels  += new Label(_checkedOutItems.name.toString)
+					GridPane.setConstraints(nameLabels(itemRow-1), 1, itemRow)
+					GridPane.setHalignment(nameLabels(itemRow-1), HPos.CENTER)
+
+					unitPriceLabels  += new Label(_checkedOutItems.price.toString)
+					GridPane.setConstraints(unitPriceLabels(itemRow-1), 2, itemRow)
+					GridPane.setHalignment(unitPriceLabels(itemRow-1), HPos.CENTER)
+
+					qtyLabels  += new Label(_checkedOutItems.quantity.toString)
+					GridPane.setConstraints(qtyLabels(itemRow-1), 3, itemRow)
+					GridPane.setHalignment(qtyLabels(itemRow-1), HPos.CENTER)
+
+					lineAmountLabels  += new Label(_checkedOutItems.lineAmount.toString)
+					GridPane.setConstraints(lineAmountLabels(itemRow-1), 4, itemRow)
+					GridPane.setHalignment(lineAmountLabels(itemRow-1), HPos.CENTER)
+
+					var deleteButton = new Hyperlink ("Delete line")
+
+					deleteButton.onAction = (e:ActionEvent) => {									
 						if (Checkout.listOfCheckedoutItems.nonEmpty) {
-							
-							var rowToBeDeleted = deleteHyperlinks.indexOf(deleteHyperlink)
-							var buttonIndex = checkoutGrid.children.indexOf(deleteHyperlink)							
-							
+							itemRow -= 1
+							var rowToBeDeleted = deleteButtons.indexOf(deleteButton)
+							var buttonIndex = checkoutGrid.children.indexOf(deleteButton)
+							var rowIndex = GridPane.getRowIndex (deleteButton)
+							println (rowIndex)
 							//remove from labels array							
 							idLabels.remove(rowToBeDeleted)
 							nameLabels.remove(rowToBeDeleted)
 							unitPriceLabels.remove(rowToBeDeleted)
 							qtyLabels.remove(rowToBeDeleted)
 							lineAmountLabels.remove(rowToBeDeleted)
-							deleteHyperlinks.remove(rowToBeDeleted)
+							deleteButtons.remove(rowToBeDeleted)
 
 							//delete column
 							checkoutGrid.children.remove (buttonIndex-5)
@@ -128,26 +142,33 @@ class CheckoutController (
 							checkoutGrid.children.remove (buttonIndex-5)
 							checkoutGrid.children.remove (buttonIndex-5)
 							checkoutGrid.children.remove (buttonIndex-5)
-							checkoutGrid.children.remove (buttonIndex-5)							
+							checkoutGrid.children.remove (buttonIndex-5)	
+
+							for (elements <- checkoutGrid.children) {
+								if (GridPane.getRowIndex(elements) >= rowIndex + 1)
+									GridPane.setRowIndex(elements, GridPane.getRowIndex(elements) - 1)
+							}						
 
 							//remove from checkoutList
 							Checkout.listOfCheckedoutItems.remove (rowToBeDeleted)
-							itemRow -= 1
+							
 
 							if (Checkout.listOfCheckedoutItems.isEmpty) {
 								checkoutButton.setVisible (false)
 							}
-							println (checkoutGrid.children.size)						
 						}						
 					}					
-					deleteHyperlinks += deleteHyperlink
-					checkoutGrid.add(deleteHyperlinks(itemRow-1), 5, itemRow)
+					deleteButtons += deleteButton
+					GridPane.setConstraints(deleteButtons(itemRow-1), 5, itemRow)
+					GridPane.setHalignment(lineAmountLabels(itemRow-1), HPos.CENTER)
+
+					checkoutGrid.getChildren().addAll (idLabels(itemRow-1), nameLabels(itemRow-1), unitPriceLabels(itemRow-1),
+														qtyLabels(itemRow-1), lineAmountLabels(itemRow-1), deleteButtons(itemRow-1))
 					
-					itemRow += 1
 					if (checkoutButton.isVisible == false) {
 						checkoutButton.setVisible (true)
 					}
-					println (checkoutGrid.children.size)					
+					itemRow += 1					
 				}
 
 				case true => {
