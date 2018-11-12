@@ -13,5 +13,9 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button layoutX="51.0" layoutY="125.0" mnemonicParsing="false" onAction="#movetoInventory" prefHeight="25.0" prefWidth="126.0" text="Inventory" />
+      <Button layoutX="51.0" layoutY="197.0" mnemonicParsing="false" onAction="#movetoBranch" prefHeight="25.0" prefWidth="126.0" text="Branch" />
+      <Button layoutX="51.0" layoutY="235.0" mnemonicParsing="false" onAction="#moveToSearchReport" prefHeight="25.0" prefWidth="126.0" text="Report" />
+      <Button layoutX="51.0" layoutY="161.0" mnemonicParsing="false" onAction="#movetoReturnItem" prefHeight="25.0" prefWidth="126.0" text="Return Item" />
    </children>
 </AnchorPane>
