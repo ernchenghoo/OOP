@@ -22,7 +22,7 @@ class BrancheditdialogController (
 
 
 	//initialze the data
-	def initializedata(branch: branch){
+	def initializedata(branch: branch) = {
 
 		if(addoredit == "add"){
 			title.setText("Add Item")
@@ -43,7 +43,7 @@ class BrancheditdialogController (
 		}	
 	}
 
-	def submit(action :ActionEvent){
+	def submit(action :ActionEvent) = {
 		if (checkinput()) {
 
 			var branchid = branchidinputbox.text.value.toInt
@@ -63,7 +63,7 @@ class BrancheditdialogController (
 	    }
 	}
 
-	def cancel(action :ActionEvent) {
+	def cancel(action :ActionEvent) = {
 	   dialogStage.close();
 	}
 
