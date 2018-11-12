@@ -103,12 +103,34 @@ object MainApp extends JFXApp {
 
   //Return Item
    def goToReturnItem() = {
-    val resource = getClass.getResource("/Views/Return_Item/Returnitem.fxml")
+    val resource = getClass.getResource("/Views/Return_Item/ReturnitemControl.fxml")
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
     val roots = loader.getRoot[jfxs.layout.AnchorPane]
     this.roots.setCenter(roots)
   }
+
+    def showReturnItemDialog(addorminus: String): Boolean = {
+    val resource = getClass.getResource("/Views/Return_Item/Returnitemeditdialog.fxml")
+    val loader = new FXMLLoader(resource, NoDependencyResolver)
+    loader.load();
+    val roots2  = loader.getRoot[jfxs.Parent]
+    val control = loader.getController[StockeditdialogController#Controller]
+
+    val dialog = new Stage() {
+      initModality(Modality.APPLICATION_MODAL)
+      initOwner(stage)
+      scene = new Scene {
+        root = roots2
+      }
+    }
+    control.dialogStage = dialog
+    control.addorminus = addorminus
+    control.initializedata()
+    dialog.showAndWait()
+
+    control.okClicked
+  } 
   //end Return Item
 
   //branch

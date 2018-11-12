@@ -8,6 +8,10 @@ import scalafxml.core.macros.sfxml
 import scalafxml.core.{NoDependencyResolver, FXMLView, FXMLLoader}
 import javafx.{scene => jfxs}
 
+import scalafx.scene.control.{TextArea,TextField, TableColumn, Label, Alert}
+import scalafx.stage.Stage
+import scalafx.event.ActionEvent
+
 @sfxml
 class ReturnitemController (
 	val anchorpanetab: AnchorPane,
@@ -16,13 +20,16 @@ class ReturnitemController (
 	val itemdescinputbox: TextArea,
 	val itempriceinputbox: TextField) {
 
+	var  dialogStage : Stage  = null
+	var  okClicked = false
+
 	def backtoMainmenu() = {
 		MainApp.showPersonOverview()
 
 	}
 
 	def submit(action :ActionEvent) = {
-		//if (checkinput()) {
+		if (checkinput()) {
 
 			var id = itemidinputbox.text.value.toInt
 			var name = itemnameinputbox.text.value
@@ -32,10 +39,15 @@ class ReturnitemController (
 
 			ReturnItemDatabase.AddtoItemlist(id,name,desc,price)
 
-	  //  }
+			okClicked = true;
+	      	dialogStage.close()
+
+	   	}
 	}
 
-	/*def checkinput() :Boolean = {
+	def nullChecking (x : String) = x == null || x.length == 0
+
+	def checkinput() :Boolean = {
 		var errorMessage = ""
 
 		if(nullChecking(itemnameinputbox.text.value))
@@ -68,5 +80,5 @@ class ReturnitemController (
 
 	      return false;
 	    }
-	}*/
+	}
 }

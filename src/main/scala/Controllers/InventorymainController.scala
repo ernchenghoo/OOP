@@ -6,6 +6,7 @@ import Database.BranchDatabase
 
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
+import scalafx.stage.{Modality, Stage}
 import scalafxml.core.{NoDependencyResolver, FXMLView, FXMLLoader}
 import javafx.{scene => jfxs}
 
