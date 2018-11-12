@@ -51,6 +51,7 @@ CREATE TABLE `item` (
   `itemname` varchar(100) NOT NULL,
   `itemdesc` varchar(500) NOT NULL,
   `price` decimal(12,2) NOT NULL,
+  `status` int(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`itemid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -61,7 +62,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'Keyboard','Keyboard desc',50.00),(2,'Bottle','A Bottle',10.50);
+INSERT INTO `item` VALUES (1,'Keyboard','Keyboard desc',50.00,0),(2,'Bottle','A Bottle',10.50,0);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,8 +87,37 @@ CREATE TABLE `itemstock` (
 
 LOCK TABLES `itemstock` WRITE;
 /*!40000 ALTER TABLE `itemstock` DISABLE KEYS */;
-INSERT INTO `itemstock` VALUES (1,1,0),(1,2,0),(1,3,0),(2,1,0),(2,2,0),(2,3,0);
+INSERT INTO `itemstock` VALUES (1,1,5),(1,2,0),(1,3,0),(2,1,0),(2,2,0),(2,3,0);
 /*!40000 ALTER TABLE `itemstock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `returnitem`
+--
+
+DROP TABLE IF EXISTS `returnitem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `returnitem` (
+  `returnitemid` int(10) NOT NULL,
+  `date` timestamp NOT NULL,
+  `itemid` int(10) NOT NULL,
+  `itemname` varchar(100) NOT NULL,
+  `branchid` int(10) NOT NULL,
+  `branchlocation` varchar(100) NOT NULL,
+  `amount` bigint(20) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  PRIMARY KEY (`returnitemid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `returnitem`
+--
+
+LOCK TABLES `returnitem` WRITE;
+/*!40000 ALTER TABLE `returnitem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `returnitem` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -128,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-10  1:29:08
+-- Dump completed on 2018-11-12 13:41:03
