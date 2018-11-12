@@ -24,7 +24,7 @@ class ReturnitemController (
 	var  okClicked = false
 
 	def backtoMainmenu() = {
-		MainApp.showPersonOverview()
+		MainApp.showMainMenu()
 
 	}
 

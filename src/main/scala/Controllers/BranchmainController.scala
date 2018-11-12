@@ -34,7 +34,7 @@ class BranchmainController (
 	}
 
 	def backtoMainmenu() = {
-		MainApp.showPersonOverview()
+		MainApp.showMainMenu()
 
 	}
 

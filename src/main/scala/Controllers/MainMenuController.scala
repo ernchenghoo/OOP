@@ -12,7 +12,7 @@ class MainMenuController () {
 
 	
 	def moveToMainMenu() = {
-		MainApp.showPersonOverview()
+		MainApp.showMainMenu()
 	}
 
 	def movetoInventory() = {

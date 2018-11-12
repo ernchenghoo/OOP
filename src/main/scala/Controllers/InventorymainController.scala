@@ -23,7 +23,7 @@ class InventorymainController (val anchorpanetab: AnchorPane) {
 	changeitemcontrol()
 
 	def backtoMainmenu() = {
-		MainApp.showPersonOverview()
+		MainApp.showMainMenu()
 
 	}
 

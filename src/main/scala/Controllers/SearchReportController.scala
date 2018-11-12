@@ -34,7 +34,7 @@ class SearchReportController (
 	}
 
 	def backtoMainmenu() = {
-		MainApp.showPersonOverview()
+		MainApp.showMainMenu()
 	}
 
 	def handleReport() = {

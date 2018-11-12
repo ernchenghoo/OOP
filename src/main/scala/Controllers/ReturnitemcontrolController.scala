@@ -29,7 +29,7 @@ class ReturnitemcontrolController (
 	Refreshreturnitemhistorylist()
 
 	def backtoMainmenu() = {
-		MainApp.showPersonOverview()
+		MainApp.showMainMenu()
 
 	}
 
