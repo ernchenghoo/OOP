@@ -33,6 +33,21 @@ class ReturnitemcontrolController (
 
 	}
 
+	def handleDeletePerson(action : ActionEvent) = {
+	    val selectedIndex = stocktableview.selectionModel().selectedIndex.value
+	    if (selectedIndex >= 0) {
+	        stocktableview.items().remove(selectedIndex);
+	    } else {
+	        // Nothing selected.
+	        val alert = new Alert(AlertType.Warning){
+	          initOwner(MainApp.stage)
+	          title       = "No Selection"
+	          headerText  = "No Items Selected"
+	          contentText = "Please select an Item in the table."
+	        }.showAndWait()
+	    }
+	}
+
 	def Refreshreturnitemhistorylist() = {
 		//update the itemlist from database
 		ReturnItemDatabase.Updatereturnitemlist()
@@ -58,13 +73,13 @@ class ReturnitemcontrolController (
     	}
 	}
 
-	def minusstock() = {
+	/*def minusstock() = {
 		val okClicked:Boolean = MainApp.showReturnItemDialog("minus")
 
 		if(okClicked){
     		//refresh the table data
     		Refreshreturnitemhistorylist()
     	}
-	}
+	}*/
 
 }	

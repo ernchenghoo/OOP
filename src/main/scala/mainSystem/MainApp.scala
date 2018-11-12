@@ -5,9 +5,12 @@ import Models.branch
 import Controllers.ItemeditdialogController
 import Controllers.StockeditdialogController
 import Controllers.BrancheditdialogController
+import Controllers.ReturnitemeditdialogController
 import Controllers.SearchReportController
 import Controllers.ReportController
 import Controllers.ReturnitemController
+import Database.InventoryDatabase
+import Database.BranchDatabase
 
 
 import scalafx.application.JFXApp
@@ -117,7 +120,7 @@ object MainApp extends JFXApp {
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
     val roots2  = loader.getRoot[jfxs.Parent]
-    val control = loader.getController[StockeditdialogController#Controller]
+    val control = loader.getController[ReturnitemeditdialogController#Controller]
 
     val dialog = new Stage() {
       initModality(Modality.APPLICATION_MODAL)
@@ -128,6 +131,10 @@ object MainApp extends JFXApp {
     }
     control.dialogStage = dialog
     control.addorminus = addorminus
+
+    InventoryDatabase.UpdateItemlist()
+    BranchDatabase.UpdateBranchlist()
+
     control.initializedata()
     dialog.showAndWait()
 

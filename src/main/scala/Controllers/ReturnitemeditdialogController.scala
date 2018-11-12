@@ -33,9 +33,9 @@ class ReturnitemeditdialogController (
 	def initializedata() = {
 		//set title label
 		if(addorminus == "add")
-			title.setText("Add stock")
+			title.setText("Add Return Item")
 		else
-			title.setText("Minus stock")
+			title.setText("Remove Return Item")
 
 		//initialize id
 		var maxid = 0

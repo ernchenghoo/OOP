@@ -12,7 +12,6 @@ object ReturnItemDatabase {
 
 	var returnitemlist: ObservableBuffer[returnitemhistory] = new ObservableBuffer[returnitemhistory]()
 
-
 	def Updatereturnitemlist() = {
 		returnitemlist.clear()
 
@@ -78,7 +77,7 @@ object ReturnItemDatabase {
 		statement.executeUpdate(s"Update itemstock set numofstock=${numofstock} where itemid=${itemid} and branchid=${branchid}")	
 
 		//add record to edit history
-		statement.executeUpdate(s"Insert into stockedithistory Values(${returnitemid},'${date}',${itemid},'${itemname}',${branchid},'${branchlocation}',${amount},'${desc}')")	
+		statement.executeUpdate(s"Insert into returnitem Values(${returnitemid},'${date}',${itemid},'${itemname}',${branchid},'${branchlocation}',${amount},'${desc}')")	
 
 		myDBDetails.connection.close()
 		Updatereturnitemlist()
@@ -104,7 +103,7 @@ object ReturnItemDatabase {
 
 		//add record to edit history
 		var minusamount = amount * -1
-		statement.executeUpdate(s"Insert into stockedithistory Values(${returnitemid},'${date}',${itemid},'${itemname}',${branchid},'${branchlocation}',${minusamount},'${desc}')")	
+		statement.executeUpdate(s"Insert into returnitem Values(${returnitemid},'${date}',${itemid},'${itemname}',${branchid},'${branchlocation}',${minusamount},'${desc}')")	
 
 		myDBDetails.connection.close()
 		Updatereturnitemlist()
