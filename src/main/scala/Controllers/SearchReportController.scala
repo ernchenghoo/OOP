@@ -62,8 +62,10 @@ class SearchReportController (
 		else
 			todatenotnull = true
 
-		if(fromDate.getValue().toEpochDay() > toDate.getValue().toEpochDay())
-			errorMessage += "From Date cannot greater than to Date! \n"
+		if(fromDate.getValue() != null && toDate.getValue() != null){
+			if(fromDate.getValue().toEpochDay() > toDate.getValue().toEpochDay())
+				errorMessage += "From Date cannot greater than to Date! \n"
+		}
 
 		if(branchdropdown.getValue() == "Select Branch")
 			errorMessage += "Please Select Branch! \n"
