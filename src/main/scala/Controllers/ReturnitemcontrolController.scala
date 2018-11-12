@@ -50,7 +50,7 @@ class ReturnitemcontrolController (
 	}
 
 	def addstock() = {
-		val okClicked:Boolean = MainApp.showStockEditDialog("add")
+		val okClicked:Boolean = MainApp.showReturnItemDialog("add")
 
 		if(okClicked){
     		//refresh the table data
@@ -59,7 +59,7 @@ class ReturnitemcontrolController (
 	}
 
 	def minusstock() = {
-		val okClicked:Boolean = MainApp.showStockEditDialog("minus")
+		val okClicked:Boolean = MainApp.showReturnItemDialog("minus")
 
 		if(okClicked){
     		//refresh the table data
