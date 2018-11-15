@@ -61,8 +61,35 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'Keyboard','Keyboard desc',50.00),(2,'Bottle','A Bottle',10.50);
+INSERT INTO `item` VALUES (1,'Keyboard','Keyboard desc',50.00),(2,'Bottle','A Bottle',10.50),(3,'Apple','fruit',0.11);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `itemsold`
+--
+
+DROP TABLE IF EXISTS `itemsold`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `itemsold` (
+  `salesid` int(10) NOT NULL,
+  `itemid` int(10) NOT NULL,
+  `itemname` varchar(200) NOT NULL,
+  `quantity` int(10) NOT NULL,
+  `price` decimal(12,2) NOT NULL,
+  PRIMARY KEY (`salesid`,`itemid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `itemsold`
+--
+
+LOCK TABLES `itemsold` WRITE;
+/*!40000 ALTER TABLE `itemsold` DISABLE KEYS */;
+INSERT INTO `itemsold` VALUES (8,1,'Keyboard',6,50.00),(8,2,'Bottle',5,10.50),(9,1,'Keyboard',3,50.00),(9,2,'Bottle',5,10.50),(10,1,'Keyboard',20,50.00),(10,2,'Bottle',10,10.50),(11,1,'Keyboard',1,0.11),(12,3,'Apple',2,0.11);
+/*!40000 ALTER TABLE `itemsold` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -86,8 +113,63 @@ CREATE TABLE `itemstock` (
 
 LOCK TABLES `itemstock` WRITE;
 /*!40000 ALTER TABLE `itemstock` DISABLE KEYS */;
-INSERT INTO `itemstock` VALUES (1,1,0),(1,2,0),(1,3,0),(2,1,0),(2,2,0),(2,3,0);
+INSERT INTO `itemstock` VALUES (1,1,6),(1,2,0),(1,3,0),(2,1,0),(2,2,0),(2,3,0),(3,1,0),(3,2,0),(3,3,0);
 /*!40000 ALTER TABLE `itemstock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `returnitem`
+--
+
+DROP TABLE IF EXISTS `returnitem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `returnitem` (
+  `returnitemid` int(10) NOT NULL,
+  `date` timestamp NOT NULL,
+  `itemid` int(10) NOT NULL,
+  `itemname` varchar(100) NOT NULL,
+  `branchid` int(10) NOT NULL,
+  `branchlocation` varchar(100) NOT NULL,
+  `amount` bigint(20) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  PRIMARY KEY (`returnitemid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `returnitem`
+--
+
+LOCK TABLES `returnitem` WRITE;
+/*!40000 ALTER TABLE `returnitem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `returnitem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sales`
+--
+
+DROP TABLE IF EXISTS `sales`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `sales` (
+  `salesid` int(10) NOT NULL,
+  `branchid` int(10) NOT NULL,
+  `date` timestamp NOT NULL,
+  `totalsalesamount` decimal(12,2) NOT NULL,
+  PRIMARY KEY (`salesid`,`branchid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sales`
+--
+
+LOCK TABLES `sales` WRITE;
+/*!40000 ALTER TABLE `sales` DISABLE KEYS */;
+INSERT INTO `sales` VALUES (1,1,'2018-11-12 07:41:52',500.00),(2,1,'2018-11-12 08:13:06',50.00),(3,1,'2018-11-12 08:13:27',300.00),(4,1,'2018-11-14 04:17:33',484.00),(5,1,'2018-11-14 04:19:39',50.00),(6,1,'2018-11-14 04:26:42',50.00),(7,1,'2018-11-14 04:31:31',363.00),(8,1,'2018-11-14 04:32:25',352.50),(9,1,'2018-11-14 04:45:06',202.50),(10,1,'2018-11-14 22:40:09',1105.00),(11,1,'2018-11-14 23:42:53',0.11),(12,1,'2018-11-15 00:08:52',0.22);
+/*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -116,6 +198,7 @@ CREATE TABLE `stockedithistory` (
 
 LOCK TABLES `stockedithistory` WRITE;
 /*!40000 ALTER TABLE `stockedithistory` DISABLE KEYS */;
+INSERT INTO `stockedithistory` VALUES (1,'2018-11-11 23:57:58',1,'Keyboard',1,'Sunway',1,'123');
 /*!40000 ALTER TABLE `stockedithistory` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -128,4 +211,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-10  1:29:08
+-- Dump completed on 2018-11-15 16:10:44
