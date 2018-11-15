@@ -91,19 +91,33 @@ object ReturnItemDatabase {
 
 		//Update the Stock
 		val queryresult = statement.executeQuery(s"select numofstock from itemstock where itemid=${itemid} and branchid=${branchid}")		
+		val queryresult1 = statement.executeQuery(s"select amount from returnitem where itemid=${itemid} and branchid=${branchid}")		
 
 		var numofstock = 0
 		while (queryresult.next){
 			numofstock = queryresult.getInt("numofstock")
 		}
 
+		var currentamount = 0
+		while (queryresult.next){
+			currentamount = queryresult1.getInt("amount")
+		}
+
 		numofstock -= amount
 		statement.executeUpdate(s"Update itemstock set numofstock=${numofstock} where itemid=${itemid} and branchid=${branchid}")	
 
+		var minusamount = amount * -1
+		var amount1 = currentamount + minusamount
 
 		//add record to edit history
-		var minusamount = amount * -1
-		statement.executeUpdate(s"Insert into returnitem Values(${returnitemid},'${date}',${itemid},'${itemname}',${branchid},'${branchlocation}',${minusamount},'${desc}')")	
+		if (amount1 < 1)
+
+			statement.executeUpdate(s"Delete from returnitem where returnitemid=${itemid} and branchid=${branchid}")
+
+		else
+
+			statement.executeUpdate(s"Update returnitem set amount=${amount}, date='${date}', itemid=${itemid}, itemname='${itemname}', description='${desc}' where returnitemid=${itemid} and branchid=${branchid}")
+			//statement.executeUpdate(s"Insert into returnitem Values(${returnitemid},'${date}',${itemid},'${itemname}',${branchid},'${branchlocation}',${minusamount},'${desc}')")	
 
 		myDBDetails.connection.close()
 		Updatereturnitemlist()

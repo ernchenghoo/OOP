@@ -73,13 +73,13 @@ class ReturnitemcontrolController (
     	}
 	}
 
-	/*def minusstock() = {
+	def minusstock() = {
 		val okClicked:Boolean = MainApp.showReturnItemDialog("minus")
 
 		if(okClicked){
     		//refresh the table data
     		Refreshreturnitemhistorylist()
     	}
-	}*/
+	}
 
 }	

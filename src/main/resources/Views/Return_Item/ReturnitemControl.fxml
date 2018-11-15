@@ -14,8 +14,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="401.0" layoutY="4.0" mnemonicParsing="false" onAction="#addstock" prefHeight="25.0" prefWidth="90.0" text="Add" />
-      <Button layoutX="501.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleDeletePerson" prefHeight="25.0" prefWidth="90.0" text="Remove" />
+      <Button layoutX="401.0" layoutY="6.0" mnemonicParsing="false" onAction="#addstock" prefHeight="25.0" prefWidth="90.0" text="Add" />
+      <Button layoutX="501.0" layoutY="6.0" mnemonicParsing="false" onAction="#minusstock" prefHeight="25.0" prefWidth="90.0" text="Remove" />
       <TableView fx:id="stocktableview" layoutY="38.0" prefHeight="293.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="67.0" text="ID" />

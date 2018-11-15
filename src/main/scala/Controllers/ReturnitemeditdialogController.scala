@@ -45,8 +45,12 @@ class ReturnitemeditdialogController (
 			}
 		}
 		//new id
-		maxid = maxid + 1
-		idinputbox.text.value = maxid.toString()
+
+		if(addorminus == "add")
+			maxid = maxid + 1
+			idinputbox.text.value = maxid.toString()
+		if (addorminus == "minus")
+			idinputbox.text.value = null
 
 		//initialize item choose
 		itemdropdown.getItems().add("Select Item");
