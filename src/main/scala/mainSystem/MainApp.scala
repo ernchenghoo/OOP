@@ -140,6 +140,32 @@ object MainApp extends JFXApp {
 
     control.okClicked
   } 
+
+  def showReturnItemDialog2(addorminus: String): Boolean = {
+    val resource = getClass.getResource("/Views/Return_Item/Returnitemeditdialog2.fxml")
+    val loader = new FXMLLoader(resource, NoDependencyResolver)
+    loader.load();
+    val roots2  = loader.getRoot[jfxs.Parent]
+    val control = loader.getController[ReturnitemeditdialogController#Controller]
+
+    val dialog = new Stage() {
+      initModality(Modality.APPLICATION_MODAL)
+      initOwner(stage)
+      scene = new Scene {
+        root = roots2
+      }
+    }
+    control.dialogStage = dialog
+    control.addorminus = addorminus
+
+    InventoryDatabase.UpdateItemlist()
+    BranchDatabase.UpdateBranchlist()
+
+    control.initializedata()
+    dialog.showAndWait()
+
+    control.okClicked
+  } 
   //end Return Item
 
   //branch
