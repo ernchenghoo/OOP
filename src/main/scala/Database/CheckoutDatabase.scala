@@ -71,7 +71,7 @@ object CheckoutDatabase{
 		Class.forName(myDBDetails.driver)
 		myDBDetails.connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
 		val statement = myDBDetails.connection.createStatement
-		val queryresult = statement.executeQuery(s"select sum(quantity),itemname,itemsold.itemid,itemsold.price,sales.salesid from itemsold,sales where sales.salesid = itemsold.salesid and sales.date between ('${fromDatelabel}') and ('${toDatelabel}')and (${branchdropdownlabel}) group by itemname")		
+		val queryresult = statement.executeQuery(s"select sum(quantity),itemname,itemsold.itemid,itemsold.price,sales.salesid from itemsold,sales where sales.salesid = itemsold.salesid and sales.date between ('${fromDatelabel}') and ('${toDatelabel}')and (${branchdropdownlabel}) group by itemname,price")		
 		var totalSales:Double = 0.0
 
 		while (queryresult.next){
