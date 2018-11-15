@@ -27,7 +27,7 @@ class CheckoutController (
 		val statement = myDBDetails.connection.createStatement
 		//variables			
 		var itemRow: Int = 1		
-		var rowLabels = ListBuffer[Label]()
+		var rowLabels = List[Label]()
 		var idLabels = ListBuffer[Label]()
 		var nameLabels = ListBuffer[Label]()
 		var unitPriceLabels = ListBuffer[Label]()
@@ -49,7 +49,7 @@ class CheckoutController (
 
 		def checkoutItem {			
 			//query for comparing item in database			
-			val itemMatchQuery = statement.executeQuery("select * from inventory where id = '"+ searchItemID.text.value+ "'" )			
+			val itemMatchQuery = statement.executeQuery("select * from item where itemid = '"+ searchItemID.text.value+ "'" )			
 			
 			//case to determine if there are value for item ID
 			searchItemID.text.value.isEmpty match {
@@ -66,7 +66,7 @@ class CheckoutController (
 					// case to determine if item exist in database					
 					itemMatchQuery.next match {
 						case true => {
-							var searchedItem = new Models.Inventory(itemMatchQuery.getString("name"), itemMatchQuery.getInt("id"), 
+							var searchedItem = new Models.Inventory(itemMatchQuery.getString("itemname"), itemMatchQuery.getInt("itemid"), 
 							itemMatchQuery.getDouble("price"))
 							var quantity: Int = quantityField.text.value.toInt											
 							var checkedOutItems = new Models.Checkout (searchedItem.id, searchedItem.name, 
