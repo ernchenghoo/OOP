@@ -206,6 +206,7 @@ object MainApp extends JFXApp {
     control.from_date()
     control.to_date()
     control.setbranch(branchdropdown1)
+    control.getReportlist(branchdropdown1)
     dialog.showAndWait()
   
   }

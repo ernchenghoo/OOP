@@ -1,5 +1,6 @@
 package Controllers
 import Database.myDBDetails
+import Database.CheckoutDatabase
 import Models.Checkout
 import MainSystem.MainApp
 import scalafxml.core.macros.sfxml
@@ -7,6 +8,9 @@ import scalafx.scene.control._
 import scalafx.scene.layout._
 import scalafx.Includes._
 import scalafx.scene.control.Alert.AlertType
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.TimeZone
 
 @sfxml
 class PaymentController (	
@@ -35,8 +39,29 @@ class PaymentController (
 
 		totalAmount.text.value = totalPaymentAmount.toString
 
+		CheckoutDatabase.UpdateSaleslist()
+		
+		//initialize id
+		var maxid = 0
+		for(salesidlist <-CheckoutDatabase.Saleslist){
+			if(salesidlist.salesid.getValue() > maxid){
+				maxid = salesidlist.salesid.getValue()
+			}
+		}
+		//new id
+		maxid = maxid + 1
+		var idinputbox:String = maxid.toString()
+
 		def makePayment() {
 			var receivedPaymentAmount = receivedAmount.text.value.toDouble
+
+			var salesid = idinputbox.toInt
+			var branchid = 1
+			var datenow = new Date()
+			var formmater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+			formmater.setTimeZone(TimeZone.getTimeZone("UTC"))
+			var datestring = formmater.format(datenow)
+			var total = totalPaymentAmount.getValue()
 			
 			if (receivedPaymentAmount > totalPaymentAmount){
 				var changePaymentAmount = receivedPaymentAmount - totalPaymentAmount
@@ -46,6 +71,16 @@ class PaymentController (
 				changeLabel.setVisible (true)
 				checkoutComplete.setVisible (true)				
 				paymentButtons.setVisible (true)
+				CheckoutDatabase.addCheckout(salesid,branchid,datestring,total)
+
+				for (elements <- Checkout.listOfCheckedoutItems){								
+					var itemid  = elements.id.toInt
+					var itemname  = elements.name.toString
+					var quantity  = elements.quantity.toInt
+					var price  = elements.price.toDouble
+					CheckoutDatabase.addItemsold(salesid, itemid, itemname, quantity, price)
+					itemRow += 1
+				}
 			}	
 
 			else if (receivedPaymentAmount < totalPaymentAmount){
@@ -62,6 +97,16 @@ class PaymentController (
 				changeLabel.text.value = checkoutComplete.text.value
 				changeLabel.setVisible (true)				
 				paymentButtons.setVisible (true)
+				CheckoutDatabase.addCheckout(salesid,branchid,datestring,total)
+
+				for (elements <- Checkout.listOfCheckedoutItems){								
+					var itemid  = elements.id.toInt
+					var itemname  = elements.name.toString
+					var quantity  = elements.quantity.toInt
+					var price  = elements.price.toDouble
+					CheckoutDatabase.addItemsold(salesid, itemid, itemname, quantity, price)
+					itemRow += 1
+				}
 
 			}
 			
