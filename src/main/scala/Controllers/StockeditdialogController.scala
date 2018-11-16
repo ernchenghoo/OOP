@@ -1,8 +1,8 @@
 package Controllers
 
 import Models.Item
-import Database.InventoryDatabase
-import Database.BranchDatabase
+import Models.Branch
+import Models.Stockedithistory
 
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
@@ -38,7 +38,7 @@ class StockeditdialogController (
 
 		//initialize id
 		var maxid = 0
-		for(stockedit <-InventoryDatabase.Stockhistorylist){
+		for(stockedit <-Stockedithistory.getAllStockedithistorys){
 			if(stockedit.stockeditid.getValue() > maxid){
 				maxid = stockedit.stockeditid.getValue()
 			}
@@ -50,14 +50,14 @@ class StockeditdialogController (
 		//initialize item choose
 		itemdropdown.getItems().add("Select Item");
 		itemdropdown.setValue("Select Item")
-		for(item <- InventoryDatabase.Itemlist){
+		for(item <- Item.getAllItems){
 			itemdropdown.getItems().add(item.name.getValue());
 		}
 
 		//initialize branch choose
 		branchdropdown.getItems().add("Select Branch");
 		branchdropdown.setValue("Select Branch")
-		for(branch <- BranchDatabase.Branchlist){
+		for(branch <- Branch.getAllBranchs){
 			branchdropdown.getItems().add(branch.location.getValue());
 		}
 	}
@@ -78,22 +78,22 @@ class StockeditdialogController (
 
 			//find itemid with item name
 			var itemid = 0
-			for(item <- InventoryDatabase.Itemlist){
+			for(item <- Item.getAllItems){
 				if(item.name.getValue() == itemname)
 					itemid = item.id.getValue()
 			}
 
 			//find branchid with branch name
 			var branchid = 0
-			for(branch <- BranchDatabase.Branchlist){
+			for(branch <- Branch.getAllBranchs){
 				if(branch.location.getValue() == branchlocation)
 					branchid = branch.branchid.getValue()
 			}
 
 			if(addorminus == "add"){
-				InventoryDatabase.addStock(stockeditid,datestring,itemid,itemname,branchid,branchlocation,amount,desc)
+				Stockedithistory.addStock(stockeditid,datestring,itemid,itemname,branchid,branchlocation,amount,desc)
 			}else{
-				InventoryDatabase.minusStock(stockeditid,datestring,itemid,itemname,branchid,branchlocation,amount,desc)
+				Stockedithistory.minusStock(stockeditid,datestring,itemid,itemname,branchid,branchlocation,amount,desc)
 			}
 
 			
@@ -154,17 +154,17 @@ class StockeditdialogController (
 				var branchid = 0
 				var amount = amountinputbox.text.value.toInt
 
-				for(item <- InventoryDatabase.Itemlist){
+				for(item <- Item.getAllItems){
 					if(item.name.getValue() == itemdropdown.getValue())
 						itemid = item.id.getValue()
 				}
 
-				for(branch <- BranchDatabase.Branchlist){
+				for(branch <- Branch.getAllBranchs){
 					if(branch.location.getValue() == branchdropdown.getValue())
 						branchid = branch.branchid.getValue()
 				}
 
-				var stockavailable = InventoryDatabase.getstock(itemid,branchid)
+				var stockavailable = Stockedithistory.getstock(itemid,branchid)
 				if(amount > stockavailable)
 					errorMessage += s"Item Stock insufficient! Please lower the amount (Available stock:${stockavailable})\n"
 			}

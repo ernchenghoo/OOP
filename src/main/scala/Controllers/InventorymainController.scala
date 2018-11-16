@@ -12,11 +12,6 @@ import javafx.{scene => jfxs}
 
 @sfxml
 class InventorymainController (val anchorpanetab: AnchorPane) {	
-	
-	//get all data for inventory related table to list
-	InventoryDatabase.UpdateItemlist()
-	InventoryDatabase.UpdateStockhistorylist()
-	BranchDatabase.UpdateBranchlist()
 
 
 	//initial select itemcontrol 

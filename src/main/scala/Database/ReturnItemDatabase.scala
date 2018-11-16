@@ -2,7 +2,7 @@ package Database
 
 import Models.Item
 import Models.returnitemhistory
-import Models.branch
+import Models.Branch
 import Models.Itemstock
 
 import java.sql.{Connection,DriverManager}

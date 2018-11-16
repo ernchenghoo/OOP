@@ -1,4 +1,4 @@
-package Models 
+package Models
 
 import Database.myDBDetails
 
@@ -7,15 +7,19 @@ import java.sql.SQLException
 import scalafx.beans.property.{StringProperty, IntegerProperty, ObjectProperty}
 import scalafx.collections.ObservableBuffer
 
-class Branch(_branchid: Int, _location:String) extends myDBDetails{
-	var branchid = ObjectProperty[Int](_branchid)
-	var location = new StringProperty(_location)
+
+
+class Item(_id: Int,_name: String, _desc: String, _price: Double) extends myDBDetails{
+	var id = ObjectProperty[Int](_id)
+	var name = new StringProperty(_name)
+	var desc = new StringProperty(_desc)
+	var price = ObjectProperty[Double](_price)
 
 	def save() : Boolean = {
 		Class.forName(driver)
 		connection = DriverManager.getConnection(url, username, password)
-		var isSaveSuccess = true
 		
+		var isSaveSuccess = true
 		if (!(isExist)) {
 			//if there error exist then its not save successfully
 			try{
@@ -23,39 +27,34 @@ class Branch(_branchid: Int, _location:String) extends myDBDetails{
 			
 				//add the item to database
 				val statement = connection.createStatement
-				statement.executeUpdate(s"Insert into branch Values(${branchid.getValue()},'${location.getValue()}')")	
+				statement.executeUpdate(s"Insert into item Values(${id.getValue()},'${name.getValue()}','${desc.getValue()}',${price.getValue()})")	
 
 
-				//new branch added so need to initialize data stock to 0 in itemstock table
-				//all item stock of new branch will have 0 stock 
-				val queryresult = statement.executeQuery("select itemid from item")
+				//new item added so need to initialize data stock to 0 in itemstock table
+				//for all branch stock will have 0 stock of this newitem
+				val queryresult = statement.executeQuery("select branchid from branch")
 				while (queryresult.next){
-					var itemid =  queryresult.getInt("itemid")
+					var branchid =  queryresult.getInt("branchid")
 					val statement2 = connection.createStatement
-					statement2.executeUpdate(s"Insert into itemstock values(${itemid},${branchid.getValue()},0)")
+					statement2.executeUpdate(s"Insert into itemstock values(${id.getValue()},${branchid},0)")
 				}
-				
-				
 			}catch{
 				case e : SQLException =>
 					isSaveSuccess = false
 			}
-
 
 		} else {
 			//if there error exist then its not save successfully
 			try{
 				//if exist then update the data
 				val statement = connection.createStatement
-				statement.executeUpdate(s"Update branch set location='${location}' where branchid='${branchid.getValue()}'")
-
+				statement.executeUpdate(s"Update item set itemname='${name.getValue()}', itemdesc='${desc.getValue()}', price=${price.getValue()} where itemid='${id.getValue()}'")	
 			}catch{
 				case e : SQLException =>
 					isSaveSuccess = false
 			}
 			
 		}
-		
 		connection.close()
 
 		return isSaveSuccess
@@ -68,15 +67,14 @@ class Branch(_branchid: Int, _location:String) extends myDBDetails{
 		var isDeleteSuccessful = true
 		if (isExist) {
 			try{
-				//delete from branch table
 				val statement = connection.createStatement
-				statement.executeUpdate(s"Delete from branch where branchid=${branchid.getValue()}")	
+				//delete from item table
+				statement.executeUpdate(s"Delete from item where itemid=${id.getValue()}")	
 
 
 				//delete from itemstock
 				val statement2 = connection.createStatement
-				statement2.executeUpdate(s"Delete from itemstock where branchid=${branchid.getValue()}")	
-
+				statement2.executeUpdate(s"Delete from itemstock where itemid=${id.getValue()}")	
 			}catch{
 				case e : SQLException =>
 					isDeleteSuccessful = false
@@ -92,7 +90,7 @@ class Branch(_branchid: Int, _location:String) extends myDBDetails{
 
 	def isExist : Boolean =  {
 		val statement = connection.createStatement
-		val queryresult = statement.executeQuery(s"select * from branch where branchid=${branchid.getValue()}")
+		val queryresult = statement.executeQuery(s"select * from item where itemid=${id.getValue()}")
 
 		var exist=false
 		while (queryresult.next){
@@ -103,7 +101,7 @@ class Branch(_branchid: Int, _location:String) extends myDBDetails{
 	}
 }
 
-object Branch extends myDBDetails{
+object Item extends myDBDetails{
 
 	def initializeTable() = {
 		Class.forName(driver)
@@ -111,33 +109,35 @@ object Branch extends myDBDetails{
 
 		val statement = connection.createStatement
 		statement.executeUpdate(
-			"CREATE TABLE branch(" +
-  			"branchid int(10) NOT NULL," +
-  			"location varchar(100) NOT NULL," +
-  			"PRIMARY KEY (branchid)" +
+			"CREATE TABLE item("+
+  			"itemid int(10) NOT NULL,"+
+  			"itemname varchar(100) NOT NULL,"+
+  			"itemdesc varchar(500) NOT NULL,"+
+  			"price decimal(12,2) NOT NULL,"+
+  			"PRIMARY KEY (itemid)"+
 			")"
 		)	
 
 		connection.close()
 	}
 
-	def getAllBranchs : ObservableBuffer[Branch] = {
+	def getAllItems : ObservableBuffer[Item] = {
 
-		var list:ObservableBuffer[Branch] = new ObservableBuffer[Branch]()
+		var list:ObservableBuffer[Item] = new ObservableBuffer[Item]()
 
 		Class.forName(driver)
 		connection = DriverManager.getConnection(url, username, password)
 
 		val statement = connection.createStatement
-		val queryresult = statement.executeQuery("select * from branch")		
-
+		val queryresult = statement.executeQuery("select * from item")		
 		while (queryresult.next){
-			var branchid = queryresult.getInt("branchid")
-			var location = queryresult.getString("location")
+			var id = queryresult.getInt("itemid")
+			var name = queryresult.getString("itemname")
+			var desc = queryresult.getString("itemdesc")
+			var price = queryresult.getDouble("price")
 
-			list += new Branch(branchid,location)
+			list += new Item(id,name,desc,price)
 		}	
-
 
 		connection.close()
 

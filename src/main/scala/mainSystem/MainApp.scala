@@ -2,7 +2,7 @@ package MainSystem
 
 import java.sql.{Connection,DriverManager}
 import Models.Item
-import Models.branch
+import Models.Branch
 import Controllers._
 
 
@@ -78,7 +78,8 @@ object MainApp extends JFXApp {
     }
     control.dialogStage = dialog
     control.addoredit = addoredit
-    control.initializeitemdata(item)
+    control.IteminDialog = item
+    control.initializeitemdata()
     dialog.showAndWait()
 
     control.okClicked
@@ -148,7 +149,7 @@ object MainApp extends JFXApp {
     this.roots.setCenter(roots)
   }
 
-  def showBranchEditDialog(branch:branch,addoredit: String): Boolean = {
+  def showBranchEditDialog(branch:Branch,addoredit: String): Boolean = {
     val resource = getClass.getResource("/Views/Branch/Brancheditdialog.fxml")
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
@@ -165,7 +166,8 @@ object MainApp extends JFXApp {
 
     control.dialogStage = dialog
     control.addoredit = addoredit
-    control.initializedata(branch)
+    control.branchinDialog = branch
+    control.initializedata()
     dialog.showAndWait()
 
     control.okClicked

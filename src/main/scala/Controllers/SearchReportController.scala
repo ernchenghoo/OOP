@@ -1,7 +1,7 @@
 package Controllers
 
 import MainSystem.MainApp
-import Database.BranchDatabase
+import Models.Branch
 
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
@@ -24,11 +24,11 @@ class SearchReportController (
 
 	def initializebranch() = {
 
-	BranchDatabase.UpdateBranchlist()
+
 	//initialize branch choose
 		branchdropdown.getItems().add("Select Branch");
 		branchdropdown.setValue("Select Branch")
-		for(branch <- BranchDatabase.Branchlist){
+		for(branch <- Branch.getAllBranchs){
 			branchdropdown.getItems().add(branch.location.getValue());
 		}
 	}

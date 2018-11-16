@@ -2,7 +2,7 @@ package Controllers
 
 import MainSystem.MainApp
 import Database.InventoryDatabase
-import Models.stockedithistory
+import Models.Stockedithistory
 
 import scalafx.scene.control.{Alert,TableColumn,TableView,TableCell}
 import scalafx.scene.layout._
@@ -15,24 +15,22 @@ import scalafx.scene.control.Alert.AlertType //contail all the implicits to chan
 
 @sfxml
 class StockcontrolController (
-	val stocktableview: TableView[stockedithistory],
-	val idColumn: TableColumn[stockedithistory,Int],
-	val dateColumn: TableColumn[stockedithistory, String],
-	val itemColumn: TableColumn[stockedithistory, String],
-	val branchColumn: TableColumn[stockedithistory, String],
-	val amountColumn: TableColumn[stockedithistory, Int],
-	val descriptionColumn: TableColumn[stockedithistory, String]
+	val stocktableview: TableView[Stockedithistory],
+	val idColumn: TableColumn[Stockedithistory,Int],
+	val dateColumn: TableColumn[Stockedithistory, String],
+	val itemColumn: TableColumn[Stockedithistory, String],
+	val branchColumn: TableColumn[Stockedithistory, String],
+	val amountColumn: TableColumn[Stockedithistory, Int],
+	val descriptionColumn: TableColumn[Stockedithistory, String]
 	) {	
 	
 	//get data from sql and show to table
 	RefreshStockedithistorylist()
 
 	def RefreshStockedithistorylist() = {
-		//update the itemlist from database
-		InventoryDatabase.UpdateStockhistorylist()
 
 		//show to tableview
-		stocktableview.items = InventoryDatabase.Stockhistorylist
+		stocktableview.items = Stockedithistory.getAllStockedithistorys
 
 		// initialize columns's cell values
 		idColumn.cellValueFactory = {_.value.stockeditid}
