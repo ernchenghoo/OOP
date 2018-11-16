@@ -10,7 +10,6 @@ class MainMenuController () {
 		MainApp.goToCheckoutMenu()
 	}  	
 
-	
 	def moveToMainMenu() = {
 		MainApp.showMainMenu()
 	}
@@ -30,4 +29,16 @@ class MainMenuController () {
 	def moveToSearchReport() = {
 		MainApp.goToSearchReport()
 	}
+
+	def moveToLoginPage() =
+	{
+		MainApp.goToLoginPage()
+	}
+
+	def moveToManageAccount() =
+	{
+		MainApp.goToManageAccount()
+	}
+
+
 }	
