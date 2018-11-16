@@ -27,7 +27,7 @@ class CheckoutController (
 		val statement = myDBDetails.connection.createStatement
 		//variables			
 		var itemRow: Int = 1		
-		var rowLabels = List[Label]()
+		var rowLabels = ListBuffer[Label]()
 		var idLabels = ListBuffer[Label]()
 		var nameLabels = ListBuffer[Label]()
 		var unitPriceLabels = ListBuffer[Label]()
