@@ -11,4 +11,23 @@ class MainMenuController () {
 	}  	
 
 	
+	def moveToMainMenu() = {
+		MainApp.showMainMenu()
+	}
+
+	def movetoInventory() = {
+		MainApp.goToInventoryMain()
+	}
+
+	def movetoReturnItem() = {
+		MainApp.goToReturnItem()
+	}
+
+	def movetoBranch() = {
+		MainApp.goToBranchMain()
+	}
+
+	def moveToSearchReport() = {
+		MainApp.goToSearchReport()
+	}
 }	
