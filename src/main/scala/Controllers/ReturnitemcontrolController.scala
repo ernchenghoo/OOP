@@ -33,19 +33,30 @@ class ReturnitemcontrolController (
 
 	}
 
-	def handleDeletePerson(action : ActionEvent) = {
-	    val selectedIndex = stocktableview.selectionModel().selectedIndex.value
-	    if (selectedIndex >= 0) {
-	        stocktableview.items().remove(selectedIndex);
-	    } else {
-	        // Nothing selected.
-	        val alert = new Alert(AlertType.Warning){
-	          initOwner(MainApp.stage)
-	          title       = "No Selection"
-	          headerText  = "No Items Selected"
-	          contentText = "Please select an Item in the table."
-	        }.showAndWait()
+	def handleDeleteItem(action : ActionEvent) = { 
+
+	    try
+	    {
+
+		    val selectedIndex = stocktableview.selectionModel().selectedIndex.value
+		    val selectedItem = stocktableview.selectionModel().selectedItem.value.returnitemid
+	    	ReturnItemDatabase.minusstock(selectedItem.value)
+	    	Refreshreturnitemhistorylist()	
+
+
+	    }catch{
+
+	    	case x: NullPointerException =>
+	    		{
+			     val alert = new Alert(AlertType.Warning){
+			          initOwner(MainApp.stage)
+			          title       = "No Selection"
+			          headerText  = "No Items Selected"
+			          contentText = "Please select an Item in the table."
+			        }.showAndWait()
+	    		}
 	    }
+	    		    		
 	}
 
 	def Refreshreturnitemhistorylist() = {
@@ -66,15 +77,6 @@ class ReturnitemcontrolController (
 
 	def addstock() = {
 		val okClicked:Boolean = MainApp.showReturnItemDialog("add")
-
-		if(okClicked){
-    		//refresh the table data
-    		Refreshreturnitemhistorylist()
-    	}
-	}
-
-	def minusstock() = {
-		val okClicked:Boolean = MainApp.showReturnItemDialog2("minus")
 
 		if(okClicked){
     		//refresh the table data

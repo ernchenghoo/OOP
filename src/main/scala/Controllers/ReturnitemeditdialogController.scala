@@ -1,6 +1,7 @@
 package Controllers
 
 import Models.Item
+import MainSystem.MainApp
 import Database.InventoryDatabase
 import Database.BranchDatabase
 import Database.ReturnItemDatabase
@@ -8,7 +9,7 @@ import Database.ReturnItemDatabase
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
 import scalafx.scene.control.{ChoiceBox,TextArea,TextField, TableColumn, Label, Alert}
-import scalafx.stage.Stage
+import scalafx.stage.{Modality, Stage}
 import scalafx.event.ActionEvent
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -27,6 +28,8 @@ class ReturnitemeditdialogController (
 	var  dialogStage : Stage  = null
 	var addorminus:String = null
 	var  okClicked = false
+
+	//do option value for nulls
 
 
 	//initialze the data
@@ -65,6 +68,7 @@ class ReturnitemeditdialogController (
 		for(branch <- BranchDatabase.Branchlist){
 			branchdropdown.getItems().add(branch.location.getValue());
 		}
+
 	}
 
 	def submit(action :ActionEvent) = {
@@ -97,11 +101,7 @@ class ReturnitemeditdialogController (
 
 			if(addorminus == "add"){
 				ReturnItemDatabase.addStock(returnitemid,datestring,itemid,itemname,branchid,branchlocation,amount,desc)
-			}else{
-				ReturnItemDatabase.minusStock(returnitemid,datestring,itemid,itemname,branchid,branchlocation,amount,desc)
 			}
-
-			
 
 	      	okClicked = true;
 	      	dialogStage.close()

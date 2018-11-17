@@ -83,51 +83,17 @@ object ReturnItemDatabase {
 		Updatereturnitemlist()
 	}
 
-	def minusStock(returnitemid: Int, date :String, itemid: Int, itemname:String, branchid: Int, branchlocation:String, amount: Int, desc: String) = {
+	def minusstock(returnitemid: Int) = {
 		Class.forName(myDBDetails.driver)
 
 		myDBDetails.connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
 		
 		val statement = myDBDetails.connection.createStatement
 
-		//Update the Stock
-		val queryresult = statement.executeQuery(s"select numofstock from itemstock where itemid=${itemid} and branchid=${branchid}")		
-
-		var numofstock = 0
-		while (queryresult.next){
-			numofstock = queryresult.getInt("numofstock")
-		}
-
-		numofstock -= amount
-		statement.executeUpdate(s"Update itemstock set numofstock=${numofstock} where itemid=${itemid} and branchid=${branchid}")	
-
-		//add record to edit history
-		//var minusamount = amount * -1
-		//statement.executeUpdate(s"Insert into returnitem Values(${returnitemid},'${date}',${itemid},'${itemname}',${branchid},'${branchlocation}',${minusamount},'${desc}')")	
-
-		//myDBDetails.connection.close()
-
-		//another query for returnitemdatabase
-		val statement1 = myDBDetails.connection.createStatement
-
-		//Update the Stock
-		val queryresult1 = statement1.executeQuery(s"select amount from returnitem where returnitemid=${returnitemid} and branchid=${branchid}")		
-
-		var prevamount = 0
-		while (queryresult1.next){
-			prevamount = queryresult1.getInt("amount")
-		}
-
-		var minusamount = amount * -1
-		var currentamount = prevamount + minusamount
-
-		if (currentamount < 1)
-			statement1.executeUpdate(s"Delete from returnitem where returnitemid=${returnitemid} and branchid=${branchid}")	
+		statement.executeUpdate(s"Delete from returnitem where returnitemid=${returnitemid}")	
 		
-		else
-			statement1.executeUpdate(s"Update returnitem set amount=${currentamount} where returnitemid=${returnitemid} and branchid=${branchid}")	
-
 		myDBDetails.connection.close()
 		Updatereturnitemlist()
 	}
+
 }
