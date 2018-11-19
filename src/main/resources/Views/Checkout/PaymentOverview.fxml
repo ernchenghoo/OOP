@@ -19,9 +19,9 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="344.0">
                <children>
-                  <ScrollPane layoutY="50.0" prefHeight="573.6" prefWidth="659.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane layoutX="10.0" layoutY="6.0" prefHeight="539.0" prefWidth="659.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <content>
-                      <AnchorPane prefHeight="558.0" prefWidth="654.0">
+                      <AnchorPane prefHeight="525.0" prefWidth="654.0">
                            <children>
                               <GridPane fx:id="paymentPane" layoutX="21.0" layoutY="55.0" maxHeight="477.0" mouseTransparent="true" prefWidth="612.0" vgap="5.0" AnchorPane.bottomAnchor="468.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="55.0">
                                  <columnConstraints>
@@ -61,6 +61,7 @@
                         </AnchorPane>
                     </content>
                   </ScrollPane>
+                  <Button layoutX="7.0" layoutY="539.0" mnemonicParsing="false" onAction="#backToCheckout" text="Back" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="7.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

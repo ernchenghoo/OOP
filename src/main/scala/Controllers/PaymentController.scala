@@ -27,13 +27,13 @@ class PaymentController (
 		
 		for (elements <- Checkout.listOfCheckedoutItems){				
 			var rowLabel = new Label (itemRow.toString)					
-			var idLabel  = new Label(elements.id.toString)
-			var nameLabel  = new Label(elements.name.toString)
-			var priceLabel  = new Label(elements.price.toString)
-			var qtyLabel  = new Label(elements.quantity.toString)
-			var lineAmountLabel  = new Label(elements.lineAmount.toString)
+			var idLabel  = new Label(elements.id.value.toString)
+			var nameLabel  = new Label(elements.name.value)
+			var priceLabel  = new Label(elements.price.value.toString)
+			var qtyLabel  = new Label(elements.quantity.value.toString)
+			var lineAmountLabel  = new Label(elements.lineAmount.value.toString)
 			paymentPane.addRow (itemRow, rowLabel, idLabel, nameLabel, priceLabel, qtyLabel, lineAmountLabel)
-			totalPaymentAmount += elements.lineAmount
+			totalPaymentAmount += elements.lineAmount.value
 			itemRow += 1
 		}
 
@@ -74,13 +74,15 @@ class PaymentController (
 				CheckoutDatabase.addCheckout(salesid,branchid,datestring,total)
 
 				for (elements <- Checkout.listOfCheckedoutItems){								
-					var itemid  = elements.id.toInt
-					var itemname  = elements.name.toString
-					var quantity  = elements.quantity.toInt
-					var price  = elements.price.toDouble
+					var itemid  = elements.id.value
+					var itemname  = elements.name.value
+					var quantity  = elements.quantity.value
+					var price  = elements.price.value
 					CheckoutDatabase.addItemsold(salesid, itemid, itemname, quantity, price)
 					itemRow += 1
 				}
+
+				Checkout.listOfCheckedoutItems.clear
 			}	
 
 			else if (receivedPaymentAmount < totalPaymentAmount){
@@ -100,26 +102,28 @@ class PaymentController (
 				CheckoutDatabase.addCheckout(salesid,branchid,datestring,total)
 
 				for (elements <- Checkout.listOfCheckedoutItems){								
-					var itemid  = elements.id.toInt
-					var itemname  = elements.name.toString
-					var quantity  = elements.quantity.toInt
-					var price  = elements.price.toDouble
+					var itemid  = elements.id.value
+					var itemname  = elements.name.value
+					var quantity  = elements.quantity.value
+					var price  = elements.price.value
 					CheckoutDatabase.addItemsold(salesid, itemid, itemname, quantity, price)
 					itemRow += 1
 				}
-
+				Checkout.listOfCheckedoutItems.clear
 			}
 			
 		}
 
+		def backToCheckout() {
+			MainApp.goToCheckoutMenu
+		}
+
 		def moveToMainMenu() {
-			MainApp.showMainMenu
-			Checkout.listOfCheckedoutItems.clear
+			MainApp.showMainMenu			
 		}
 
 		def checkoutAgain() {
-			MainApp.goToCheckoutMenu
-			Checkout.listOfCheckedoutItems.clear	
+			MainApp.goToCheckoutMenu			
 		}
 
 		
