@@ -35,7 +35,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="checkoutTable" layoutY="46.0" prefHeight="475.0" prefWidth="570.0">
+                  <TableView fx:id="checkoutTable" layoutY="46.0" prefHeight="476.0" prefWidth="574.0" AnchorPane.bottomAnchor="51.60000000000002" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="46.0">
                     <columns>
                       <TableColumn fx:id="idCol" prefWidth="82.4000244140625" text="Item ID" />
                       <TableColumn fx:id="nameCol" prefWidth="184.79998779296875" text="Item Name" />
@@ -44,6 +44,7 @@
                         <TableColumn fx:id="lineAmountCol" prefWidth="161.5999755859375" text="Line Amount" />
                     </columns>
                   </TableView>
+                  <Button fx:id="deleteLineButton" layoutX="10.0" layoutY="534.0" mnemonicParsing="false" onAction="#deleteLineItem" text="Delete Line" AnchorPane.bottomAnchor="14.000000000000021" AnchorPane.leftAnchor="10.0" />
                </children>
             </AnchorPane>
          </items>

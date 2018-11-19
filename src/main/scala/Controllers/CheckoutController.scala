@@ -21,6 +21,7 @@ class CheckoutController (
     private val searchItemID: TextField,
     private val quantityField: TextField,   
     private val checkoutButton: Button,
+    private val deleteLineButton: Button,
     private val checkoutTable: TableView [Checkout],
     private val idCol: TableColumn [Checkout, Int],
     private val nameCol: TableColumn [Checkout, String],
@@ -39,7 +40,7 @@ class CheckoutController (
 		qtyCol.cellValueFactory = {_.value.quantity}
 		lineAmountCol.cellValueFactory = {_.value.lineAmount}
 
-		if (checkoutButton.isVisible == false) {
+		if (Models.Checkout.listOfCheckedoutItems.nonEmpty) {
 			checkoutButton.setVisible (true)
 		}			
 		
@@ -126,5 +127,20 @@ class CheckoutController (
 
 				}
 			}
+		}
+
+		def deleteLineItem () {
+			if(checkoutTable.selectionModel().selectedItem.value != null) {
+				Checkout.listOfCheckedoutItems.remove (checkoutTable.selectionModel().selectedIndex.value)
+			}
+			else {
+				val NotExistAlert = new Alert(AlertType.Warning){
+			        initOwner(MainApp.stage)
+			        title       = "No Selection"
+			        headerText = "No line item selected"
+			        contentText  = "Please select a line item to be deleted."
+					}
+					.showAndWait()
+			}			
 		}
 }
