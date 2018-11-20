@@ -1,0 +1,45 @@
+.root {
+    -fx-background-color: #b8c5fc;
+}
+
+.table-view {
+	-fx-base: #c1c1c1;
+	-fx-background-color: #efefef;
+	-fx-control-inner-background: #efefef;
+}
+
+.button {
+	-fx-background-color: #eff0f2;
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 12;	
+}
+
+.button:hover {
+    -fx-background-color: #e5e5e5;
+    -fx-color: white;
+}
+
+.button:pressed, .button:default:hover:pressed {
+	-fx-background-color: #eff0f2;
+	-fx-text-fill: #1d1d1d; 
+}
+
+.default-button {
+	-fx-background-color: #eff0f2;	
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 12;
+}
+
+.title-text {
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 18;
+}
+
+.split-pane > .split-pane-divider {
+	-fx-padding: 0 0.02em 0 0.02em;
+	-fx-background-color: #eff0f2;
+}
+
+.scroll-pane {
+	-fx-background-color: #efefef;
+}
