@@ -143,4 +143,21 @@ object Branch extends myDBDetails{
 
 		return list
 	}
+
+	def CheckBranchId(location:String): Int = {
+
+		Class.forName(driver)
+		connection = DriverManager.getConnection(url, username, password)
+
+		val statement = connection.createStatement
+		val queryresult = statement.executeQuery(s"select * from branch where location =('${location}')")		
+		var idfound:Int = 0
+
+		while (queryresult.next){
+			idfound=queryresult.getInt("branchid")			
+		}	
+
+		connection.close()
+		return idfound
+	}
 }
