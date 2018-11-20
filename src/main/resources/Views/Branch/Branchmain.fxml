@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BranchmainController">
+<AnchorPane prefHeight="400.0" prefWidth="622.0" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.BranchmainController">
    <children>
-      <Button layoutX="15.0" layoutY="2.0" mnemonicParsing="false" onAction="#backtoMainmenu" text="back" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="2.0" />
+      <Button layoutX="15.0" layoutY="2.0" mnemonicParsing="false" onAction="#backtoMainmenu" text="Back" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="2.0" />
       <Label layoutX="69.0" layoutY="1.0" text="Branch" AnchorPane.leftAnchor="69.0" AnchorPane.topAnchor="1.0">
          <font>
             <Font size="18.0" />
