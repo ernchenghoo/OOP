@@ -1,7 +1,9 @@
 package Controllers
 import Database.myDBDetails
-import Database.CheckoutDatabase
+import Models.Sales
+import Models.Itemsold
 import Models.Checkout
+import Models.Itemstock
 import MainSystem.MainApp
 import scalafxml.core.macros.sfxml
 import scalafx.scene.control._
@@ -49,11 +51,11 @@ class PaymentController (
 
 		totalAmount.text.value = totalPaymentAmount.toString
 
-		CheckoutDatabase.UpdateSaleslist()
+		Sales.UpdateSaleslist()
 		
 		//initialize id
 		var maxid = 0
-		for(salesidlist <-CheckoutDatabase.Saleslist){
+		for(salesidlist <-Sales.Saleslist){
 			if(salesidlist.salesid.getValue() > maxid){
 				maxid = salesidlist.salesid.getValue()
 			}
@@ -81,14 +83,19 @@ class PaymentController (
 				changeLabel.setVisible (true)
 				checkoutComplete.setVisible (true)				
 				paymentButtons.setVisible (true)
-				CheckoutDatabase.addCheckout(salesid,branchid,datestring,total)
+				Sales.addCheckout(salesid,branchid,datestring,total)
 
-				for (elements <- Checkout.listOfCheckedoutItems){								
+				for (elements <- Checkout.listOfCheckedoutItems){
 					var itemid  = elements.id.value
 					var itemname  = elements.name.value
 					var quantity  = elements.quantity.value
 					var price  = elements.price.value
-					CheckoutDatabase.addItemsold(salesid, itemid, itemname, quantity, price)
+					Itemsold.addItemsold(salesid, itemid, itemname, quantity, price)
+
+					var checkquantity:Int = Itemstock.CheckItemQuantity(itemid)
+					var quantityBalance:Int = checkquantity - quantity
+					var branchid:Int = 1
+					Itemstock.updateItemQuantity(itemid,branchid,quantityBalance)
 					itemRow += 1
 				}
 				completedCheckout()
@@ -108,14 +115,20 @@ class PaymentController (
 				changeLabel.text.value = checkoutComplete.text.value
 				changeLabel.setVisible (true)				
 				paymentButtons.setVisible (true)
-				CheckoutDatabase.addCheckout(salesid,branchid,datestring,total)
+				Sales.addCheckout(salesid,branchid,datestring,total)
 
 				for (elements <- Checkout.listOfCheckedoutItems){								
 					var itemid  = elements.id.value
 					var itemname  = elements.name.value
 					var quantity  = elements.quantity.value
 					var price  = elements.price.value
-					CheckoutDatabase.addItemsold(salesid, itemid, itemname, quantity, price)
+					Itemsold.addItemsold(salesid, itemid, itemname, quantity, price)
+
+					var checkquantity:Int = Itemstock.CheckItemQuantity(itemid)
+					var quantityBalance:Int = checkquantity - quantity
+					var branchid:Int = 1
+
+					Itemstock.updateItemQuantity(itemid,branchid,quantityBalance)
 					itemRow += 1
 				}
 				completedCheckout()			
