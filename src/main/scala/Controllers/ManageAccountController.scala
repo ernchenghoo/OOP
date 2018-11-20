@@ -1,6 +1,6 @@
 package Controllers
 
-import Database.{myDBDetails, AccountDatabase}
+import Database.myDBDetails
 import MainSystem.MainApp
 import Models.Account._
 
@@ -16,15 +16,15 @@ import scalafx.scene.control.Alert.AlertType //contail all the implicits to chan
 @sfxml
 class ManageAccountController
 (
-	accountTableView: TableView[UserProperty],
-	userIDTableColumn: TableColumn[UserProperty, String],
-	usernameTableColumn: TableColumn[UserProperty, String],
-	roleTableColumn: TableColumn[UserProperty, String],
-	nameTableColumn: TableColumn[UserProperty, String],
-	ageTableColumn: TableColumn[UserProperty, String],
-	genderTableColumn: TableColumn[UserProperty, String],
-	addressTableColumn: TableColumn[UserProperty, String],
-	contactTableColumn: TableColumn[UserProperty, String],
+	accountTableView: TableView[Account],
+	userIDTableColumn: TableColumn[Account, String],
+	usernameTableColumn: TableColumn[Account, String],
+	roleTableColumn: TableColumn[Account, String],
+	nameTableColumn: TableColumn[Account, String],
+	ageTableColumn: TableColumn[Account, String],
+	genderTableColumn: TableColumn[Account, String],
+	addressTableColumn: TableColumn[Account, String],
+	contactTableColumn: TableColumn[Account, String],
 )
 {
 
@@ -32,12 +32,11 @@ class ManageAccountController
 
 	def loadAccountTable() =
 	{
-		AccountDatabase.GetAllAccount()
-
-	  	accountTableView.items = AccountDatabase.AccountList
+		Account.GetAllAccount()
+	  	accountTableView.items = Account.accountList
 
 		userIDTableColumn.cellValueFactory = {_.value.userID}
-		usernameTableColumn.cellValueFactory = {_.value.username}
+		usernameTableColumn.cellValueFactory = {_.value.usernameAcc}
 		roleTableColumn.cellValueFactory = {_.value.role}
 		nameTableColumn.cellValueFactory = {_.value.name}
 		ageTableColumn.cellValueFactory = {_.value.age}
@@ -81,10 +80,8 @@ class ManageAccountController
 	    val selectedIndex = accountTableView.selectionModel().selectedIndex.value
 	    if (selectedIndex >= 0) 
 	    {
-	    	var selectedAccount = AccountDatabase.AccountList.get(selectedIndex)
-	    	var selectedUserID = selectedAccount.userID.getValue()
-
-	    	AccountDatabase.DeleteAccount(selectedUserID)
+	    	var selectedAccount = Account.accountList.get(selectedIndex)
+	    	selectedAccount.DeleteAccount()
 	     	loadAccountTable()
 	    } 
 	    else 
