@@ -1,10 +1,10 @@
 package Controllers
 
-import Models.Account
-import Database.{myDBDetails, AccountDatabase}
+import Models.Account._
+import Database.myDBDetails
 import MainSystem.{MainApp,Utility}
-import scalafxml.core.macros.sfxml
 
+import scalafxml.core.macros.sfxml
 import scalafx.scene.control._
 import scalafx.scene.input._
 import scalafx.scene.layout.AnchorPane
@@ -12,7 +12,9 @@ import scalafx.Includes._
 
 @sfxml
 class LoginPageController(val username: TextField, val password: PasswordField, val loginPane: AnchorPane )
-{
+{	
+
+	Account.setupAccountTable()
 	def Login() =
 	{
 		var err = ""
@@ -28,7 +30,7 @@ class LoginPageController(val username: TextField, val password: PasswordField, 
 
 		if(err.length == 0)
 		{
-			AccountDatabase.Authentication(username.text.value, password.text.value)
+			Account.Authentication(username.text.value, password.text.value)
 		}
 		else
 		{
