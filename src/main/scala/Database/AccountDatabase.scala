@@ -79,29 +79,29 @@ object AccountDatabase
 		var queryResult = statement.executeQuery(s"SELECT * FROM account WHERE Username='$username' AND Password='$password'")
 		if(queryResult.next)
 		{
+			var details = UserInformation(queryResult.getString("Name"),queryResult.getString("Age"),queryResult.getString("Gender"),queryResult.getString("Address"),queryResult.getString("ContactNo"))
 			queryResult.getString("Role").trim match 
 			{
 				case "Cashier" =>
 				{
-					println("Cashier")
+					MainApp.user = new Cashier(queryResult.getString("UserID"),queryResult.getString("Username"),queryResult.getString("Role"), details)
 				}
 
 				case "Stock Keeper" =>
 				{
-					print("Stock Keeper")
+					MainApp.user = new StockKeeper(queryResult.getString("UserID"),queryResult.getString("Username"),queryResult.getString("Role"), details)
 
 				}
 
 				case "Manager" =>
 				{
-					print("Manager")
+					MainApp.user = new Manager(queryResult.getString("UserID"),queryResult.getString("Username"),queryResult.getString("Role"), details)
 
 				}
 
 				case "Admin" =>
 				{
-					print("Admin")
-
+					MainApp.user = new Admin(queryResult.getString("UserID"),queryResult.getString("Username"),queryResult.getString("Role"), details)
 				}
 
 				case _ =>
@@ -114,6 +114,7 @@ object AccountDatabase
 				    }.showAndWait()					
 				}
 			}
+			MainApp.showMainMenu()
 		}
 		else
 		{

@@ -3,6 +3,7 @@ package MainSystem
 import java.sql.{Connection,DriverManager}
 import Models.Item
 import Models.Branch
+import Models.Account._
 import Controllers._
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -15,6 +16,7 @@ import java.time.LocalDate
 
 object MainApp extends JFXApp {
   
+  var user: User = new User()
   val rootResource = getClass.getResource("/Views/Shared/RootLayout.fxml")
   val loader = new FXMLLoader(rootResource, NoDependencyResolver)
   loader.load();
@@ -26,14 +28,19 @@ object MainApp extends JFXApp {
       root = roots
     }
   }
+
+  goToLoginPage()
+
   def showMainMenu() = {
     val resource = getClass.getResource("/Views/Shared/mainMenu.fxml")
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
     val roots = loader.getRoot[jfxs.layout.AnchorPane]
+    val control = loader.getController[MainMenuController#Controller]
+    user.initialize(control)
     this.roots.setCenter(roots)
   } 
-  showMainMenu()
+
 
   def goToCheckoutMenu() = {
       val resource = getClass.getResource("/Views/Checkout/CheckoutOverview.fxml")
