@@ -76,12 +76,44 @@ object AccountDatabase
 	{
 		myDBDetails.connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
 		val statement = myDBDetails.connection.createStatement
-		var queryResult = statement.executeQuery(s"SELECT username,password FROM account WHERE Username='$username' AND Password='$password'")
+		var queryResult = statement.executeQuery(s"SELECT * FROM account WHERE Username='$username' AND Password='$password'")
 		if(queryResult.next)
 		{
-			//Login Action to be added
-			var queryResult = statement.executeQuery(s"SELECT * FROM account WHERE Username='$username' AND Password='$password'")
-			println("Logged in")
+			queryResult.getString("Role").trim match 
+			{
+				case "Cashier" =>
+				{
+					println("Cashier")
+				}
+
+				case "Stock Keeper" =>
+				{
+					print("Stock Keeper")
+
+				}
+
+				case "Manager" =>
+				{
+					print("Manager")
+
+				}
+
+				case "Admin" =>
+				{
+					print("Admin")
+
+				}
+
+				case _ =>
+				{
+					val alert = new Alert(Alert.AlertType.Error) 
+			     	{
+				        initOwner(MainApp.stage)
+				        title = "Error"
+				        headerText = "Role not assigned for this account. Please contact administrator."
+				    }.showAndWait()					
+				}
+			}
 		}
 		else
 		{
