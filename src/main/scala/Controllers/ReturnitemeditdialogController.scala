@@ -1,6 +1,9 @@
 package Controllers
 
 import Models.Item
+import MainSystem.MainApp
+import Database.InventoryDatabase
+import Database.BranchDatabase
 import Models.Branch
 import Database.ReturnItemDatabase
 import Models.Stockedithistory

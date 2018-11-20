@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SearchReportController">
+<AnchorPane stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SearchReportController">
    <children>
-      <SplitPane dividerPositions="0.1" layoutX="144.0" layoutY="14.0" orientation="VERTICAL" prefHeight="259.0" prefWidth="448.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.1" layoutX="144.0" layoutY="14.0" orientation="VERTICAL" prefHeight="259.0" prefWidth="448.0" styleClass="root" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
             <Label prefHeight="23.0" prefWidth="447.0" text="Select date to generate report">
                <font>
