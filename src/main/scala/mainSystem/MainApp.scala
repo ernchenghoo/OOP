@@ -4,8 +4,6 @@ import java.sql.{Connection,DriverManager}
 import Models.Item
 import Models.Branch
 import Controllers._
-
-
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.scene.Scene
