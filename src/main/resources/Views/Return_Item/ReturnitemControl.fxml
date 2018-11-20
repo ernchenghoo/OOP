@@ -7,23 +7,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="331.0" prefWidth="600.0" stylesheets="@../systemDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReturnitemcontrolController">
+<AnchorPane prefHeight="331.0" prefWidth="703.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReturnitemcontrolController">
    <children>
       <Label layoutX="207.0" layoutY="4.0" prefHeight="25.0" prefWidth="187.0" text="Return Item" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="401.0" layoutY="4.0" mnemonicParsing="false" onAction="#addstock" prefHeight="25.0" prefWidth="90.0" text="Add Stock" />
-      <Button layoutX="501.0" layoutY="4.0" mnemonicParsing="false" onAction="#minusstock" prefHeight="25.0" prefWidth="90.0" text="Minus Stock" />
-      <TableView fx:id="stocktableview" layoutY="38.0" prefHeight="293.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <Button layoutX="401.0" layoutY="6.0" mnemonicParsing="false" onAction="#addstock" prefHeight="25.0" prefWidth="90.0" text="Add" />
+      <Button layoutX="501.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleDeleteItem" prefHeight="25.0" prefWidth="90.0" text="Remove" />
+      <TableView fx:id="stocktableview" layoutY="38.0" prefHeight="293.0" prefWidth="656.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
         <columns>
-          <TableColumn fx:id="idColumn" prefWidth="67.0" text="ID" />
-            <TableColumn fx:id="dateColumn" prefWidth="87.0" text="Date" />
-          <TableColumn fx:id="itemColumn" prefWidth="112.0" text="Item" />
-            <TableColumn fx:id="branchColumn" minWidth="0.0" prefWidth="86.0" text="Branch" />
-            <TableColumn fx:id="amountColumn" prefWidth="78.0" text="Amount" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="169.0" text="Description" />
+          <TableColumn fx:id="idColumn" prefWidth="63.0" text="ID" />
+            <TableColumn fx:id="dateColumn" prefWidth="97.0" text="Date" />
+             <TableColumn fx:id="salesidColumn" text="Sales ID" />
+          <TableColumn fx:id="itemColumn" prefWidth="149.0" text="Item" />
+            <TableColumn fx:id="branchColumn" minWidth="0.0" prefWidth="89.0" text="Branch" />
+            <TableColumn fx:id="amountColumn" prefWidth="58.0" text="Amount" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="166.0" text="Reasons" />
         </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#backtoMainmenu" prefHeight="25.0" prefWidth="90.0" text="Back" />

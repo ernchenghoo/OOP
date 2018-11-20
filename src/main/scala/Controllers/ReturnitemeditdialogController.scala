@@ -1,9 +1,6 @@
 package Controllers
 
 import Models.Item
-import MainSystem.MainApp
-import Database.InventoryDatabase
-import Database.BranchDatabase
 import Models.Branch
 import Database.ReturnItemDatabase
 import Models.Stockedithistory
@@ -11,7 +8,7 @@ import Models.Stockedithistory
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
 import scalafx.scene.control.{ChoiceBox,TextArea,TextField, TableColumn, Label, Alert}
-import scalafx.stage.Stage
+import scalafx.stage.{Modality, Stage}
 import scalafx.event.ActionEvent
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -21,6 +18,7 @@ import java.util.TimeZone
 class ReturnitemeditdialogController (
 	val title: Label,
 	val idinputbox: TextField,
+	val salesidinputbox: TextField,
 	val itemdropdown: ChoiceBox[String],
 	val branchdropdown: ChoiceBox[String],
 	val amountinputbox: TextField,
@@ -31,14 +29,16 @@ class ReturnitemeditdialogController (
 	var addorminus:String = null
 	var  okClicked = false
 
+	//do option value for nulls
+
 
 	//initialze the data
 	def initializedata() = {
 		//set title label
 		if(addorminus == "add")
-			title.setText("Add stock")
+			title.setText("Add Return Item")
 		else
-			title.setText("Minus stock")
+			title.setText("Remove Return Item")
 
 		//initialize id
 		var maxid = 0
@@ -48,8 +48,12 @@ class ReturnitemeditdialogController (
 			}
 		}
 		//new id
-		maxid = maxid + 1
-		idinputbox.text.value = maxid.toString()
+
+		if(addorminus == "add")
+			maxid = maxid + 1
+			idinputbox.text.value = maxid.toString()
+		if (addorminus == "minus")
+			idinputbox.text.value = null
 
 		//initialize item choose
 		itemdropdown.getItems().add("Select Item");
@@ -64,6 +68,7 @@ class ReturnitemeditdialogController (
 		for(branch <- Branch.getAllBranchs){
 			branchdropdown.getItems().add(branch.location.getValue());
 		}
+
 	}
 
 	def submit(action :ActionEvent) = {
@@ -71,6 +76,7 @@ class ReturnitemeditdialogController (
 		if (checkinput()) {
 			var returnitemid = idinputbox.text.value.toInt
 			var datenow = new Date()
+			var salesid = salesidinputbox.text.value.toInt
 			var formmater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 			formmater.setTimeZone(TimeZone.getTimeZone("UTC"))
 			var datestring = formmater.format(datenow)
@@ -95,12 +101,8 @@ class ReturnitemeditdialogController (
 			}
 
 			if(addorminus == "add"){
-				ReturnItemDatabase.addStock(returnitemid,datestring,itemid,itemname,branchid,branchlocation,amount,desc)
-			}else{
-				ReturnItemDatabase.minusStock(returnitemid,datestring,itemid,itemname,branchid,branchlocation,amount,desc)
+				ReturnItemDatabase.addStock(returnitemid,datestring,salesid,itemid,itemname,branchid,branchlocation,amount,desc)
 			}
-
-			
 
 	      	okClicked = true;
 	      	dialogStage.close()

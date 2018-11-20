@@ -19,6 +19,7 @@ class ReturnitemcontrolController (
 	val stocktableview: TableView[returnitemhistory],
 	val idColumn: TableColumn[returnitemhistory,Int],
 	val dateColumn: TableColumn[returnitemhistory, String],
+	val salesidColumn: TableColumn[returnitemhistory, Int],
 	val itemColumn: TableColumn[returnitemhistory, String],
 	val branchColumn: TableColumn[returnitemhistory, String],
 	val amountColumn: TableColumn[returnitemhistory, Int],
@@ -33,6 +34,32 @@ class ReturnitemcontrolController (
 
 	}
 
+	def handleDeleteItem(action : ActionEvent) = { 
+
+	    try
+	    {
+
+		    val selectedIndex = stocktableview.selectionModel().selectedIndex.value
+		    val selectedItem = stocktableview.selectionModel().selectedItem.value.returnitemid
+	    	ReturnItemDatabase.minusstock(selectedItem.value)
+	    	Refreshreturnitemhistorylist()	
+
+
+	    }catch{
+
+	    	case x: NullPointerException =>
+	    		{
+			     val alert = new Alert(AlertType.Warning){
+			          initOwner(MainApp.stage)
+			          title       = "No Selection"
+			          headerText  = "No Items Selected"
+			          contentText = "Please select an Item in the table."
+			        }.showAndWait()
+	    		}
+	    }
+	    		    		
+	}
+
 	def Refreshreturnitemhistorylist() = {
 		//update the itemlist from database
 		ReturnItemDatabase.Updatereturnitemlist()
@@ -43,6 +70,7 @@ class ReturnitemcontrolController (
 		// initialize columns's cell values
 		idColumn.cellValueFactory = {_.value.returnitemid}
 	  	dateColumn.cellValueFactory = {_.value.DatetoString()}
+	  	salesidColumn.cellValueFactory = {_.value.salesid}
 	  	itemColumn.cellValueFactory = {_.value.getItemname()}
 	  	branchColumn.cellValueFactory = {_.value.getBranchlocation()}
 	  	amountColumn.cellValueFactory = {_.value.amount}
@@ -50,16 +78,7 @@ class ReturnitemcontrolController (
 	}
 
 	def addstock() = {
-		val okClicked:Boolean = MainApp.showStockEditDialog("add")
-
-		if(okClicked){
-    		//refresh the table data
-    		Refreshreturnitemhistorylist()
-    	}
-	}
-
-	def minusstock() = {
-		val okClicked:Boolean = MainApp.showStockEditDialog("minus")
+		val okClicked:Boolean = MainApp.showReturnItemDialog("add")
 
 		if(okClicked){
     		//refresh the table data

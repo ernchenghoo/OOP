@@ -120,7 +120,7 @@ object MainApp extends JFXApp {
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
     val roots2  = loader.getRoot[jfxs.Parent]
-    val control = loader.getController[StockeditdialogController#Controller]
+    val control = loader.getController[ReturnitemeditdialogController#Controller]
 
     val dialog = new Stage() {
       initModality(Modality.APPLICATION_MODAL)
