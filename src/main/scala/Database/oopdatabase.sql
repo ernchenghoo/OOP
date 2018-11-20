@@ -35,7 +35,7 @@ CREATE TABLE `branch` (
 
 LOCK TABLES `branch` WRITE;
 /*!40000 ALTER TABLE `branch` DISABLE KEYS */;
-INSERT INTO `branch` VALUES (1,'Sunway'),(2,'Puchong'),(3,'Subang Jaya');
+INSERT INTO `branch` VALUES (1,'Sunway'),(2,'Puchong'),(3,'Subang Jaya'),(4,'Putrajaya');
 /*!40000 ALTER TABLE `branch` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'Keyboard','Keyboard desc',50.00),(2,'Bottle','A Bottle',10.50),(3,'Apple','fruit',0.11);
+INSERT INTO `item` VALUES (1,'Keyboard','Keyboard desc',50.00),(2,'Bottle','A Bottle',10.50),(3,'Apple','fruit',0.11),(4,'Monitor','A LED Moniter with 120 Hertz',500.00),(5,'Banana','Freshly pickled bananas',5.99),(6,'SmartPhone','SmartPhone that use AMOLED screen with snapdragon processor\n',1199.99),(7,'A4 Paper','A Bundle of A4 Paper that have 400 sheet\nA4 Paper',50.00),(8,'Speaker','A Speaker by Sony with high bass and produce high quality sounds',699.00),(9,'Candy','Pepermint flavour candy ',9.50),(10,'Isotonic Drink','A good choice to drink for athelete',5.00),(11,'Bread','A White Bread filled with vanila flavoured cream',0.99),(12,'Television','A Television that support 4k resolution',1999.00),(13,'Soap','A 500 gram soaps with strawberry smelt',15.50),(14,'Office Chair','Office Chair that equiped with roller',699.00),(15,'Laptop','A Laptop by MSI',2999.00);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `itemstock` (
 
 LOCK TABLES `itemstock` WRITE;
 /*!40000 ALTER TABLE `itemstock` DISABLE KEYS */;
-INSERT INTO `itemstock` VALUES (1,1,6),(1,2,0),(1,3,0),(2,1,0),(2,2,0),(2,3,0),(3,1,0),(3,2,0),(3,3,0);
+INSERT INTO `itemstock` VALUES (1,1,6),(1,2,0),(1,3,0),(1,4,0),(2,1,0),(2,2,0),(2,3,0),(2,4,0),(3,1,0),(3,2,0),(3,3,0),(3,4,0),(4,1,0),(4,2,0),(4,3,0),(4,4,0),(5,1,0),(5,2,0),(5,3,0),(5,4,0),(6,1,0),(6,2,0),(6,3,0),(6,4,0),(7,1,0),(7,2,0),(7,3,0),(7,4,0),(8,1,0),(8,2,0),(8,3,0),(8,4,0),(9,1,0),(9,2,0),(9,3,0),(9,4,0),(10,1,0),(10,2,0),(10,3,0),(10,4,0),(11,1,0),(11,2,0),(11,3,0),(11,4,0),(12,1,0),(12,2,0),(12,3,0),(12,4,0),(13,1,0),(13,2,0),(13,3,0),(13,4,0),(14,1,0),(14,2,0),(14,3,0),(14,4,0),(15,1,0),(15,2,0),(15,3,0),(15,4,0);
 /*!40000 ALTER TABLE `itemstock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,4 +211,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-15 16:10:44
+-- Dump completed on 2018-11-17  1:16:48

@@ -21,9 +21,9 @@
           <TableColumn fx:id="branchlocationColumn" prefWidth="431.0" text="Branch location" />
         </columns>
       </TableView>
-      <Button layoutX="268.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleAddItem" prefWidth="100.0" text="Add branch" AnchorPane.leftAnchor="268.0" AnchorPane.topAnchor="56.0" />
-      <Button layoutX="502.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleDeleteItem" prefWidth="100.0" text="Delete branch" AnchorPane.leftAnchor="502.0" AnchorPane.topAnchor="56.0" />
-      <Button layoutX="386.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleEditItem" prefWidth="100.0" text="Edit branch" AnchorPane.leftAnchor="386.0" AnchorPane.topAnchor="56.0" />
+      <Button layoutX="268.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleAddbranch" prefWidth="100.0" text="Add branch" AnchorPane.leftAnchor="268.0" AnchorPane.topAnchor="56.0" />
+      <Button layoutX="502.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleDeletebranch" prefWidth="100.0" text="Delete branch" AnchorPane.leftAnchor="502.0" AnchorPane.topAnchor="56.0" />
+      <Button layoutX="386.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleEditbranch" prefWidth="100.0" text="Edit branch" AnchorPane.leftAnchor="386.0" AnchorPane.topAnchor="56.0" />
       <Label layoutX="26.0" layoutY="58.0" text="Branch list" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="58.0">
          <font>
             <Font name="System Bold" size="14.0" />

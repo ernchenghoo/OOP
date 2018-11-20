@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
--- Host: localhost    Database: oop
+-- Host: localhost    Database: OOP
 -- ------------------------------------------------------
 -- Server version	8.0.13
 
@@ -14,6 +14,38 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `account`
+--
+
+DROP TABLE IF EXISTS `account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `account` (
+  `UserID` int(5) NOT NULL AUTO_INCREMENT,
+  `Username` varchar(45) DEFAULT NULL,
+  `Password` varchar(45) DEFAULT NULL,
+  `Role` varchar(45) DEFAULT NULL,
+  `Name` varchar(45) DEFAULT NULL,
+  `Age` int(11) DEFAULT NULL,
+  `Gender` varchar(45) DEFAULT NULL,
+  `Address` varchar(200) DEFAULT NULL,
+  `ContactNo` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`UserID`),
+  UNIQUE KEY `Username_UNIQUE` (`Username`)
+) ENGINE=InnoDB AUTO_INCREMENT=1002 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `account`
+--
+
+LOCK TABLES `account` WRITE;
+/*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1001,'admin','admin','Admin','admin',20,'Male','admin','admin');
+/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `branch`
@@ -35,7 +67,7 @@ CREATE TABLE `branch` (
 
 LOCK TABLES `branch` WRITE;
 /*!40000 ALTER TABLE `branch` DISABLE KEYS */;
-INSERT INTO `branch` VALUES (1,'Sunway'),(2,'Puchong'),(3,'Subang Jaya');
+INSERT INTO `branch` VALUES (3,'Subang Jaya'),(4,'Shah alam');
 /*!40000 ALTER TABLE `branch` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +94,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,'Keyboard','Keyboard desc',50.00,0),(2,'Bottle','A Bottle',10.50,0);
+INSERT INTO `item` VALUES (1,'Keyboard','Keyboard desc',50.00,0);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +119,7 @@ CREATE TABLE `itemstock` (
 
 LOCK TABLES `itemstock` WRITE;
 /*!40000 ALTER TABLE `itemstock` DISABLE KEYS */;
-INSERT INTO `itemstock` VALUES (1,1,5),(1,2,0),(1,3,0),(2,1,0),(2,2,0),(2,3,0);
+INSERT INTO `itemstock` VALUES (1,3,0),(1,4,0);
 /*!40000 ALTER TABLE `itemstock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-12 13:41:03
+-- Dump completed on 2018-11-16 11:49:08

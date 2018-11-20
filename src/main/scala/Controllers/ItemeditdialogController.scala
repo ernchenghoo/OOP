@@ -22,14 +22,16 @@ class ItemeditdialogController (
 	var addoredit:String = null
 	var  okClicked = false
 
+	var IteminDialog:Item = null
 
 	//initialze the data
-	def initializeitemdata(item: Item) = {
+	def initializeitemdata() = {
 
 		if(addoredit == "add"){
 			title.setText("Add Item")
 			var maxid = 0
-			for(item <-InventoryDatabase.Itemlist){
+
+			for(item <- Item.getAllItems){
 				if(item.id.getValue() > maxid){
 					maxid = item.id.getValue()
 				}
@@ -40,27 +42,21 @@ class ItemeditdialogController (
 
 		}else{
 			title.setText("Edit Item")
-			itemidinputbox.text.value = item.id.getValue().toString()
-			itemnameinputbox.text.value = item.name.getValue()
-			itemdescinputbox.text.value = item.desc.getValue()
-			itempriceinputbox.text.value = item.price.getValue().toString()
+			itemidinputbox.text.value = IteminDialog.id.getValue().toString()
+			itemnameinputbox.text.value = IteminDialog.name.getValue()
+			itemdescinputbox.text.value = IteminDialog.desc.getValue()
+			itempriceinputbox.text.value = IteminDialog.price.getValue().toString()
 		}	
 	}
 
 	def submit(action :ActionEvent) = {
 		if (checkinput()) {
 
-			var id = itemidinputbox.text.value.toInt
-			var name = itemnameinputbox.text.value
-			var desc = itemdescinputbox.text.value
-			var price = itempriceinputbox.text.value.toDouble
+			IteminDialog.id.value = itemidinputbox.text.value.toInt
+			IteminDialog.name.value = itemnameinputbox.text.value
+			IteminDialog.desc.value = itemdescinputbox.text.value
+			IteminDialog.price.value = itempriceinputbox.text.value.toDouble
 			//edit data in database
-
-			if(addoredit == "add"){
-				InventoryDatabase.AddtoItemlist(id,name,desc,price)
-			}else{
-				InventoryDatabase.EditfromItemlist(id,name,desc,price)
-			}
 
 			
 

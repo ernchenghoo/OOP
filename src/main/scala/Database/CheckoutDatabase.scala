@@ -1,8 +1,8 @@
 package Database
 
 import Models.Item
-import Models.stockedithistory
-import Models.branch
+import Models.Stockedithistory
+import Models.Branch
 import Models.Itemstock
 import Models.returnitemhistory
 import Models.sales

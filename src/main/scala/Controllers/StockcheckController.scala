@@ -10,6 +10,7 @@ import scalafxml.core.macros.sfxml
 import scalafx.stage.{Modality, Stage}
 import scalafx.event.ActionEvent
 import scalafx.Includes._
+import scalafx.collections.ObservableBuffer
 
 @sfxml
 class StockcheckController (
@@ -21,13 +22,15 @@ class StockcheckController (
 	val numofstockColumn: TableColumn[Itemstock, Int]
 	) {	
 
+	var ItemstockData:ObservableBuffer[Itemstock] = new ObservableBuffer[Itemstock]() 
+
+	ItemstockData ++= Itemstock.getAllItemStocks
+
 	Refreshstocklist()
 	def Refreshstocklist() = {
-		//update the itemlist from database
-		InventoryDatabase.UpdateStocklist()
-
+		
 		//show to tableview
-		stocktableview.items = InventoryDatabase.Stocklist
+		stocktableview.items = ItemstockData
 
 		// initialize columns's cell values
 	  	itemidColumn.cellValueFactory = {_.value.itemid}
