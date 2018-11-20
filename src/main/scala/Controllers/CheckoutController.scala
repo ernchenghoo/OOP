@@ -95,14 +95,14 @@ class CheckoutController (
 							else {								
 								val NotExistAlert = new Alert(AlertType.Warning){
 						        initOwner(MainApp.stage)
-						        title       = "Not Found"
-						        headerText = "Item Not Found"
-						        contentText  = "Item does not exist"
+						        title       = "Out of Stock"
+						        headerText = "This item is out of stock"
+						        contentText  = "Please restock this item"
 								}
 								.showAndWait()
 							}							
 						}
-						case false => {							
+						case false => {					
 							val NotExistAlert = new Alert(AlertType.Warning){
 					        initOwner(MainApp.stage)
 					        title       = "Not Found"

@@ -30,7 +30,7 @@
             <AnchorPane prefHeight="398.0" prefWidth="135.0">
                <children>
                   <Button fx:id="checkoutButton" mnemonicParsing="false" onAction="#moveToPayment" text="Checkout" visible="false" AnchorPane.bottomAnchor="14.399999999999977" AnchorPane.rightAnchor="13.600000000000023" />
-                  <TableView fx:id="checkoutTable" layoutX="8.0" layoutY="46.0" prefHeight="476.0" prefWidth="554.0" styleClass="table_view" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="46.0">
+                  <TableView fx:id="checkoutTable" layoutX="6.0" layoutY="49.0" prefHeight="476.0" prefWidth="562.0" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="49.0">
                     <columns>
                       <TableColumn fx:id="idCol" prefWidth="82.4000244140625" text="Item ID" />
                       <TableColumn fx:id="nameCol" prefWidth="184.79998779296875" text="Item Name" />
@@ -39,7 +39,7 @@
                         <TableColumn fx:id="lineAmountCol" prefWidth="140.0001220703125" text="Line Amount" />
                     </columns>
                   </TableView>
-                  <Button fx:id="deleteLineButton" layoutX="10.0" layoutY="534.0" mnemonicParsing="false" onAction="#deleteLineItem" stylesheets="@../systemDesign.css" text="Delete Line" AnchorPane.bottomAnchor="14.000000000000021" AnchorPane.leftAnchor="10.0" />
+                  <Button fx:id="deleteLineButton" layoutX="8.0" layoutY="531.0" mnemonicParsing="false" onAction="#deleteLineItem" prefHeight="28.0" prefWidth="92.0" stylesheets="@../systemDesign.css" text="Delete Line" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="8.0" />
                   <Label layoutX="10.0" layoutY="15.0" styleClass="title-text" text="Checkouts">
                      <font>
                         <Font size="18.0" />
