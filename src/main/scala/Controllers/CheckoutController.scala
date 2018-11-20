@@ -1,6 +1,7 @@
 package Controllers
 import Models.Checkout
 import MainSystem.MainApp
+import Models.Itemstock
 import Database.myDBDetails
 import scalafx.scene.control._
 import scalafx.scene.layout._
@@ -79,14 +80,29 @@ class CheckoutController (
 					// search value not empty				
 					itemMatchQuery.next match {
 						case true => {//item found
-							var searchedItem = new Models.Inventory(itemMatchQuery.getString("itemname"), itemMatchQuery.getInt("itemid"), 
-							itemMatchQuery.getDouble("price"))
-							var quantity: Int = quantityField.text.value.toInt										
-							var checkedOutItems = new Models.Checkout (searchedItem.id, searchedItem.name, 
-								searchedItem.price, quantity)										
-							addCheckoutItem(checkedOutItems)
+							//check item quantity
+							var itemid = itemMatchQuery.getInt("itemid")
+							var checkquantity:Int = Itemstock.CheckItemQuantity(itemid)
+
+							if(checkquantity != 0){
+								var searchedItem = new Models.Inventory(itemMatchQuery.getString("itemname"), itemMatchQuery.getInt("itemid"), 
+								itemMatchQuery.getDouble("price"))
+								var quantity: Int = quantityField.text.value.toInt										
+								var checkedOutItems = new Models.Checkout (searchedItem.id, searchedItem.name, 
+									searchedItem.price, quantity)										
+								addCheckoutItem(checkedOutItems)
+							}
+							else {								
+								val NotExistAlert = new Alert(AlertType.Warning){
+						        initOwner(MainApp.stage)
+						        title       = "Out of Stock"
+						        headerText = "This item is out of stock"
+						        contentText  = "Please restock this item"
+								}
+								.showAndWait()
+							}							
 						}
-						case false => {							
+						case false => {					
 							val NotExistAlert = new Alert(AlertType.Warning){
 					        initOwner(MainApp.stage)
 					        title       = "Not Found"
@@ -119,9 +135,25 @@ class CheckoutController (
 
 				case true => {					
 					for (elements <- Models.Checkout.listOfCheckedoutItems) {
+						// check item quantity
+						var checkquantity:Int = Itemstock.CheckItemQuantity(_checkedOutItems.id.value)
+
 						if (elements.id.value == _checkedOutItems.id.value) {
-							elements.quantity.value = elements.quantity.value + _checkedOutItems.quantity.value
-							elements.lineAmount.value = elements.quantity.value * _checkedOutItems.price.value
+							if (elements.quantity.value < checkquantity){
+								elements.quantity.value = elements.quantity.value + _checkedOutItems.quantity.value
+								elements.lineAmount.value = elements.quantity.value * _checkedOutItems.price.value
+							}
+							else 
+							{
+								val ExceedQuantityAlert = new Alert(AlertType.Warning){
+						        initOwner(MainApp.stage)
+						        title       = "Not enough stock"
+						        headerText = "Item Not enough"
+						        contentText  = "Please add more stock for this Item"
+							}
+							.showAndWait()
+							}
+
 						}
 					}
 

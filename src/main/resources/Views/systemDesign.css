@@ -11,7 +11,7 @@
 .button {
 	-fx-background-color: #eff0f2;
 	-fx-font-family: "Times New Roman", Times, serif;
-	-fx-font-size: 12;	
+	-fx-font-size: 15;	
 }
 
 .button:hover {
@@ -33,6 +33,11 @@
 .title-text {
 	-fx-font-family: "Times New Roman", Times, serif;
 	-fx-font-size: 18;
+}
+
+.normal-text {
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 15;
 }
 
 .split-pane > .split-pane-divider {

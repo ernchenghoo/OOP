@@ -40,6 +40,30 @@ INSERT INTO `branch` VALUES (1,'Sunway'),(2,'Puchong'),(3,'Subang Jaya'),(4,'Put
 UNLOCK TABLES;
 
 --
+-- Table structure for table `inventory`
+--
+
+DROP TABLE IF EXISTS `inventory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `inventory` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `price` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `inventory`
+--
+
+LOCK TABLES `inventory` WRITE;
+/*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
+INSERT INTO `inventory` VALUES (10001,'ern the cheng',1),(10002,'ern cheng',2),(10003,'ern',3);
+/*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `item`
 --
 
@@ -88,7 +112,7 @@ CREATE TABLE `itemsold` (
 
 LOCK TABLES `itemsold` WRITE;
 /*!40000 ALTER TABLE `itemsold` DISABLE KEYS */;
-INSERT INTO `itemsold` VALUES (8,1,'Keyboard',6,50.00),(8,2,'Bottle',5,10.50),(9,1,'Keyboard',3,50.00),(9,2,'Bottle',5,10.50),(10,1,'Keyboard',20,50.00),(10,2,'Bottle',10,10.50),(11,1,'Keyboard',1,0.11),(12,3,'Apple',2,0.11);
+INSERT INTO `itemsold` VALUES (8,1,'Keyboard',2,50.00),(8,2,'Bottle',5,10.50),(9,1,'Keyboard',1,50.00),(9,2,'Bottle',5,10.50),(10,1,'Keyboard',17,50.00),(10,2,'Bottle',10,10.50),(11,1,'Keyboard',1,0.11),(12,3,'Apple',2,0.11);
 /*!40000 ALTER TABLE `itemsold` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +137,7 @@ CREATE TABLE `itemstock` (
 
 LOCK TABLES `itemstock` WRITE;
 /*!40000 ALTER TABLE `itemstock` DISABLE KEYS */;
-INSERT INTO `itemstock` VALUES (1,1,6),(1,2,0),(1,3,0),(1,4,0),(2,1,0),(2,2,0),(2,3,0),(2,4,0),(3,1,0),(3,2,0),(3,3,0),(3,4,0),(4,1,0),(4,2,0),(4,3,0),(4,4,0),(5,1,0),(5,2,0),(5,3,0),(5,4,0),(6,1,0),(6,2,0),(6,3,0),(6,4,0),(7,1,0),(7,2,0),(7,3,0),(7,4,0),(8,1,0),(8,2,0),(8,3,0),(8,4,0),(9,1,0),(9,2,0),(9,3,0),(9,4,0),(10,1,0),(10,2,0),(10,3,0),(10,4,0),(11,1,0),(11,2,0),(11,3,0),(11,4,0),(12,1,0),(12,2,0),(12,3,0),(12,4,0),(13,1,0),(13,2,0),(13,3,0),(13,4,0),(14,1,0),(14,2,0),(14,3,0),(14,4,0),(15,1,0),(15,2,0),(15,3,0),(15,4,0);
+INSERT INTO `itemstock` VALUES (1,1,36),(1,2,0),(1,3,0),(1,4,0),(2,1,0),(2,2,0),(2,3,0),(2,4,0),(3,1,0),(3,2,0),(3,3,0),(3,4,0),(4,1,0),(4,2,0),(4,3,0),(4,4,0),(5,1,0),(5,2,0),(5,3,0),(5,4,0),(6,1,0),(6,2,0),(6,3,0),(6,4,0),(7,1,0),(7,2,0),(7,3,0),(7,4,0),(8,1,0),(8,2,0),(8,3,0),(8,4,0),(9,1,0),(9,2,0),(9,3,0),(9,4,0),(10,1,0),(10,2,0),(10,3,0),(10,4,0),(11,1,0),(11,2,0),(11,3,0),(11,4,0),(12,1,0),(12,2,0),(12,3,0),(12,4,0),(13,1,0),(13,2,0),(13,3,0),(13,4,0),(14,1,0),(14,2,0),(14,3,0),(14,4,0),(15,1,0),(15,2,0),(15,3,0),(15,4,0);
 /*!40000 ALTER TABLE `itemstock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,6 +151,7 @@ DROP TABLE IF EXISTS `returnitem`;
 CREATE TABLE `returnitem` (
   `returnitemid` int(10) NOT NULL,
   `date` timestamp NOT NULL,
+  `salesid` varchar(255) DEFAULT NULL,
   `itemid` int(10) NOT NULL,
   `itemname` varchar(100) NOT NULL,
   `branchid` int(10) NOT NULL,
@@ -211,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-17  1:16:48
+-- Dump completed on 2018-11-20 20:19:34

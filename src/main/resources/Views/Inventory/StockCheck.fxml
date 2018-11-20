@@ -6,20 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="600.0" stylesheets="@../systemDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StockcheckController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.6" prefWidth="643.2" stylesheets="@../systemDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StockcheckController">
    <children>
-      <Label layoutX="14.0" layoutY="6.0" text="Stock Check">
+      <Label layoutX="14.0" layoutY="12.0" styleClass="title-text" text="Stock Check">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="stocktableview" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <TableView fx:id="stocktableview" layoutY="64.0" prefHeight="510.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
         <columns>
           <TableColumn fx:id="itemidColumn" prefWidth="64.0" text="Item ID" />
           <TableColumn fx:id="itemnameColumn" prefWidth="172.0" text="Item Name" />
-            <TableColumn fx:id="branchidColumn" prefWidth="77.0" text="Branch ID" />
-            <TableColumn fx:id="branchnameColumn" prefWidth="180.0" text="Branch Name" />
-            <TableColumn fx:id="numofstockColumn" prefWidth="105.0" text="Number of Stock" />
+            <TableColumn fx:id="branchidColumn" prefWidth="96.0" text="Branch ID" />
+            <TableColumn fx:id="branchnameColumn" prefWidth="184.79995727539062" text="Branch Name" />
+            <TableColumn fx:id="numofstockColumn" prefWidth="126.4000244140625" text="Number of Stock" />
         </columns>
       </TableView>
    </children>

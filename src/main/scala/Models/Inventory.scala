@@ -15,9 +15,10 @@ class Inventory(var name: String, val id: Int, var price: Double) {
 	
 }
 
-class returnitemhistory( _returnitemid: Int, _date: Timestamp, _itemid: Int, _itemnamefromtable:String,  _branchid: Int, _branchlocationfromtable:String, val _amount: Int,val _description:String){
+class returnitemhistory( _returnitemid: Int, _date: Timestamp, _salesid: Int, _itemid: Int, _itemnamefromtable:String,  _branchid: Int, _branchlocationfromtable:String, val _amount: Int,val _description:String){
 	var returnitemid = ObjectProperty[Int](_returnitemid)
 	var date = ObjectProperty[Timestamp](_date)
+	var salesid = ObjectProperty[Int](_salesid)
 	var itemid = ObjectProperty[Int](_itemid)
 	var itemnamefromtable = new StringProperty(_itemnamefromtable)
 	var branchid = ObjectProperty[Int](_branchid)

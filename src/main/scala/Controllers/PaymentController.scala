@@ -1,7 +1,9 @@
 package Controllers
 import Database.myDBDetails
-import Database.CheckoutDatabase
+import Models.Sales
+import Models.Itemsold
 import Models.Checkout
+import Models.Itemstock
 import MainSystem.MainApp
 import scalafxml.core.macros.sfxml
 import scalafx.scene.control._
@@ -22,38 +24,37 @@ class PaymentController (
 	private val checkoutComplete: Label,
 	private val receivedAmount: TextField,
 	private val paymentButtons: HBox,
-	private val payButton: Button	
+	private val payButton: Button,	
+	private val backButton: Button,
+	private val paymentTable: TableView [Checkout],
+    private val idCol: TableColumn [Checkout, Int],
+    private val nameCol: TableColumn [Checkout, String],
+    private val priceCol: TableColumn [Checkout, Double],
+    private val qtyCol: TableColumn [Checkout, Int],
+    private val lineAmountCol: TableColumn [Checkout, Double]
 
 	) {
 		var itemRow = 1
 		var totalPaymentAmount: Double = 0
-		
-		for (elements <- Checkout.listOfCheckedoutItems){				
-			var rowLabel = new Label (itemRow.toString)	
-			//GridPane.setHalignment (rowLabel, HPos.Center)
-			var idLabel  = new Label(elements.id.value.toString)
-			//GridPane.setHalignment (idLabel, HPos.Center)
-			var nameLabel  = new Label(elements.name.value)
-			//GridPane.setHalignment (nameLabel, HPos.Center)
-			var priceLabel  = new Label(elements.price.value.toString)
-			//GridPane.setHalignment (priceLabel, HPos.Center)
-			var qtyLabel  = new Label(elements.quantity.value.toString)
-			//GridPane.setHalignment (qtyLabel, HPos.Center)
-			var lineAmountLabel  = new Label(elements.lineAmount.value.toString)
-			//GridPane.setHalignment (lineAmountLabel, HPos.Center)
-			paymentPane.addRow (itemRow, rowLabel, idLabel, nameLabel, priceLabel, qtyLabel, lineAmountLabel)
-			  
-			totalPaymentAmount += elements.lineAmount.value
-			itemRow += 1
+
+		for (elements <- Models.Checkout.listOfCheckedoutItems) {
+			totalPaymentAmount += elements.price.value
 		}
 
 		totalAmount.text.value = totalPaymentAmount.toString
 
-		CheckoutDatabase.UpdateSaleslist()
+		paymentTable.items = Models.Checkout.listOfCheckedoutItems
+		idCol.cellValueFactory = {_.value.id}
+		nameCol.cellValueFactory = {_.value.name}
+		priceCol.cellValueFactory = {_.value.price}
+		qtyCol.cellValueFactory = {_.value.quantity}
+		lineAmountCol.cellValueFactory = {_.value.lineAmount}		
+
+		Sales.UpdateSaleslist()
 		
 		//initialize id
 		var maxid = 0
-		for(salesidlist <-CheckoutDatabase.Saleslist){
+		for(salesidlist <-Sales.Saleslist){
 			if(salesidlist.salesid.getValue() > maxid){
 				maxid = salesidlist.salesid.getValue()
 			}
@@ -81,14 +82,19 @@ class PaymentController (
 				changeLabel.setVisible (true)
 				checkoutComplete.setVisible (true)				
 				paymentButtons.setVisible (true)
-				CheckoutDatabase.addCheckout(salesid,branchid,datestring,total)
+				Sales.addCheckout(salesid,branchid,datestring,total)
 
-				for (elements <- Checkout.listOfCheckedoutItems){								
+				for (elements <- Checkout.listOfCheckedoutItems){
 					var itemid  = elements.id.value
 					var itemname  = elements.name.value
 					var quantity  = elements.quantity.value
 					var price  = elements.price.value
-					CheckoutDatabase.addItemsold(salesid, itemid, itemname, quantity, price)
+					Itemsold.addItemsold(salesid, itemid, itemname, quantity, price)
+
+					var checkquantity:Int = Itemstock.CheckItemQuantity(itemid)
+					var quantityBalance:Int = checkquantity - quantity
+					var branchid:Int = 1
+					Itemstock.updateItemQuantity(itemid,branchid,quantityBalance)
 					itemRow += 1
 				}
 				completedCheckout()
@@ -108,14 +114,20 @@ class PaymentController (
 				changeLabel.text.value = checkoutComplete.text.value
 				changeLabel.setVisible (true)				
 				paymentButtons.setVisible (true)
-				CheckoutDatabase.addCheckout(salesid,branchid,datestring,total)
+				Sales.addCheckout(salesid,branchid,datestring,total)
 
 				for (elements <- Checkout.listOfCheckedoutItems){								
 					var itemid  = elements.id.value
 					var itemname  = elements.name.value
 					var quantity  = elements.quantity.value
 					var price  = elements.price.value
-					CheckoutDatabase.addItemsold(salesid, itemid, itemname, quantity, price)
+					Itemsold.addItemsold(salesid, itemid, itemname, quantity, price)
+
+					var checkquantity:Int = Itemstock.CheckItemQuantity(itemid)
+					var quantityBalance:Int = checkquantity - quantity
+					var branchid:Int = 1
+
+					Itemstock.updateItemQuantity(itemid,branchid,quantityBalance)
 					itemRow += 1
 				}
 				completedCheckout()			
@@ -137,6 +149,7 @@ class PaymentController (
 		def completedCheckout () {
 			Checkout.listOfCheckedoutItems.clear
 			payButton.setDisable (true)
+			backButton.setVisible (false)
 			receivedAmount.setDisable (true)
 		}
 
