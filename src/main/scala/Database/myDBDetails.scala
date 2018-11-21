@@ -1,6 +1,11 @@
 package Database
 import java.sql.{Connection,DriverManager}
 
+import Models.Item
+import Models.Itemstock
+import Models.Stockedithistory
+import Models.Branch
+
 trait myDBDetails{
     
     val url = "jdbc:mysql://localhost:3306/oop?useTimezone=true&serverTimezone=UTC"
@@ -19,4 +24,27 @@ object myDBDetails{
     val password = "root"
     var connection:Connection = _
 
+    def setupDB() = {
+        //check item table if item table not initilize then initialize it
+        if(!Item.hasInitialize()){
+            Item.initializeTable()
+        }
+
+        //check itemstock table if itemstock not initialize then initilaize it
+        if(!Itemstock.hasInitialize()){
+            Itemstock.initializeTable()
+        }
+
+        //check stockedithistory table if stockedithistory not initialize then initilaize it
+        if(!Stockedithistory.hasInitialize()){
+            Stockedithistory.initializeTable()
+        }
+
+        //check Branch table if Branch not initialize then initilaize it
+        if(!Branch.hasInitialize()){
+            Branch.initializeTable()
+        }
+
+
+    }
 }

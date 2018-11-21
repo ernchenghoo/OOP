@@ -82,7 +82,29 @@ object Stockedithistory extends myDBDetails{
 			")"
 		)	
 
+		statement.executeUpdate(
+			"""INSERT INTO `stockedithistory` VALUES 
+			(1,'2018-11-11 23:57:58',1,'Keyboard',1,'Sunway',60,'Bought Stock from ABC Sdn Bhd');"""
+		)	
+		
+
 		connection.close()
+	}
+
+	def hasInitialize(): Boolean =
+	{
+		connection = DriverManager.getConnection(url, username, password)
+
+		val statement = connection.createStatement		
+		try 
+		{
+			var queryResult = statement.executeQuery("SELECT * from stockedithistory")
+			true
+		}
+		catch 
+		{
+			case _ => false
+		}
 	}
 
 	def getAllStockedithistorys : ObservableBuffer[Stockedithistory] = {

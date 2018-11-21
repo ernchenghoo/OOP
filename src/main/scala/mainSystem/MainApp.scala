@@ -4,6 +4,7 @@ import java.sql.{Connection,DriverManager}
 import Models.Item
 import Models.Branch
 import Models.Account._
+import Database.myDBDetails
 import Controllers._
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -16,6 +17,8 @@ import java.time.LocalDate
 import scalafx.scene.image.Image
 
 object MainApp extends JFXApp {
+  //initialize table
+  myDBDetails.setupDB()
   
   var user: User = new User()
   val rootResource = getClass.getResource("/Views/Shared/RootLayout.fxml")
