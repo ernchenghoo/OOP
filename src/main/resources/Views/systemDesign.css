@@ -38,7 +38,12 @@
 
 .title-text {
 	-fx-font-family: "Times New Roman", Times, serif;
+
+
+	-fx-font-weight: bold;	
+
 	-fx-font-size: 24;
+
 }
 
 .normal-text {
@@ -54,6 +59,15 @@
 .scroll-pane {
 	-fx-background-color: #efefef;
 }
+
+
+.main-menu-btn{
+	-fx-font-size: 30;	
+	-fx-font-weight: bold;	
+}
+
+
+
 .login-title {
 	-fx-font-family: "Times New Roman", Times, serif;
 	-fx-font-size: 30;
@@ -63,3 +77,4 @@
 	-fx-font-family: "Times New Roman", Times, serif;
 	-fx-font-size: 20;
 }
+
