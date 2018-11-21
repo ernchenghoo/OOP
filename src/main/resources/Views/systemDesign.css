@@ -48,3 +48,7 @@
 .scroll-pane {
 	-fx-background-color: #efefef;
 }
+.login-title {
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 30;
+}

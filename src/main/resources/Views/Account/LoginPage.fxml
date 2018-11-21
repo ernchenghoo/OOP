@@ -8,19 +8,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" styleClass="root" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginPageController">
+<AnchorPane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="919.0" styleClass="root" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginPageController">
    <children>
-      <Label layoutX="420.0" layoutY="62.0" prefHeight="88.0" prefWidth="92.0" text="Logo">
+      <Label alignment="CENTER" layoutX="310.0" layoutY="73.0" prefHeight="88.0" prefWidth="300.0" styleClass="login-title" text="POS System" textAlignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <VBox layoutX="332.0" layoutY="182.0" prefWidth="300.0" spacing="10.0">
+      <VBox layoutX="244.0" layoutY="230.0" prefHeight="97.0" prefWidth="431.0" spacing="10.0">
          <children>
-            <TextField fx:id="username" promptText="USERNAME" />
-            <PasswordField fx:id="password" promptText="PASSWORD" />
+            <TextField fx:id="username" prefHeight="40.0" prefWidth="431.0" promptText="USERNAME" />
+            <PasswordField fx:id="password" prefHeight="40.0" prefWidth="431.0" promptText="PASSWORD" />
          </children>
       </VBox>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="407.0" layoutY="285.0" mnemonicParsing="false" onAction="#Login" prefHeight="26.0" prefWidth="118.0" text="Login" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="443.0" mnemonicParsing="false" onAction="#Login" prefHeight="54.0" prefWidth="178.0" text="Login" />
    </children>
 </AnchorPane>

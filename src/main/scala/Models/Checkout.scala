@@ -20,8 +20,57 @@ class Checkout (_id: Int, _name: String, _price: Double, _quantity: Int){
 	var lineAmount = ObjectProperty[Double](_price * _quantity)
 }
 
-object Checkout {
+object Checkout extends myDBDetails {
+	Class.forName(driver)
 	var listOfCheckedoutItems = new ObservableBuffer[Checkout]()
+
+	def verifyCheckoutItem (itemID: Int): Any = {
+		connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
+		val statement = connection.createStatement
+
+		val itemMatchQuery = statement.executeQuery("select * from item where itemid = '"+ itemID+ "'" )
+
+		if (itemMatchQuery.next){			
+			return true
+		}
+		else {
+			return false
+		}
+		connection.close()
+	}
+
+	def checkDuplicate (itemID: Int): Boolean = {
+		var isDuplicate = false
+		for (elements <- listOfCheckedoutItems) {
+			if (elements.id.value ==  itemID)
+				isDuplicate = true
+		}
+		isDuplicate
+	}
+
+	def addCheckoutItem (itemID: Int, itemQuantity: Int) {
+		connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
+		val statement = connection.createStatement
+
+		val checkoutItemQuery = statement.executeQuery("select * from item where itemid = '"+ itemID+ "'" )
+		checkoutItemQuery.next()
+		var searchedItem = new Models.Inventory(checkoutItemQuery.getString("itemname"), checkoutItemQuery.getInt("itemid"), 
+								checkoutItemQuery.getDouble("price"))		
+		var lineItem = new Models.Checkout (searchedItem.id, searchedItem.name, 
+			searchedItem.price, itemQuantity)
+
+		listOfCheckedoutItems += lineItem
+		connection.close()
+	}
+
+	def updateLineItem (itemID: Int, itemQuantity: Int) {
+		for (elements <- Models.Checkout.listOfCheckedoutItems) {
+			if (elements.id.value == itemID) {				
+				elements.quantity.value = elements.quantity.value + itemQuantity
+				elements.lineAmount.value = elements.quantity.value * elements.price.value
+			}
+		}
+	}
 }
 
 
