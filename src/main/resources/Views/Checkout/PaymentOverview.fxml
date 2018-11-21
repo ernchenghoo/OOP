@@ -21,14 +21,14 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="backButton" layoutX="7.0" layoutY="539.0" mnemonicParsing="false" onAction="#backToCheckout" text="Back" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="7.0" />
-                  <TableView fx:id="paymentTable" editable="true" layoutY="54.0" prefHeight="474.0" prefWidth="662.0" stylesheets="@../systemDesign.css">
+                  <Button fx:id="backButton" layoutX="7.0" layoutY="539.0" mnemonicParsing="false" onAction="#backToCheckout" styleClass="back-button" text="Back" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="7.0" />
+                  <TableView fx:id="paymentTable" editable="true" layoutY="54.0" prefHeight="474.0" prefWidth="662.0" stylesheets="@../systemDesign.css" AnchorPane.bottomAnchor="45.200000000000045" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
                     <columns>
                       <TableColumn fx:id="idCol" prefWidth="81.59997254610062" text="Item ID" />
                       <TableColumn fx:id="nameCol" prefWidth="203.20005798339844" text="Item Name" />
                         <TableColumn fx:id="priceCol" prefWidth="100.0" text="Item Price" />
                         <TableColumn fx:id="qtyCol" prefWidth="89.60003662109375" text="Qty" />
-                        <TableColumn fx:id="lineAmountCol" prefWidth="189.60003662109375" text="Line Amount" />
+                        <TableColumn fx:id="lineAmountCol" prefWidth="180.00006103515625" text="Line Amount" />
                     </columns>
                   </TableView>
                </children>
