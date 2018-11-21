@@ -22,7 +22,7 @@ import scala.math.BigDecimal
 class CheckoutController (		
     private val searchItemID: TextField,
     private val quantityField: TextField,
-    private val branchdropdown: ChoiceBox[String],   
+    private val branchDropdown: ChoiceBox[String],   
     private val checkoutButton: Button,
     private val deleteLineButton: Button,    
     private val checkoutTable: TableView [Checkout],
@@ -30,8 +30,9 @@ class CheckoutController (
     private val nameCol: TableColumn [Checkout, String],
     private val priceCol: TableColumn [Checkout, Double],
     private val qtyCol: TableColumn [Checkout, Int],
-    private val lineAmountCol: TableColumn [Checkout, Double]
+    private val lineAmountCol: TableColumn [Checkout, Double],    
 	) {
+		initializebranch()
 		checkoutTable.items = Checkout.listOfCheckedoutItems
 		idCol.cellValueFactory = {_.value.id}
 		nameCol.cellValueFactory = {_.value.name}
@@ -45,13 +46,12 @@ class CheckoutController (
 
 		def initializebranch() = {
 		//initialize branch choose
-			branchdropdown.getItems().add("Select Branch");
-			branchdropdown.setValue("Select Branch")
+			branchDropdown.getItems().add("Select Branch");
+			branchDropdown.setValue("Select Branch")
 			for(branch <- Branch.getAllBranchs){
-				branchdropdown.getItems().add(branch.location.getValue());
+				branchDropdown.getItems().add(branch.location.getValue());
 			}
 		}
-
 				
 		
 		def moveToMainMenu() = {			
@@ -59,12 +59,12 @@ class CheckoutController (
 		}		
 		
 		def moveToPayment() {	
-			var checkBranch = Branch.CheckBranchId(branchdropdown.getValue())			
+			var checkBranch = Branch.CheckBranchId(branchDropdown.getValue())			
 			MainApp.goToPaymentMenu(checkBranch)
 		}
 
 		def checkInputValues(): String = {
-			if (searchItemID.text.value.isEmpty || quantityField.text.value.isEmpty) {				
+			if (searchItemID.text.value.isEmpty || quantityField.text.value.isEmpty || branchDropdown.getItems().isEmpty) {				
 				return "Incomplete"
 			}
 			else {
@@ -79,7 +79,16 @@ class CheckoutController (
 				}
 				return "Pass"
 			}
-		}		
+		}
+		def outOfStockAlert () {
+			val insufficientStockAlert = new Alert(AlertType.Warning){
+		        initOwner(MainApp.stage)
+		        title       = "Out of Stock"
+		        headerText = "This item is out of stock"
+		        contentText  = "Please restock this item"
+			}
+			.showAndWait()
+		}	
 
 		def checkoutItem () {
 			checkInputValues() match {
@@ -107,47 +116,33 @@ class CheckoutController (
 					
 					itemExist match {
 						case true => {//item exist	
-							var checkBranchId = Branch.CheckBranchId(branchdropdown.getValue())				
+							var checkBranchId = Branch.CheckBranchId(branchDropdown.getValue())				
 							var checkStock:Int = Itemstock.CheckItemQuantity(searchItemID.text.value.toInt,checkBranchId)
 							var duplicate = Checkout.checkDuplicate (searchItemID.text.value.toInt)
+							var enoughStock = Checkout.checkStock (searchItemID.text.value.toInt, quantityField.text.value.toInt,
+											checkBranchId)
 
-							var isEnoughStock = false
-							if(duplicate){
-								var stockalreadyincart = 0
-
-								for(checkoutobject <- Checkout.listOfCheckedoutItems){
-									if(checkoutobject.id.value == searchItemID.text.value.toInt){
-										stockalreadyincart = checkoutobject.quantity.value
+							duplicate match {
+								case true => {
+									if (enoughStock) {
+										Checkout.updateLineItem(searchItemID.text.value.toInt, quantityField.text.value.toInt)
+									}
+									else {
+										outOfStockAlert()
 									}
 								}
-
-								var totalnewquantity = stockalreadyincart + quantityField.text.value.toInt
-
-								if(totalnewquantity <= checkStock){
-									isEnoughStock = true
-
-									Checkout.updateLineItem(searchItemID.text.value.toInt, quantityField.text.value.toInt)
-								}
-							}else {
-								if(quantityField.text.value.toInt <= checkStock){
-									isEnoughStock = true
-
-									Checkout.addCheckoutItem (searchItemID.text.value.toInt, quantityField.text.value.toInt)
-									if (checkoutButton.isVisible == false){
-										checkoutButton.setVisible (true)
+								case false => {
+									if (enoughStock) {
+										Checkout.addCheckoutItem (searchItemID.text.value.toInt, quantityField.text.value.toInt)
+										if (checkoutButton.isVisible == false){
+											checkoutButton.setVisible (true)
+										}
+									}
+									else {
+										outOfStockAlert()
 									}
 								}
 							}
-							
-							if(isEnoughStock == false) {								
-							val NotExistAlert = new Alert(AlertType.Warning){
-					        initOwner(MainApp.stage)
-					        title       = "Out of Stock"
-					        headerText = "This item is out of stock"
-					        contentText  = "Please restock this item"
-							}
-							.showAndWait()
-							}									
 						}
 						case false => {					
 							val NotExistAlert = new Alert(AlertType.Warning){

@@ -48,6 +48,23 @@ object Checkout extends myDBDetails {
 		isDuplicate
 	}
 
+	def checkStock (itemID: Int, itemQuantity: Int, branchID: Int): Boolean = {
+		var isEnoughStock = false
+		var stockalreadyincart = 0
+		for (checkoutobject <- listOfCheckedoutItems){
+			if(checkoutobject.id.value == itemID){
+				stockalreadyincart = checkoutobject.quantity.value
+			}
+		}
+
+		var totalStock = stockalreadyincart + itemQuantity
+
+		if (totalStock <= Itemstock.CheckItemQuantity(itemID,branchID)){
+			isEnoughStock = true
+		}
+		isEnoughStock
+	}
+
 	def addCheckoutItem (itemID: Int, itemQuantity: Int) {
 		connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
 		val statement = connection.createStatement
@@ -63,7 +80,7 @@ object Checkout extends myDBDetails {
 		connection.close()
 	}
 
-	def updateLineItem (itemID: Int, itemQuantity: Int) {
+	def updateLineItem (itemID: Int, itemQuantity: Int) {		
 		for (elements <- Models.Checkout.listOfCheckedoutItems) {
 			if (elements.id.value == itemID) {				
 				elements.quantity.value = elements.quantity.value + itemQuantity

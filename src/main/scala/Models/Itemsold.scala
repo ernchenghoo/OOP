@@ -37,6 +37,22 @@ object Itemsold extends myDBDetails{
 		connection.close()
 	}
 
+	def hasInitialize(): Boolean =
+	{
+		connection = DriverManager.getConnection(url, username, password)
+
+		val statement = connection.createStatement		
+		try 
+		{
+			var queryResult = statement.executeQuery("SELECT * from itemsold")
+			true
+		}
+		catch 
+		{
+			case _ => false
+		}
+	}
+
 	var Reportlist: ObservableBuffer[Itemsold] = new ObservableBuffer[Itemsold]()
 
 	def addItemsold(salesid: Int,itemid: Int, itemname :String, quantity: Int, price: Double) = {

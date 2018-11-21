@@ -37,7 +37,7 @@
          </children>
       </GridPane>
 
-      <Label layoutX="19.0" layoutY="19.0" prefHeight="18.0" prefWidth="187.0" styleClass="title-text" text="Account Credentials" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <Label layoutX="19.0" layoutY="19.0" prefHeight="28.0" prefWidth="234.0" styleClass="title-text" text="Account Credentials" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
 
 
          <font>

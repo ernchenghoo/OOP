@@ -1,10 +1,12 @@
 package Database
 import java.sql.{Connection,DriverManager}
-
 import Models.Item
 import Models.Itemstock
 import Models.Stockedithistory
 import Models.Branch
+import Models.Sales
+import Models.Itemsold
+import Models.Account._
 
 trait myDBDetails{
     
@@ -25,26 +27,47 @@ object myDBDetails{
     var connection:Connection = _
 
     def setupDB() = {
-        //check item table if item table not initilize then initialize it
+        //check item table if item table not initialized then initialize it
         if(!Item.hasInitialize()){
             Item.initializeTable()
         }
 
-        //check itemstock table if itemstock not initialize then initilaize it
+        //check itemstock table if itemstock not initialized then initilaize it
         if(!Itemstock.hasInitialize()){
             Itemstock.initializeTable()
         }
 
-        //check stockedithistory table if stockedithistory not initialize then initilaize it
+        //check stockedithistory table if stockedithistory not initialized then initilaize it
         if(!Stockedithistory.hasInitialize()){
             Stockedithistory.initializeTable()
         }
 
-        //check Branch table if Branch not initialize then initilaize it
+        //check Branch table if Branch not initialized then initilaize it
         if(!Branch.hasInitialize()){
             Branch.initializeTable()
         }
+        //check Sales table if Sales not initialized then initialize it
+        if(!Sales.hasInitialize()){
+            Sales.initializeTable()
+        }
+        //check Itemsold table if Sales not initialized then initialize it
+        if(!Itemsold.hasInitialize()){
+            Itemsold.initializeTable()
+        }
 
+        Account.setupAccountTable()
+
+
+    }
+
+    def createDB() {
+        val createUrl = "jdbc:mysql://localhost:3306/mysql?useTimezone=true&serverTimezone=UTC"
+        try {
+            Class.forName(driver)
+            val connection = DriverManager.getConnection(createUrl, username, password)
+            val createStatement = connection.createStatement()
+            createStatement.executeUpdate("CREATE DATABASE IF NOT EXISTS oop")
+        }      
 
     }
 }

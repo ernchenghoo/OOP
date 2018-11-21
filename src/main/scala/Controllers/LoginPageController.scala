@@ -13,8 +13,6 @@ import scalafx.Includes._
 @sfxml
 class LoginPageController(val username: TextField, val password: PasswordField, val loginPane: AnchorPane )
 {	
-
-	Account.setupAccountTable()
 	def Login() =
 	{
 		var err = ""
