@@ -15,7 +15,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TableView fx:id="stocktableview" layoutY="64.0" prefHeight="510.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
+      <TableView fx:id="stocktableview" layoutY="82.0" prefHeight="510.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="82.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="67.0" text="ID" />
             <TableColumn fx:id="dateColumn" prefWidth="133.59998321533203" text="Date" />

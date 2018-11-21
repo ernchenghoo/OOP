@@ -20,10 +20,10 @@
                      <font>
                         <Font size="18.0" />
                      </font></Label>
-                  <Button layoutX="8.0" layoutY="364.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#moveToMainMenu" prefHeight="26.0" prefWidth="57.0" stylesheets="@../systemDesign.css" text="Back" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" />
+                  <Button layoutX="8.0" layoutY="545.0" mnemonicParsing="false" onAction="#moveToMainMenu" styleClass="back-button" stylesheets="@../systemDesign.css" text="Back" AnchorPane.bottomAnchor="6.200000000000024" AnchorPane.leftAnchor="8.0" />
                   <Button defaultButton="true" layoutX="292.59999999999997" layoutY="90.0" mnemonicParsing="false" onAction="#checkoutItem" prefHeight="26.0" prefWidth="45.0" styleClass="default-button" text="Go" AnchorPane.rightAnchor="5.800000000000011" AnchorPane.topAnchor="90.0" />
-                  <Label layoutX="10.0" layoutY="50.0" text="ID: " />
-                  <Label layoutX="271.0" layoutY="50.0" prefHeight="18.0" prefWidth="30.0" text="Qty:" AnchorPane.rightAnchor="51.0" />
+                  <Label layoutX="10.0" layoutY="50.0" styleClass="normal-text" text="ID: " />
+                  <Label layoutX="271.0" layoutY="50.0" prefHeight="18.0" prefWidth="30.0" styleClass="normal-text" text="Qty:" AnchorPane.rightAnchor="51.0" />
                   <TextField fx:id="quantityField" layoutX="293.0" layoutY="45.0" prefHeight="26.0" prefWidth="29.0" text="1" AnchorPane.rightAnchor="21.399999999999977" />
                </children>
             </AnchorPane>
