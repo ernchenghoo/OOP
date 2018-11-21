@@ -6,12 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-
-
 <AnchorPane styleClass="root" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManageAccountController">
    <children>
-      <TableView fx:id="accountTableView" layoutY="83.0" prefHeight="430.0" prefWidth="900.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+      <TableView fx:id="accountTableView" layoutY="83.0" prefHeight="430.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
         <columns>
           <TableColumn fx:id="userIDTableColumn" prefWidth="75.0" text="User ID" />
           <TableColumn fx:id="usernameTableColumn" prefWidth="150.0" text="Username" />
@@ -19,7 +16,7 @@
             <TableColumn fx:id="nameTableColumn" prefWidth="110.0" text="Name" />
             <TableColumn fx:id="ageTableColumn" prefWidth="75.0" text="Age" />
             <TableColumn fx:id="genderTableColumn" prefWidth="75.0" text="Gender" />
-            <TableColumn fx:id="addressTableColumn" prefWidth="200.0" text="Address" />
+            <TableColumn fx:id="addressTableColumn" prefWidth="250.0" text="Address" />
             <TableColumn fx:id="contactTableColumn" prefWidth="150.0" text="Contact No" />
         </columns>
       </TableView>

@@ -11,7 +11,7 @@
 <AnchorPane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="919.0" styleClass="root" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginPageController">
    <children>
 
-      <VBox layoutX="332.0" layoutY="182.0" prefWidth="300.0" spacing="10.0">
+      <VBox layoutX="284.0" layoutY="242.0" prefHeight="90.0" prefWidth="405.0" spacing="10.0">
 
          <children>
             <TextField fx:id="username" prefHeight="40.0" prefWidth="431.0" promptText="USERNAME" />
@@ -20,12 +20,12 @@
       </VBox>
 
 
-      <ImageView fx:id="logoImg" fitHeight="117.0" fitWidth="143.0" layoutX="415.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+      <ImageView fx:id="logoImg" fitHeight="117.0" fitWidth="143.0" layoutX="422.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
          <image>
             <Image url="@../../Images/logo.png" />
          </image></ImageView>
 
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="443.0" mnemonicParsing="false" onAction="#Login" prefHeight="54.0" prefWidth="178.0" text="Login" AnchorPane.bottomAnchor="77.6" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="391.0" layoutY="393.0" mnemonicParsing="false" onAction="#Login" prefHeight="54.0" prefWidth="178.0" text="Login" AnchorPane.bottomAnchor="127.60000000000002" />
 
    </children>
 </AnchorPane>
