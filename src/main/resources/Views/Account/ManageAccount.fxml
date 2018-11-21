@@ -6,22 +6,22 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManageAccountController">
+<AnchorPane styleClass="root" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManageAccountController">
    <children>
-      <TableView fx:id="accountTableView" layoutY="83.0" prefHeight="430.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="accountTableView" layoutY="83.0" prefHeight="500.0" prefWidth="919.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
         <columns>
           <TableColumn fx:id="userIDTableColumn" prefWidth="75.0" text="User ID" />
-          <TableColumn fx:id="usernameTableColumn" prefWidth="75.0" text="Username" />
-            <TableColumn fx:id="roleTableColumn" prefWidth="75.0" text="Role" />
-            <TableColumn fx:id="nameTableColumn" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="ageTableColumn" prefWidth="75.0" text="Age" />
-            <TableColumn fx:id="genderTableColumn" prefWidth="75.0" text="Gender" />
-            <TableColumn fx:id="addressTableColumn" prefWidth="75.0" text="Address" />
-            <TableColumn fx:id="contactTableColumn" prefWidth="75.0" text="Contact No" />
+          <TableColumn fx:id="usernameTableColumn" prefWidth="88.80001831054688" text="Username" />
+            <TableColumn fx:id="roleTableColumn" prefWidth="87.19998168945312" text="Role" />
+            <TableColumn fx:id="nameTableColumn" prefWidth="128.8000030517578" text="Name" />
+            <TableColumn fx:id="ageTableColumn" prefWidth="51.20001220703125" text="Age" />
+            <TableColumn fx:id="genderTableColumn" prefWidth="101.5999755859375" text="Gender" />
+            <TableColumn fx:id="addressTableColumn" prefWidth="230.39996337890625" text="Address" />
+            <TableColumn fx:id="contactTableColumn" prefWidth="150.4000244140625" text="Contact No" />
         </columns>
       </TableView>
-      <Button layoutX="23.0" layoutY="14.0" mnemonicParsing="false" onAction="#moveToMainMenu" text="Back" />
-      <HBox layoutX="237.0" layoutY="33.0" spacing="10.0">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#moveToMainMenu" styleClass="back-button" text="Back" />
+      <HBox layoutX="536.0" layoutY="28.0" spacing="10.0" AnchorPane.rightAnchor="33.60000000000002">
          <children>
             <Button mnemonicParsing="false" onAction="#createAction" text="Create Account" />
             <Button mnemonicParsing="false" onAction="#editAction" text="Edit Account" />

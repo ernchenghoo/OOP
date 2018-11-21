@@ -30,9 +30,15 @@
 	-fx-font-size: 12;
 }
 
+.back-button {
+	-fx-background-color: #eff0f2;	
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 13;
+}
+
 .title-text {
 	-fx-font-family: "Times New Roman", Times, serif;
-	-fx-font-size: 18;
+	-fx-font-size: 24;
 }
 
 .normal-text {
@@ -47,4 +53,13 @@
 
 .scroll-pane {
 	-fx-background-color: #efefef;
+}
+.login-title {
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 30;
+}
+
+.report-text {
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 20;
 }
