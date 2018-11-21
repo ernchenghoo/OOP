@@ -36,9 +36,10 @@ class PaymentController (
 	) {
 		var itemRow = 1
 		var totalPaymentAmount: Double = 0
+		var checkBranch:Int = 0
 
 		for (elements <- Models.Checkout.listOfCheckedoutItems) {
-			totalPaymentAmount += elements.price.value
+			totalPaymentAmount += elements.lineAmount.value
 		}
 
 		totalAmount.text.value = totalPaymentAmount.toString
@@ -63,11 +64,10 @@ class PaymentController (
 		maxid = maxid + 1
 		var idinputbox:String = maxid.toString()
 
-		def makePayment() {
+		def makePayment() = {
 			var receivedPaymentAmount = receivedAmount.text.value.toDouble
 
 			var salesid = idinputbox.toInt
-			var branchid = 1
 			var datenow = new Date()
 			var formmater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 			formmater.setTimeZone(TimeZone.getTimeZone("UTC"))
@@ -82,7 +82,7 @@ class PaymentController (
 				changeLabel.setVisible (true)
 				checkoutComplete.setVisible (true)				
 				paymentButtons.setVisible (true)
-				Sales.addCheckout(salesid,branchid,datestring,total)
+				Sales.addCheckout(salesid,checkBranch,datestring,total)
 
 				for (elements <- Checkout.listOfCheckedoutItems){
 					var itemid  = elements.id.value
@@ -91,10 +91,9 @@ class PaymentController (
 					var price  = elements.price.value
 					Itemsold.addItemsold(salesid, itemid, itemname, quantity, price)
 
-					var checkquantity:Int = Itemstock.CheckItemQuantity(itemid)
+					var checkquantity:Int = Itemstock.CheckItemQuantity(itemid,checkBranch)
 					var quantityBalance:Int = checkquantity - quantity
-					var branchid:Int = 1
-					Itemstock.updateItemQuantity(itemid,branchid,quantityBalance)
+					Itemstock.updateItemQuantity(itemid,checkBranch,quantityBalance)
 					itemRow += 1
 				}
 				completedCheckout()
@@ -114,7 +113,7 @@ class PaymentController (
 				changeLabel.text.value = checkoutComplete.text.value
 				changeLabel.setVisible (true)				
 				paymentButtons.setVisible (true)
-				Sales.addCheckout(salesid,branchid,datestring,total)
+				Sales.addCheckout(salesid,checkBranch,datestring,total)
 
 				for (elements <- Checkout.listOfCheckedoutItems){								
 					var itemid  = elements.id.value
@@ -123,11 +122,10 @@ class PaymentController (
 					var price  = elements.price.value
 					Itemsold.addItemsold(salesid, itemid, itemname, quantity, price)
 
-					var checkquantity:Int = Itemstock.CheckItemQuantity(itemid)
+					var checkquantity:Int = Itemstock.CheckItemQuantity(itemid,checkBranch)
 					var quantityBalance:Int = checkquantity - quantity
-					var branchid:Int = 1
 
-					Itemstock.updateItemQuantity(itemid,branchid,quantityBalance)
+					Itemstock.updateItemQuantity(itemid,checkBranch,quantityBalance)
 					itemRow += 1
 				}
 				completedCheckout()			

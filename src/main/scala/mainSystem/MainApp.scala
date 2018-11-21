@@ -47,15 +47,19 @@ object MainApp extends JFXApp {
       val loader = new FXMLLoader(resource, NoDependencyResolver)
       loader.load();
       val roots = loader.getRoot[jfxs.layout.AnchorPane]
+      val control = loader.getController[CheckoutController#Controller]
       this.roots.setCenter(roots)
+      control.initializebranch()
     } 
 
-    def goToPaymentMenu() = {
+    def goToPaymentMenu(branchid:Int) = {
       val resource = getClass.getResource("/Views/Checkout/PaymentOverview.fxml")
       val loader = new FXMLLoader(resource, NoDependencyResolver)
       loader.load();
       val roots = loader.getRoot[jfxs.layout.AnchorPane]
+      val control = loader.getController[PaymentController#Controller]
       this.roots.setCenter(roots)
+      control.checkBranch = branchid
     } 
 
   //Inventory

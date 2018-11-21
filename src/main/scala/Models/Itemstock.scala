@@ -81,13 +81,13 @@ object Itemstock extends myDBDetails{
 		return list
 	}
 
-	def CheckItemQuantity(itemid:Int): Int = {
+	def CheckItemQuantity(itemid:Int,branchid:Int): Int = {
 
 		Class.forName(driver)
 		connection = DriverManager.getConnection(url, username, password)
 
 		val statement = connection.createStatement
-		val queryresult = statement.executeQuery(s"select * from itemstock where itemid =(${itemid}) and branchid = 1")		
+		val queryresult = statement.executeQuery(s"select * from itemstock where itemid =(${itemid}) and branchid = (${branchid})")		
 		var quantity:Int = 0
 
 		while (queryresult.next){
