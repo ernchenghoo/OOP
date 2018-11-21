@@ -13,6 +13,7 @@ import scalafxml.core.{NoDependencyResolver, FXMLView, FXMLLoader}
 import javafx.{scene => jfxs}
 import scalafx.stage.{Modality, Stage}
 import java.time.LocalDate
+import scalafx.scene.image.Image
 
 object MainApp extends JFXApp {
   
@@ -24,6 +25,7 @@ object MainApp extends JFXApp {
   
   stage = new PrimaryStage {
     title = "POSsystem"
+    icons += new Image(getClass.getResourceAsStream("/Images/logo.png"))
     scene = new Scene {
       root = roots
     }
