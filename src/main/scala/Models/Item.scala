@@ -116,9 +116,44 @@ object Item extends myDBDetails{
   			"price decimal(12,2) NOT NULL,"+
   			"PRIMARY KEY (itemid)"+
 			")"
+		)
+
+		statement.executeUpdate(
+			"""INSERT INTO `item` 
+			VALUES (1,'Keyboard','Keyboard desc',50.00),
+			(2,'Bottle','A Bottle',10.50),
+			(3,'Apple','fruit',0.11),
+			(4,'Monitor','A LED Moniter with 120 Hertz',500.00),
+			(5,'Banana','Freshly pickled bananas',5.99),
+			(6,'SmartPhone','SmartPhone that use AMOLED screen with snapdragon processor\n',1199.99),
+			(7,'A4 Paper','A Bundle of A4 Paper that have 400 sheet\nA4 Paper',50.00),
+			(8,'Speaker','A Speaker by Sony with high bass and produce high quality sounds',699.00),
+			(9,'Candy','Pepermint flavour candy ',9.50),
+			(10,'Isotonic Drink','A good choice to drink for athelete',5.00),
+			(11,'Bread','A White Bread filled with vanila flavoured cream',0.99),
+			(12,'Television','A Television that support 4k resolution',1999.00),
+			(13,'Soap','A 500 gram soaps with strawberry smelt',15.50),
+			(14,'Office Chair','Office Chair that equiped with roller',699.00),
+			(15,'Laptop','A Laptop by MSI',2999.00);"""
 		)	
 
 		connection.close()
+	}
+
+	def hasInitialize(): Boolean =
+	{
+		connection = DriverManager.getConnection(url, username, password)
+
+		val statement = connection.createStatement		
+		try 
+		{
+			var queryResult = statement.executeQuery("SELECT * from Item")
+			true
+		}
+		catch 
+		{
+			case _ => false
+		}
 	}
 
 	def getAllItems : ObservableBuffer[Item] = {

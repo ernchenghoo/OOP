@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="573.6" prefWidth="643.2" stylesheets="@../systemDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ItemcontrolController">
+<AnchorPane prefHeight="573.6" prefWidth="643.2" styleClass="root" stylesheets="@../systemDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ItemcontrolController">
    <children>
       <TableView fx:id="itemtableview" layoutY="64.0" prefHeight="510.0" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
         <columns>
           <TableColumn fx:id="itemidColumn" prefWidth="91.0" text="Item id" />
           <TableColumn fx:id="itemnameColumn" prefWidth="131.0" text="Item name" />
             <TableColumn fx:id="itemdescColumn" prefWidth="273.0" text="Item desc" />
-            <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="151.0000122070312" text="Price" />
+            <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="143.19998168945312" text="Price" />
         </columns>
       </TableView>
       <Label layoutX="9.0" layoutY="12.0" styleClass="title-text" text="Item List">
@@ -23,7 +23,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <ButtonBar buttonMinWidth="95.0" layoutX="312.0" layoutY="12.0" prefHeight="40.0" prefWidth="293.0">
+      <ButtonBar buttonMinWidth="95.0" layoutX="312.0" layoutY="12.0" prefHeight="40.0" prefWidth="293.0" AnchorPane.rightAnchor="4.000000000000057" AnchorPane.topAnchor="12.0">
          <buttons>
             <Button mnemonicParsing="false" onAction="#handleDeleteItem" prefHeight="28.0" prefWidth="128.0" text="Delete Item" />
             <Button mnemonicParsing="false" onAction="#handleAddItem" prefHeight="25.0" prefWidth="77.0" text="Add Item" />

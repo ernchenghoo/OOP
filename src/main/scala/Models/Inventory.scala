@@ -1,7 +1,5 @@
 package Models 
 
-
-import Database.InventoryDatabase
 import Models.Branch
 
 import java.sql.Timestamp

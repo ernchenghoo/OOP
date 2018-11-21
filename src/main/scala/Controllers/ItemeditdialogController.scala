@@ -1,7 +1,6 @@
 package Controllers
 
 import Models.Item
-import Database.InventoryDatabase
 
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
