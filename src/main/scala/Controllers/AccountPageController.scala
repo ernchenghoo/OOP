@@ -62,13 +62,20 @@ class AccountPageController(
 			if(password.text.value.trim == cpassword.text.value.trim)
 			{
 				if(action == "Create")
-				{
+				{	
+
 					Account.CreateAccount(username.text.value.trim, password.text.value.trim, role.value.value, new UserInformation(name.text.value.trim, age.text.value.trim, gender.value.value.trim, address.text.value.trim, contact.text.value.trim) )
 				}
 				else
 				{
+
 					var account = Account.accountList.get(selectedIndex)
-					// AccountDatabase.UpdateAccount(userID, role.value.value, new UserInformation(name.text.value.trim, age.text.value.trim, gender.value.value.trim, address.text.value.trim, contact.text.value.trim) )
+					account.role.value = role.value.value
+					account.name.value = name.text.value
+					account.age.value = age.text.value
+					account.gender.value = gender.value.value
+					account.address.value = address.text.value
+					account.contact.value = contact.text.value
 					account.UpdateAccount()
 
 				}
