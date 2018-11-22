@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.6" prefWidth="643.2" stylesheets="@../systemDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StockcheckController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.6" prefWidth="643.2" styleClass="root" stylesheets="@../systemDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StockcheckController">
    <children>
       <Label layoutX="14.0" layoutY="12.0" styleClass="title-text" text="Stock Check">
          <font>
@@ -24,10 +24,10 @@
             <TableColumn fx:id="numofstockColumn" prefWidth="126.4000244140625" text="Number of Stock" />
         </columns>
       </TableView>
-      <Label layoutX="205.0" layoutY="18.0" text="Search Item Name" />
-      <Label layoutX="383.0" layoutY="18.0" text="Search BranchName" />
-      <TextField fx:id="searchitemname" layoutX="203.0" layoutY="35.0" />
-      <TextField fx:id="searchbranchname" layoutX="383.0" layoutY="35.0" />
-      <Button defaultButton="true" layoutX="577.0" layoutY="31.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <Label layoutX="161.0" layoutY="12.0" text="Search Item Name" />
+      <Label layoutX="372.0" layoutY="12.0" text="Search BranchName" />
+      <TextField fx:id="searchitemname" layoutX="159.0" layoutY="29.0" />
+      <TextField fx:id="searchbranchname" layoutX="372.0" layoutY="29.0" />
+      <Button defaultButton="true" layoutX="581.0" layoutY="26.0" mnemonicParsing="false" onAction="#search" text="Search" />
    </children>
 </AnchorPane>

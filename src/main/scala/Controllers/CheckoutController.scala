@@ -64,7 +64,8 @@ class CheckoutController (
 		}
 
 		def checkInputValues(): String = {
-			if (searchItemID.text.value.isEmpty || quantityField.text.value.isEmpty || branchDropdown.getItems().isEmpty) {				
+			if (searchItemID.text.value.isEmpty || quantityField.text.value.isEmpty || 
+				branchDropdown.getValue() == "Select Branch") {				
 				return "Incomplete"
 			}
 			else {
@@ -97,7 +98,7 @@ class CheckoutController (
 			        initOwner(MainApp.stage)
 			        title       = "No Selection"
 			        headerText = "Empty Field"
-			        contentText  = "Input value incomplete"
+			        contentText  = "Input value incomplete."
 					}
 					.showAndWait()
 				}
