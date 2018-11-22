@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="350.0" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ItemeditdialogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="377.0" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ItemeditdialogController">
    <children>
       <Label fx:id="title" layoutX="14.0" layoutY="7.0" prefHeight="17.0" prefWidth="116.0" text="Edit Item">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <GridPane layoutX="14.0" layoutY="53.0" prefHeight="159.0" prefWidth="326.0">
+      <GridPane layoutX="14.0" layoutY="53.0" prefHeight="212.0" prefWidth="342.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="111.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="215.0" />
@@ -31,7 +31,7 @@
          <children>
             <Label text="Item ID:" />
             <Label text="Item Name: " GridPane.rowIndex="1" />
-            <Label alignment="TOP_LEFT" text="Item Description: " GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <Label alignment="TOP_LEFT" prefHeight="18.0" prefWidth="120.0" text="Item Description: " GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <Label text="Item Price:" GridPane.rowIndex="3" />
             <TextField fx:id="itemidinputbox" disable="true" GridPane.columnIndex="1" />
             <TextField fx:id="itemnameinputbox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -39,7 +39,7 @@
             <TextField fx:id="itempriceinputbox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button defaultButton="true" layoutX="292.0" layoutY="217.0" mnemonicParsing="false" onAction="#submit" text="Ok" />
-      <Button cancelButton="true" layoutX="226.0" layoutY="217.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button defaultButton="true" layoutX="297.0" layoutY="270.0" mnemonicParsing="false" onAction="#submit" text="Ok" />
+      <Button cancelButton="true" layoutX="231.0" layoutY="270.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
    </children>
 </AnchorPane>

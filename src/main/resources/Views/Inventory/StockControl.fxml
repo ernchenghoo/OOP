@@ -25,7 +25,7 @@
             <TableColumn fx:id="descriptionColumn" prefWidth="171.19998168945312" text="Description" />
         </columns>
       </TableView>
-      <ButtonBar layoutX="369.0" layoutY="12.0" prefHeight="40.0" prefWidth="246.0">
+      <ButtonBar layoutX="369.0" layoutY="12.0" prefHeight="40.0" prefWidth="246.0" AnchorPane.rightAnchor="27.80000000000004" AnchorPane.topAnchor="12.0">
          <buttons>
             <Button layoutY="12.0" mnemonicParsing="false" onAction="#addstock" prefHeight="25.0" prefWidth="90.0" text="Add Stock" />
             <Button layoutY="12.0" mnemonicParsing="false" onAction="#addstock" prefHeight="28.0" prefWidth="99.0" text="Minus stock" />
