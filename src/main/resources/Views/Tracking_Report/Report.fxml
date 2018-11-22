@@ -50,6 +50,16 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label layoutX="174.0" layoutY="15.0" text="12:00 AM">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="360.0" layoutY="15.0" text="12:00 AM">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <TableView fx:id="reportTableView" layoutY="52.0" prefHeight="507.0" prefWidth="810.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">

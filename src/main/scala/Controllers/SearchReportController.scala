@@ -12,6 +12,10 @@ import scalafx.stage.Stage
 import scalafx.scene.control.Alert.AlertType //contail all the implicits to change javafx classes to scalafx classes as necessary
 import java.util.Date
 import java.time.LocalDate
+import java.text.SimpleDateFormat
+import java.util.TimeZone
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 
 @sfxml
@@ -52,6 +56,9 @@ class SearchReportController (
 		var todatenotnull = false
 		var branchnotnull = false
 
+		var today = LocalDate.now()
+		var tmr = today.plusDays(1)
+
 		if(fromDate.getValue() == null)
 			errorMessage += "Please Select from Date! \n"
 		else
@@ -63,8 +70,17 @@ class SearchReportController (
 			todatenotnull = true
 
 		if(fromDate.getValue() != null && toDate.getValue() != null){
+			if(fromDate.getValue().toEpochDay() == toDate.getValue().toEpochDay())
+				errorMessage += "From Date and to Date cannot be same date! \n"
+
 			if(fromDate.getValue().toEpochDay() > toDate.getValue().toEpochDay())
 				errorMessage += "From Date cannot greater than to Date! \n"
+
+			if(fromDate.getValue().toEpochDay() > tmr.toEpochDay())
+				errorMessage += "From Date cannot greater than today! \n"
+
+			if(toDate.getValue().toEpochDay() > tmr.toEpochDay())
+				errorMessage += "To Date cannot greater than today! \n"
 		}
 
 		if(branchdropdown.getValue() == "Select Branch")
