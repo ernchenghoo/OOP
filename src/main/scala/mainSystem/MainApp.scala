@@ -3,6 +3,8 @@ package MainSystem
 import java.sql.{Connection,DriverManager}
 import Models.Item
 import Models.Branch
+import Models.Account._
+import Database.myDBDetails
 import Controllers._
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -12,9 +14,14 @@ import scalafxml.core.{NoDependencyResolver, FXMLView, FXMLLoader}
 import javafx.{scene => jfxs}
 import scalafx.stage.{Modality, Stage}
 import java.time.LocalDate
+import scalafx.scene.image.Image
 
 object MainApp extends JFXApp {
+  //initialize table
+  myDBDetails.createDB()  
+  myDBDetails.setupDB()
   
+  var user: User = new User()
   val rootResource = getClass.getResource("/Views/Shared/RootLayout.fxml")
   val loader = new FXMLLoader(rootResource, NoDependencyResolver)
   loader.load();
@@ -22,33 +29,43 @@ object MainApp extends JFXApp {
   
   stage = new PrimaryStage {
     title = "POSsystem"
+    icons += new Image(getClass.getResourceAsStream("/Images/logo.png"))
     scene = new Scene {
       root = roots
     }
   }
+
+  goToLoginPage()
+
   def showMainMenu() = {
     val resource = getClass.getResource("/Views/Shared/mainMenu.fxml")
     val loader = new FXMLLoader(resource, NoDependencyResolver)
     loader.load();
     val roots = loader.getRoot[jfxs.layout.AnchorPane]
+    val control = loader.getController[MainMenuController#Controller]
+    user.initialize(control)
     this.roots.setCenter(roots)
   } 
-  showMainMenu()
+
 
   def goToCheckoutMenu() = {
       val resource = getClass.getResource("/Views/Checkout/CheckoutOverview.fxml")
       val loader = new FXMLLoader(resource, NoDependencyResolver)
       loader.load();
       val roots = loader.getRoot[jfxs.layout.AnchorPane]
+      val control = loader.getController[CheckoutController#Controller]
       this.roots.setCenter(roots)
+      control.initializebranch()
     } 
 
-    def goToPaymentMenu() = {
+    def goToPaymentMenu(branchid:Int) = {
       val resource = getClass.getResource("/Views/Checkout/PaymentOverview.fxml")
       val loader = new FXMLLoader(resource, NoDependencyResolver)
       loader.load();
       val roots = loader.getRoot[jfxs.layout.AnchorPane]
+      val control = loader.getController[PaymentController#Controller]
       this.roots.setCenter(roots)
+      control.checkBranch = branchid
     } 
 
   //Inventory

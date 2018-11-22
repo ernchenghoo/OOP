@@ -11,7 +11,7 @@
 .button {
 	-fx-background-color: #eff0f2;
 	-fx-font-family: "Times New Roman", Times, serif;
-	-fx-font-size: 12;	
+	-fx-font-size: 15;	
 }
 
 .button:hover {
@@ -30,9 +30,25 @@
 	-fx-font-size: 12;
 }
 
+.back-button {
+	-fx-background-color: #eff0f2;	
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 13;
+}
+
 .title-text {
 	-fx-font-family: "Times New Roman", Times, serif;
-	-fx-font-size: 18;
+
+
+	-fx-font-weight: bold;	
+
+	-fx-font-size: 24;
+
+}
+
+.normal-text {
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 15;
 }
 
 .split-pane > .split-pane-divider {
@@ -43,3 +59,22 @@
 .scroll-pane {
 	-fx-background-color: #efefef;
 }
+
+
+.main-menu-btn{
+	-fx-font-size: 30;	
+	-fx-font-weight: bold;	
+}
+
+
+
+.login-title {
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 30;
+}
+
+.report-text {
+	-fx-font-family: "Times New Roman", Times, serif;
+	-fx-font-size: 20;
+}
+

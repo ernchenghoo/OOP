@@ -1,7 +1,6 @@
 package Controllers
 
 import MainSystem.MainApp
-import Database.InventoryDatabase
 import Database.BranchDatabase
 
 import scalafx.scene.layout._

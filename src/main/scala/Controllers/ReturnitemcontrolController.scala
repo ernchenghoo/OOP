@@ -2,7 +2,6 @@ package Controllers
 
 import MainSystem.MainApp
 import Database.InventoryDatabase
-//import Database.Returnitemhistory
 import Models.Returnitemhistory
 
 import scalafx.scene.control.{Alert,TableColumn,TableView,TableCell}

@@ -184,7 +184,7 @@ object Returnitemhistory extends myDBDetails{
 			val alert = new Alert(AlertType.Warning){
 	          initOwner(MainApp.stage)
 	          title       = "Unable to add"
-	          headerText  = "Quantity exceeded item sold"
+	          headerText  = "Incorrect Sales ID/ Item Quantity"
 	          contentText = "Please try again, Thank you!"
 	        }.showAndWait()
 		}

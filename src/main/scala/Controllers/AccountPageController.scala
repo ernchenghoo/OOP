@@ -1,6 +1,6 @@
 package Controllers
 
-import Database.{myDBDetails, AccountDatabase}
+import Database.myDBDetails
 import MainSystem.{MainApp, Utility}
 import Models.Account._
 
@@ -36,8 +36,8 @@ class AccountPageController(
 	
 	def loadData() = 
 	{
-		var selectedAccount = AccountDatabase.AccountList.get(selectedIndex)
-		username.text.value = selectedAccount.username.getValue()
+		var selectedAccount = Account.accountList.get(selectedIndex)
+		username.text.value = selectedAccount.usernameAcc.getValue()
 		username.disable = true
 		password.text.value = "dummy"
 		cpassword.text.value = "dummy"
@@ -63,12 +63,14 @@ class AccountPageController(
 			{
 				if(action == "Create")
 				{
-					AccountDatabase.CreateAccount(username.text.value.trim, password.text.value.trim, role.value.value, new UserInformation(name.text.value.trim, age.text.value.trim, gender.value.value.trim, address.text.value.trim, contact.text.value.trim) )
+					Account.CreateAccount(username.text.value.trim, password.text.value.trim, role.value.value, new UserInformation(name.text.value.trim, age.text.value.trim, gender.value.value.trim, address.text.value.trim, contact.text.value.trim) )
 				}
 				else
 				{
-					var userID = AccountDatabase.AccountList.get(selectedIndex).userID.getValue()
-					AccountDatabase.UpdateAccount(userID, role.value.value, new UserInformation(name.text.value.trim, age.text.value.trim, gender.value.value.trim, address.text.value.trim, contact.text.value.trim) )
+					var account = Account.accountList.get(selectedIndex)
+					// AccountDatabase.UpdateAccount(userID, role.value.value, new UserInformation(name.text.value.trim, age.text.value.trim, gender.value.value.trim, address.text.value.trim, contact.text.value.trim) )
+					account.UpdateAccount()
+
 				}
 			}
 			else

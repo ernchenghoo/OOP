@@ -118,7 +118,28 @@ object Branch extends myDBDetails{
 			")"
 		)	
 
+		statement.executeUpdate(
+			"""INSERT INTO `branch` VALUES (1,'Sunway'),(2,'Puchong'),(3,'Subang Jaya'),(4,'Putrajaya');"""
+		)	
+		
+
 		connection.close()
+	}
+
+	def hasInitialize(): Boolean =
+	{
+		connection = DriverManager.getConnection(url, username, password)
+
+		val statement = connection.createStatement		
+		try 
+		{
+			var queryResult = statement.executeQuery("SELECT * from branch")
+			true
+		}
+		catch 
+		{
+			case _ => false
+		}
 	}
 
 	def getAllBranchs : ObservableBuffer[Branch] = {

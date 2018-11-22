@@ -37,6 +37,22 @@ object Sales extends myDBDetails{
 		connection.close()
 	}
 
+	def hasInitialize(): Boolean =
+	{
+		connection = DriverManager.getConnection(url, username, password)
+
+		val statement = connection.createStatement		
+		try 
+		{
+			var queryResult = statement.executeQuery("SELECT * from Sales")
+			true
+		}
+		catch 
+		{
+			case _ => false
+		}
+	}
+
 	//for storing Saleslist from database
 	var Saleslist: ObservableBuffer[Sales] = new ObservableBuffer[Sales]()
 

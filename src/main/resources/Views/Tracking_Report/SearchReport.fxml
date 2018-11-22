@@ -4,32 +4,35 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SearchReportController">
+<AnchorPane prefHeight="575.0" prefWidth="919.0" styleClass="root" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SearchReportController">
    <children>
-      <SplitPane dividerPositions="0.1" layoutX="144.0" layoutY="14.0" orientation="VERTICAL" prefHeight="259.0" prefWidth="448.0" styleClass="root" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-            <Label prefHeight="23.0" prefWidth="447.0" text="Select date to generate report">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-          <AnchorPane prefHeight="221.0" prefWidth="381.0">
-               <children>
-                  <Button layoutX="8.0" layoutY="159.0" mnemonicParsing="false" onAction="#backtoMainmenu" text="Back" />
-                  <DatePicker fx:id="fromDate" layoutX="80.0" layoutY="10.0" prefHeight="25.0" prefWidth="150.0" promptText="mm/dd/yyyy" />
-                  <Label layoutX="14.0" layoutY="14.0" text="From" />
-                  <Label layoutX="21.0" layoutY="58.0" text="To" />
-                  <DatePicker fx:id="toDate" layoutX="80.0" layoutY="54.0" prefHeight="25.0" prefWidth="150.0" promptText="mm/dd/yyyy" />
-                  <Button layoutX="207.0" layoutY="159.0" mnemonicParsing="false" onAction="#handleReport" text="Go" />
-                  <Label layoutX="15.0" layoutY="102.0" text="Branch" />
-                  <ChoiceBox fx:id="branchdropdown" layoutX="80.0" layoutY="98.0" prefWidth="150.0" />
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
+      <Label layoutX="17.0" layoutY="28.0" prefHeight="23.0" prefWidth="447.0" styleClass="title-text" text="Select date to generate report" AnchorPane.topAnchor="28.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="fromDate" layoutX="187.0" layoutY="164.0" prefHeight="44.0" prefWidth="574.0" promptText="mm/dd/yyyy" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="157.60000000000002" AnchorPane.topAnchor="164.0" />
+      <Label layoutX="120.0" layoutY="174.0" styleClass="report-text" text="From" AnchorPane.leftAnchor="120.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="131.0" layoutY="232.0" styleClass="report-text" text="To" AnchorPane.leftAnchor="120.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="toDate" layoutX="187.0" layoutY="222.0" prefHeight="44.0" prefWidth="574.0" promptText="mm/dd/yyyy" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="157.60000000000002" AnchorPane.topAnchor="222.0" />
+      <Button layoutX="694.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleReport" prefHeight="36.0" prefWidth="66.0" text="Go" AnchorPane.rightAnchor="158.6" AnchorPane.topAnchor="346.0" />
+      <Label layoutX="113.0" layoutY="285.0" styleClass="report-text" text="Branch" AnchorPane.leftAnchor="120.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="branchdropdown" layoutX="187.0" layoutY="275.0" prefHeight="44.0" prefWidth="574.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="157.60000000000002" AnchorPane.topAnchor="275.0" />
+      <Button layoutX="17.0" layoutY="533.0" mnemonicParsing="false" onAction="#backtoMainmenu" text="Back" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="10.0" />
    </children>
 </AnchorPane>

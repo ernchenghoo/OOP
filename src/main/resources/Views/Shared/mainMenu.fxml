@@ -2,22 +2,86 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="360.0" prefWidth="660.0" styleClass="root" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainMenuController">
+<AnchorPane prefHeight="575.0" prefWidth="919.0" styleClass="root" stylesheets="@../systemDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainMenuController">
    <children>
-      <Button fx:id="checkout" layoutX="51.0" layoutY="89.0" mnemonicParsing="false" onAction="#moveToCheckoutScreen" prefHeight="26.0" prefWidth="126.0" snapToPixel="false" text="Check-out" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="89.0" />
-      <Label layoutX="51.0" layoutY="36.0" prefHeight="34.0" prefWidth="257.0" styleClass="title-text" text="Point of sales System" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="36.0">
+      <Label layoutX="51.0" layoutY="36.0" prefHeight="34.0" prefWidth="257.0" styleClass="title-text" text="Point of sales System" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="51.0" layoutY="125.0" mnemonicParsing="false" onAction="#movetoInventory" prefHeight="25.0" prefWidth="126.0" text="Inventory" />
-      <Button layoutX="51.0" layoutY="197.0" mnemonicParsing="false" onAction="#movetoBranch" prefHeight="25.0" prefWidth="126.0" text="Branch" />
-      <Button layoutX="51.0" layoutY="235.0" mnemonicParsing="false" onAction="#moveToSearchReport" prefHeight="25.0" prefWidth="126.0" text="Report" />
-      <Button layoutX="51.0" layoutY="161.0" mnemonicParsing="false" onAction="#movetoReturnItem" prefHeight="25.0" prefWidth="126.0" text="Return Item" />
-      <Button layoutX="51.0" layoutY="280.0" mnemonicParsing="false" onAction="#moveToLoginPage" prefHeight="26.0" prefWidth="126.0" text="Login" />
-      <Button layoutX="278.0" layoutY="89.0" mnemonicParsing="false" onAction="#moveToManageAccount" prefHeight="26.0" prefWidth="177.0" text="Manage Account" />
+      <GridPane fx:id="mainMenuGrid" layoutX="47.0" layoutY="56.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="498.0" prefWidth="819.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <Button layoutX="471.0" layoutY="319.0" mnemonicParsing="false" onAction="#logout" prefHeight="26.0" prefWidth="126.0" text="Logout" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+      <Button fx:id="returnItemBtn" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" layoutX="58.0" layoutY="250.0" mnemonicParsing="false" onAction="#movetoReturnItem" prefHeight="180.0" prefWidth="250.0" styleClass="main-menu-btn" text="Return Item" visible="false">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/returnitem48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="checkoutBtn" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" layoutX="58.0" layoutY="250.0" mnemonicParsing="false" onAction="#moveToCheckoutScreen" prefHeight="180.0" prefWidth="250.0" snapToPixel="false" styleClass="main-menu-btn" text="Check-out" visible="false">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/checkout48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="reportBtn" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" layoutX="58.0" layoutY="250.0" mnemonicParsing="false" onAction="#moveToSearchReport" prefHeight="180.0" prefWidth="250.0" styleClass="main-menu-btn" text="Report" visible="false">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/report.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="inventoryBtn" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" layoutX="58.0" layoutY="250.0" mnemonicParsing="false" onAction="#movetoInventory" prefHeight="180.0" prefWidth="250.0" styleClass="main-menu-btn" text="Inventory" visible="false">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/inventory32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="manageAccountBtn" alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="58.0" layoutY="250.0" mnemonicParsing="false" onAction="#moveToManageAccount" prefHeight="180.0" prefWidth="250.0" styleClass="main-menu-btn" text="Manage Account" textAlignment="CENTER" visible="false" wrapText="true">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/account50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="branchBtn" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" layoutX="58.0" layoutY="250.0" mnemonicParsing="false" onAction="#movetoBranch" prefHeight="180.0" prefWidth="250.0" styleClass="main-menu-btn" text="Branch" visible="false">
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/branch40.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
