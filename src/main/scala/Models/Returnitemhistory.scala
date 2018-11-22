@@ -93,6 +93,23 @@ object Returnitemhistory extends myDBDetails{
 
 		connection.close()
 	}
+
+	def hasInitialize(): Boolean =
+	{
+		connection = DriverManager.getConnection(url, username, password)
+
+		val statement = connection.createStatement		
+		try 
+		{
+			var queryResult = statement.executeQuery("SELECT * from returnitem")
+			true
+		}
+		catch 
+		{
+			case _ => false
+		}
+	}
+
 	def getAllReturnitemhistory : ObservableBuffer[Returnitemhistory] = {
 
 		var returnitemlist: ObservableBuffer[Returnitemhistory] = new ObservableBuffer[Returnitemhistory]()
