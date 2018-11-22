@@ -7,6 +7,7 @@ import Models.Branch
 import Models.Sales
 import Models.Itemsold
 import Models.Account._
+import Models.Returnitemhistory
 
 trait myDBDetails{
     
@@ -22,7 +23,7 @@ trait myDBDetails{
 }
 
 object myDBDetails{
-    
+        
     val url = "jdbc:h2:./myDB;"
     val driver = "org.h2.Driver"
 
@@ -59,6 +60,12 @@ object myDBDetails{
         //check Itemsold table if Sales not initialized then initialize it
         if(!Itemsold.hasInitialize()){
             Itemsold.initializeTable()
+        }
+
+
+        //check Itemsold table if Sales not initialized then initialize it
+        if(!Returnitemhistory.hasInitialize()){
+            Returnitemhistory.initializeTable()
         }
 
         Account.setupAccountTable()
