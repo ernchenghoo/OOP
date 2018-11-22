@@ -2,8 +2,8 @@ package Controllers
 
 import MainSystem.MainApp
 import Database.InventoryDatabase
-import Database.ReturnItemDatabase
-import Models.returnitemhistory
+//import Database.Returnitemhistory
+import Models.Returnitemhistory
 
 import scalafx.scene.control.{Alert,TableColumn,TableView,TableCell}
 import scalafx.scene.layout._
@@ -16,14 +16,14 @@ import scalafx.scene.control.Alert.AlertType //contail all the implicits to chan
 
 @sfxml
 class ReturnitemcontrolController (
-	val stocktableview: TableView[returnitemhistory],
-	val idColumn: TableColumn[returnitemhistory,Int],
-	val dateColumn: TableColumn[returnitemhistory, String],
-	val salesidColumn: TableColumn[returnitemhistory, Int],
-	val itemColumn: TableColumn[returnitemhistory, String],
-	val branchColumn: TableColumn[returnitemhistory, String],
-	val amountColumn: TableColumn[returnitemhistory, Int],
-	val descriptionColumn: TableColumn[returnitemhistory, String]
+	val stocktableview: TableView[Returnitemhistory],
+	val idColumn: TableColumn[Returnitemhistory,Int],
+	val dateColumn: TableColumn[Returnitemhistory, String],
+	val salesidColumn: TableColumn[Returnitemhistory, Int],
+	val itemColumn: TableColumn[Returnitemhistory, String],
+	val branchColumn: TableColumn[Returnitemhistory, String],
+	val amountColumn: TableColumn[Returnitemhistory, Int],
+	val descriptionColumn: TableColumn[Returnitemhistory, String]
 	) {	
 	
 	//get data from sql and show to table
@@ -41,7 +41,7 @@ class ReturnitemcontrolController (
 
 		    val selectedIndex = stocktableview.selectionModel().selectedIndex.value
 		    val selectedItem = stocktableview.selectionModel().selectedItem.value.returnitemid
-	    	ReturnItemDatabase.minusstock(selectedItem.value)
+	    	Returnitemhistory.minusstock(selectedItem.value)
 	    	Refreshreturnitemhistorylist()	
 
 
@@ -62,10 +62,10 @@ class ReturnitemcontrolController (
 
 	def Refreshreturnitemhistorylist() = {
 		//update the itemlist from database
-		ReturnItemDatabase.Updatereturnitemlist()
+		//ReturnItemDatabase.Updatereturnitemlist()
 
 		//show to tableview
-		stocktableview.items = ReturnItemDatabase.returnitemlist
+		stocktableview.items = Returnitemhistory.getAllReturnitemhistory
 
 		// initialize columns's cell values
 		idColumn.cellValueFactory = {_.value.returnitemid}

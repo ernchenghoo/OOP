@@ -3,6 +3,7 @@ package Controllers
 import Models.Item
 import Models.Branch
 import Database.ReturnItemDatabase
+import Models.Returnitemhistory
 import Models.Stockedithistory
 
 import scalafx.scene.layout._
@@ -42,7 +43,7 @@ class ReturnitemeditdialogController (
 
 		//initialize id
 		var maxid = 0
-		for(returnitem <-ReturnItemDatabase.returnitemlist){
+		for(returnitem <-Returnitemhistory.getAllReturnitemhistory){
 			if(returnitem.returnitemid.getValue() > maxid){
 				maxid = returnitem.returnitemid.getValue()
 			}
@@ -101,7 +102,7 @@ class ReturnitemeditdialogController (
 			}
 
 			if(addorminus == "add"){
-				ReturnItemDatabase.addStock(returnitemid,datestring,salesid,itemid,itemname,branchid,branchlocation,amount,desc)
+				Returnitemhistory.addStock(returnitemid,datestring,salesid,itemid,itemname,branchid,branchlocation,amount,desc)
 			}
 
 	      	okClicked = true;

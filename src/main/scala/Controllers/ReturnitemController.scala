@@ -28,7 +28,7 @@ class ReturnitemController (
 
 	}
 
-	def submit(action :ActionEvent) = {
+	/*def submit(action :ActionEvent) = {
 		if (checkinput()) {
 
 			var id = itemidinputbox.text.value.toInt
@@ -37,13 +37,13 @@ class ReturnitemController (
 			var price = itempriceinputbox.text.value.toDouble
 			//edit data in database
 
-			ReturnItemDatabase.AddtoItemlist(id,name,desc,price)
+			returnitemhistory.AddtoItemlist(id,name,desc,price)
 
 			okClicked = true;
 	      	dialogStage.close()
 
 	   	}
-	}
+	}*/
 
 	def nullChecking (x : String) = x == null || x.length == 0
 

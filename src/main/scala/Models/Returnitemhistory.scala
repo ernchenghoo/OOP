@@ -1,45 +1,130 @@
-package Database
+package Models 
 
+import Database.myDBDetails
 import MainSystem.MainApp
-import Models.Item
-import Models.Returnitemhistory
-import Models.Branch
-import Models.Itemstock
+//import Models.Item
+//import Models.returnitemhistory
+//import Models.Branch
+//import Models.Itemstock
 import scalafx.scene.control.Alert
 import scalafx.scene.control.Alert.AlertType
 
 import java.sql.{Connection,DriverManager}
+import java.sql.SQLException
+import java.sql.Timestamp
+import java.time.format.DateTimeFormatter
+import scalafx.beans.property.{StringProperty, IntegerProperty, ObjectProperty}
 import scalafx.collections.ObservableBuffer
 
-object ReturnItemDatabase {
+class Returnitemhistory( _returnitemid: Int, _date: Timestamp, _salesid: Int, _itemid: Int, _itemnamefromtable:String,  _branchid: Int, _branchlocationfromtable:String, val _amount: Int,val _description:String){
+	var returnitemid = ObjectProperty[Int](_returnitemid)
+	var date = ObjectProperty[Timestamp](_date)
+	var salesid = ObjectProperty[Int](_salesid)
+	var itemid = ObjectProperty[Int](_itemid)
+	var itemnamefromtable = new StringProperty(_itemnamefromtable)
+	var branchid = ObjectProperty[Int](_branchid)
+	var branchlocationfromtable = new StringProperty(_branchlocationfromtable)
+	var amount = ObjectProperty[Int](_amount)
+	var description = new StringProperty(_description)
 
-	/*var returnitemlist: ObservableBuffer[returnitemhistory] = new ObservableBuffer[returnitemhistory]()
+	def DatetoString():StringProperty = {
+		var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		var stringdate = date.getValue().toLocalDateTime().format(formatter)
+		new StringProperty(stringdate)
+	}
 
-	def Updatereturnitemlist() = {
-		returnitemlist.clear()
+	def getItemname():StringProperty = {
+		var itemname = new StringProperty("ItemID not found") 
 
-		Class.forName(myDBDetails.driver)
-		myDBDetails.connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
-		val statement = myDBDetails.connection.createStatement
-		val queryresult = statement.executeQuery("select * from returnitem")		
+		//get the lastest itemname from itemID
+		for(item <- Item.getAllItems){
+			if(item.id.getValue() == itemid.getValue())
+				itemname = item.name
+		}
 
-		while (queryresult.next){
-			var stockeditid = queryresult.getInt("returnitemid")
-			var date = queryresult.getTimestamp("date")
-			var salesid = queryresult.getInt("salesid")
-			var itemid = queryresult.getInt("itemid")
-			var itemname = queryresult.getString("itemname")
-			var branchid = queryresult.getInt("branchid")
-			var branchlocation = queryresult.getString("branchlocation")
-			var amount = queryresult.getInt("amount")
-			var desc = queryresult.getString("description")
+		//if ItemID still available in item table get lastest itemname
+		//if string still is itemid not found the use then itemname from stockedithistory table
+		if(itemname.getValue() == "ItemID not found")
+			return itemnamefromtable
+		else
+			return itemname
+	}
 
-			var returnitemobject = new returnitemhistory(stockeditid,date,salesid,itemid,itemname,branchid,branchlocation,amount,desc)
+	def getBranchlocation():StringProperty = {
+		var branchlocation = new StringProperty("BranchID not found") 
+
+		for(branch <- Branch.getAllBranchs){
+			if(branch.branchid.getValue() == branchid.getValue())
+				branchlocation = branch.location
+		}
+
+		//if branchID still available in branch table get lastest branchlocation
+		//if string still is BranchID not found then use the branchlocation from stockedithistory table
+		if(branchlocation.getValue() == "BranchID not found")
+			return branchlocationfromtable
+		else
+			return branchlocation
+	}	
+
+}
+
+
+object Returnitemhistory extends myDBDetails{
+
+	def initializeTable() = {
+		Class.forName(driver)
+		connection = DriverManager.getConnection(url, username, password)
+
+		val statement = connection.createStatement
+		statement.executeUpdate(
+			"CREATE TABLE `returnitem` (" +
+			"`returnitemid` int(10) NOT NULL," +
+			"`date` timestamp NOT NULL," +
+			"`salesid` int(10) NOT NULL," +
+			"`itemid` int(10) NOT NULL," +
+			"`itemname` varchar(100) NOT NULL," +
+			"`branchid` int(10) NOT NULL," +
+			"`branchlocation` varchar(100) NOT NULL," +
+			"`amount` bigint(20) NOT NULL," +
+			"`desc` varchar(500) NOT NULL," +
+			"PRIMARY KEY (`returnitemid`)" +
+			")"
+		)	
+
+		connection.close()
+	}
+	def getAllReturnitemhistory : ObservableBuffer[Returnitemhistory] = {
+
+		var returnitemlist: ObservableBuffer[Returnitemhistory] = new ObservableBuffer[Returnitemhistory]()
+
+		//def Updatereturnitemlist() = {
+		//returnitemlist.clear()
+
+			Class.forName(myDBDetails.driver)
+			myDBDetails.connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
+			val statement = myDBDetails.connection.createStatement
+			val queryresult = statement.executeQuery("select * from returnitem")		
+
+			while (queryresult.next){
+				var returnitemid = queryresult.getInt("returnitemid")
+				var date = queryresult.getTimestamp("date")
+				var salesid = queryresult.getInt("salesid")
+				var itemid = queryresult.getInt("itemid")
+				var itemname = queryresult.getString("itemname")
+				var branchid = queryresult.getInt("branchid")
+				var branchlocation = queryresult.getString("branchlocation")
+				var amount = queryresult.getInt("amount")
+				var desc = queryresult.getString("description")
+
+				var returnitemobject = new Returnitemhistory(returnitemid,date,salesid,itemid,itemname,branchid,branchlocation,amount,desc)
 
 			returnitemlist += returnitemobject
 		}	
 
 		myDBDetails.connection.close()
+
+		return returnitemlist
+
 	}
 
 	def AddtoItemlist(itemid: Int,itemname: String,itemdesc: String,itemprice: Double) = {
@@ -105,7 +190,7 @@ object ReturnItemDatabase {
 		}
 		
 		myDBDetails.connection.close()
-		Updatereturnitemlist()
+		//Updatereturnitemlist()
 	}
 
 	def minusstock(returnitemid: Int) = {
@@ -161,7 +246,7 @@ object ReturnItemDatabase {
 		}
 
 		myDBDetails.connection.close()
-		Updatereturnitemlist()
-	}*/
+		//Updatereturnitemlist()
+	}
 
 }
