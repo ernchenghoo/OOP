@@ -1,4 +1,4 @@
 target/*
 project/*
-myDB.mv
-myDB.trace
+myDB.mv.db
+myDB.trace.db
