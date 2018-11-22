@@ -179,7 +179,7 @@ class Account(_userID: String, _username: String, _role: String, _name: String, 
 				Gender='${gender.value}',
 				Address='${address.value}',
 			    ContactNo='${contact.value}' 
-			    WHERE UserID=${userID.value}"""
+			    WHERE UserID='${userID.value}'"""
 			)
 			if(queryResult > 0)
 			{
@@ -250,7 +250,7 @@ object Account extends myDBDetails
 
 		statement.executeUpdate(
 			"""CREATE TABLE account (
-			UserID int(5) NOT NULL AUTO_INCREMENT,
+			UserID IDENTITY(1001,1),
 			Username varchar(200) DEFAULT NULL,
 			Password varchar(200) DEFAULT NULL,
 			Role varchar(200) DEFAULT NULL,
@@ -259,20 +259,19 @@ object Account extends myDBDetails
 			Gender varchar(200) DEFAULT NULL,
 			Address varchar(200) DEFAULT NULL,
 		 	ContactNo varchar(200) DEFAULT NULL,
-			PRIMARY KEY (UserID),
 			UNIQUE KEY Username_UNIQUE (Username))"""
 		)
 
 		statement.executeUpdate(
-			"""INSERT INTO account 
+			"""INSERT INTO account (Username,Password,Role,Name,Age,Gender,Address,ContactNo) 
 			VALUES 
-			(1001,'admin','admin','Admin','admin',20,'Male','admin','admin'),
-			(1002,'cashier','cashier','Cashier','cashier',10,'Male','cashier','cashier'),
-			(1003,'stockkeeper','stockkeeper','Stock Keeper','stockkeeper',10,'Male','stockkeeper','stockkeeper'),
-			(1004,'manager','manager','Manager','manager',12,'Female','manager','manager')"""
+			('admin','admin','Admin','admin',20,'Male','admin','admin'),
+			('cashier','cashier','Cashier','cashier',10,'Male','cashier','cashier'),
+			('stockkeeper','stockkeeper','Stock Keeper','stockkeeper',10,'Male','stockkeeper','stockkeeper'),
+			('manager','manager','Manager','manager',12,'Female','manager','manager')"""
 		)
 
-		statement.executeUpdate("ALTER TABLE account AUTO_INCREMENT=1005")		
+		// statement.executeUpdate("ALTER TABLE account AUTO_INCREMENT=1005")		
 		connection.close()
 	}
 
@@ -316,7 +315,7 @@ object Account extends myDBDetails
 		{
 			try 
 			{
-				val queryResult = statement.executeUpdate(s"INSERT INTO account VALUES (0,'$username', '$password', '$role', '${details.name}', ${details.age}, '${details.gender}', '${details.address}', '${details.contact}' )")
+				val queryResult = statement.executeUpdate(s"INSERT INTO account (Username,Password,Role,Name,Age,Gender,Address,ContactNo) VALUES ('$username', '$password', '$role', '${details.name}', ${details.age}, '${details.gender}', '${details.address}', '${details.contact}' )")
 				if(queryResult > 0)
 				{
 					val alert = new Alert(Alert.AlertType.Information) 

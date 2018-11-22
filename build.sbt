@@ -14,6 +14,13 @@ libraryDependencies += "org.scalafx" %% "scalafxml-core-sfx8" % "0.4"
 // https://mvnrepository.com/artifact/mysql/mysql-connector-java
 libraryDependencies += "mysql" % "mysql-connector-java" % "8.0.13"
 
+// https://mvnrepository.com/artifact/com.h2database/h2
+libraryDependencies += "com.h2database" % "h2" % "1.4.197" 
+
+
+
+
+
 
 addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full) 
 
