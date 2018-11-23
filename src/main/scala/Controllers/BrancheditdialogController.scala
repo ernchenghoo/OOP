@@ -1,8 +1,6 @@
 package Controllers
 
 import Models.Branch
-import Database.BranchDatabase
-
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
 import scalafx.scene.control.{TextArea,TextField, TableColumn, Label, Alert}

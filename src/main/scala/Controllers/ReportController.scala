@@ -1,10 +1,8 @@
 package Controllers
 
 import MainSystem.MainApp
-import Database.CheckoutDatabase
 import Models.Branch
 import Models.Itemsold
-
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
 import scalafx.scene.control.{ChoiceBox,Label,DatePicker, Alert,TableColumn,TableView,TableCell}

@@ -1,8 +1,6 @@
 package Controllers
 
 import MainSystem.MainApp
-import Database.ReturnItemDatabase
-
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
 import scalafxml.core.{NoDependencyResolver, FXMLView, FXMLLoader}
