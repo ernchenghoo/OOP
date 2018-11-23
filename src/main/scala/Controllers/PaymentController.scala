@@ -42,6 +42,8 @@ class PaymentController (
 			totalPaymentAmount += elements.lineAmount.value
 		}
 
+		totalPaymentAmount = BigDecimal(totalPaymentAmount).setScale(2,BigDecimal.RoundingMode.HALF_UP).toDouble
+
 		totalAmount.text.value = totalPaymentAmount.toString
 
 		paymentTable.items = Models.Checkout.listOfCheckedoutItems

@@ -1,9 +1,7 @@
 package Controllers
 
 import MainSystem.MainApp
-import Database.BranchDatabase
 import Models.Branch
-
 import scalafx.scene.control.{Alert,TableColumn,TableView,TableCell}
 import scalafxml.core.macros.sfxml
 import scalafx.event.ActionEvent
