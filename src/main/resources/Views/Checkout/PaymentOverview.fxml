@@ -67,7 +67,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="checkoutComplete" layoutX="13.0" layoutY="453.0" prefHeight="35.0" prefWidth="149.0" styleClass="normal-text" text="Checkout completed" visible="false">
+                  <Label fx:id="checkoutComplete" layoutX="13.0" layoutY="453.0" styleClass="normal-text" text="Checkout completed" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
