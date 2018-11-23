@@ -74,10 +74,9 @@ object myDBDetails{
     }
 
     def createDB() {
-        val createUrl = "jdbc:mysql://localhost:3306/mysql?useTimezone=true&serverTimezone=UTC"
         try {
             Class.forName(driver)
-            val connection = DriverManager.getConnection(createUrl, username, password)
+            val connection = DriverManager.getConnection(url, username, password)
             val createStatement = connection.createStatement()
             createStatement.executeUpdate("CREATE DATABASE IF NOT EXISTS oop")
         }      
