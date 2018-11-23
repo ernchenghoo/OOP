@@ -32,7 +32,7 @@ class CheckoutController (
     private val qtyCol: TableColumn [Checkout, Int],
     private val lineAmountCol: TableColumn [Checkout, Double],    
 	) {
-		initializebranch()
+		
 		checkoutTable.items = Checkout.listOfCheckedoutItems
 		idCol.cellValueFactory = {_.value.id}
 		nameCol.cellValueFactory = {_.value.name}

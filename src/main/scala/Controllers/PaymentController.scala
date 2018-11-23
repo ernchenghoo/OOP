@@ -72,7 +72,7 @@ class PaymentController (
 			var salesid = idinputbox.toInt
 			var datenow = new Date()
 			var formmater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-			formmater.setTimeZone(TimeZone.getTimeZone("UTC"))
+			// formmater.setTimeZone(TimeZone.getTimeZone("UTC"))
 			var datestring = formmater.format(datenow)
 			var total = totalPaymentAmount.getValue()
 			

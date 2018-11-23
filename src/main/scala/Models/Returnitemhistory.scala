@@ -86,7 +86,7 @@ object Returnitemhistory extends myDBDetails{
 			"`branchid` int(10) NOT NULL," +
 			"`branchlocation` varchar(100) NOT NULL," +
 			"`amount` bigint(20) NOT NULL," +
-			"`desc` varchar(500) NOT NULL," +
+			"`description` varchar(500) NOT NULL," +
 			"PRIMARY KEY (`returnitemid`)" +
 			")"
 		)	
