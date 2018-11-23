@@ -1,7 +1,6 @@
 package Controllers
 
 import MainSystem.MainApp
-import Database.InventoryDatabase
 import Models.Item
 
 import scalafx.scene.control.{Alert,TableColumn,TableView,TableCell}
@@ -11,7 +10,7 @@ import scalafx.stage.{Modality, Stage}
 import scalafx.event.ActionEvent
 import scalafx.Includes._
 import scalafx.scene.control.Alert.AlertType //contail all the implicits to change javafx classes to scalafx classes as necessary
-
+import scalafx.collections.ObservableBuffer
 
 @sfxml
 class ItemcontrolController (
@@ -23,14 +22,15 @@ class ItemcontrolController (
 	) {	
 	
 	//get data from sql and show to table
+	var ItemData:ObservableBuffer[Item] = new ObservableBuffer[Item]() 
+
+	ItemData ++= Item.getAllItems
 	RefreshItemlist()
 
 	def RefreshItemlist() = {
-		//update the itemlist from database
-		InventoryDatabase.UpdateItemlist()
-
+		
 		//show to tableview
-		itemtableview.items = InventoryDatabase.Itemlist
+		itemtableview.items = ItemData
 
 		// initialize columns's cell values
 	  	itemidColumn.cellValueFactory = {_.value.id}
@@ -42,11 +42,21 @@ class ItemcontrolController (
 	def handleDeleteItem(action : ActionEvent) = {
 	    val selectedIndex = itemtableview.selectionModel().selectedIndex.value
 	    if (selectedIndex >= 0) {
-	    	var selecteditem:Item = InventoryDatabase.Itemlist.get(selectedIndex)
-	    	var itemidOfSelecteditem = selecteditem.id.getValue()
+	    	var selecteditem:Item = ItemData.get(selectedIndex)
+	    	
+	    	//if selecteditem().delete return true means delete from database successfully
+	    	if (selecteditem.delete()){
+	    		itemtableview.items().remove(selectedIndex)
+	    	}else{
+	    		val alert = new Alert(AlertType.Error){
+			        initOwner(MainApp.stage)
+			        title = "Failed to Save"
+	                headerText = "Database Error"
+	                contentText = "Database problem filed to save changes"
+			    }.showAndWait()
+	    	}
 
-	    	InventoryDatabase.DeletefromItemlist(itemidOfSelecteditem)
-	     	itemtableview.items().remove(selectedIndex)
+
 	    } else {
 	      // Nothing selected.
 	      val alert = new Alert(AlertType.Error){
@@ -62,13 +72,22 @@ class ItemcontrolController (
 
 	    val selectedIndex = itemtableview.selectionModel().selectedIndex.value
 	    if (selectedIndex >= 0) {
-	    	var selecteditem:Item = InventoryDatabase.Itemlist.get(selectedIndex)
+	    	var selecteditem:Item = ItemData.get(selectedIndex)
 
 	    	val okClicked: Boolean = MainApp.showItemEditDialog(selecteditem,"edit")
 
 	    	if(okClicked){
-	    		//refrest the table data
-	    		RefreshItemlist()
+	    		//if selecteditem.save() return true means successfully save data to database
+	    		if(selecteditem.save()){
+	    			//nothing
+	    		}else{
+	    			val alert = new Alert(Alert.AlertType.Warning) {
+		              initOwner(MainApp.stage)
+		              title = "Failed to Save"
+		              headerText = "Database Error"
+		              contentText = "Database problem filed to save changes"
+		            }.showAndWait()
+	    		}
 	    	}
 
 	    } else {
@@ -83,12 +102,20 @@ class ItemcontrolController (
 	}
 
 	def handleAddItem(action : ActionEvent) = {
-
-	    val okClicked: Boolean = MainApp.showItemEditDialog(null,"add")
+		var newitem = new Item(0,"","",0)
+	    val okClicked: Boolean = MainApp.showItemEditDialog(newitem,"add")
 
     	if(okClicked){
-    		//refrest the table data
-    		RefreshItemlist()
+    		if(newitem.save()){
+    			ItemData += newitem
+    		}else{
+    			val alert = new Alert(Alert.AlertType.Warning) {
+	              initOwner(MainApp.stage)
+	              title = "Failed to Save"
+	              headerText = "Database Error"
+	              contentText = "Database problem filed to save changes"
+	            }.showAndWait()
+    		}
     	}
 	    
 

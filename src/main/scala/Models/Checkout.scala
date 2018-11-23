@@ -1,34 +1,94 @@
 package Models
-import scalafx.beans.property.{StringProperty, IntegerProperty, ObjectProperty,DoubleProperty}
-import scala.collection.mutable.ListBuffer
-import scala.math.BigDecimal
 
+import Database.myDBDetails
+import java.sql.{Connection,DriverManager}
+import java.sql.SQLException
+
+import scalafx.beans.property.{StringProperty, IntegerProperty, ObjectProperty,DoubleProperty}
+import scalafx.collections.ObservableBuffer
+import scala.math.BigDecimal
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 
-class Checkout (val id: Int, var name: String, var price: Double, var quantity: Int){
+class Checkout (_id: Int, _name: String, _price: Double, _quantity: Int){
 	
-	var lineAmount: Double = (quantity * price)
-	lineAmount = BigDecimal(lineAmount).setScale(2,BigDecimal.RoundingMode.HALF_UP).toDouble
-
-}
-
-object Checkout {
-	var listOfCheckedoutItems = new ListBuffer[Checkout]()
-}
-
-class sales(_salesid: Int, _branchid: Int, _date: Timestamp, _total: Double){
-	var salesid = ObjectProperty[Int](_salesid)
-	var branchid = ObjectProperty[Int](_branchid)
-	var date = ObjectProperty[Timestamp](_date)
-	var total = ObjectProperty[Double](_total)
-}
-
-class itemsold(_salesid: Int, _itemid: Int, _itemname: String, _quantity: Int, _price:Double){
-	var salesid = ObjectProperty[Int](_salesid)
-	var itemid = ObjectProperty[Int](_itemid)
-	var itemname = ObjectProperty[String](_itemname)
-	var quantity = ObjectProperty[Int](_quantity)
+	var id = ObjectProperty[Int](_id)
+	var name = StringProperty(_name)
 	var price = ObjectProperty[Double](_price)
+	var quantity = ObjectProperty[Int](_quantity)
+	var lineAmount = ObjectProperty[Double](_price * _quantity)
 }
+
+object Checkout extends myDBDetails {
+	Class.forName(driver)
+	var listOfCheckedoutItems = new ObservableBuffer[Checkout]()
+
+	def verifyCheckoutItem (itemID: Int): Any = {
+		connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
+		val statement = connection.createStatement
+
+		val itemMatchQuery = statement.executeQuery("select * from item where itemid = '"+ itemID+ "'" )
+
+		if (itemMatchQuery.next){			
+			return true
+		}
+		else {
+			return false
+		}
+		connection.close()
+	}
+
+	def checkDuplicate (itemID: Int): Boolean = {
+		var isDuplicate = false
+		for (elements <- listOfCheckedoutItems) {
+			if (elements.id.value ==  itemID)
+				isDuplicate = true
+		}
+		isDuplicate
+	}
+
+	def checkStock (itemID: Int, itemQuantity: Int, branchID: Int): Boolean = {
+		var isEnoughStock = false
+		var stockalreadyincart = 0
+		for (checkoutobject <- listOfCheckedoutItems){
+			if(checkoutobject.id.value == itemID){
+				stockalreadyincart = checkoutobject.quantity.value
+			}
+		}
+
+		var totalStock = stockalreadyincart + itemQuantity
+
+		if (totalStock <= Itemstock.CheckItemQuantity(itemID,branchID)){
+			isEnoughStock = true
+		}
+		isEnoughStock
+	}
+
+	def addCheckoutItem (itemID: Int, itemQuantity: Int) {
+		connection = DriverManager.getConnection(myDBDetails.url, myDBDetails.username, myDBDetails.password)
+		val statement = connection.createStatement
+
+		val checkoutItemQuery = statement.executeQuery("select * from item where itemid = '"+ itemID+ "'" )
+		checkoutItemQuery.next()
+		var searchedItem = new Models.Inventory(checkoutItemQuery.getString("itemname"), checkoutItemQuery.getInt("itemid"), 
+								checkoutItemQuery.getDouble("price"))		
+		var lineItem = new Models.Checkout (searchedItem.id, searchedItem.name, 
+			searchedItem.price, itemQuantity)
+
+		listOfCheckedoutItems += lineItem
+		connection.close()
+	}
+
+	def updateLineItem (itemID: Int, itemQuantity: Int) {		
+		for (elements <- Models.Checkout.listOfCheckedoutItems) {
+			if (elements.id.value == itemID) {				
+				elements.quantity.value = elements.quantity.value + itemQuantity
+				elements.lineAmount.value = elements.quantity.value * elements.price.value
+			}
+		}
+	}
+}
+
+
+

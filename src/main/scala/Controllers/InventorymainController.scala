@@ -1,7 +1,6 @@
 package Controllers
 
 import MainSystem.MainApp
-import Database.InventoryDatabase
 import Database.BranchDatabase
 
 import scalafx.scene.layout._
@@ -12,11 +11,6 @@ import javafx.{scene => jfxs}
 
 @sfxml
 class InventorymainController (val anchorpanetab: AnchorPane) {	
-	
-	//get all data for inventory related table to list
-	InventoryDatabase.UpdateItemlist()
-	InventoryDatabase.UpdateStockhistorylist()
-	BranchDatabase.UpdateBranchlist()
 
 
 	//initial select itemcontrol 

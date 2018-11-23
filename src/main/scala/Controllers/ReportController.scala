@@ -1,9 +1,9 @@
 package Controllers
 
 import MainSystem.MainApp
-import Database.BranchDatabase
 import Database.CheckoutDatabase
-import Models.itemsold
+import Models.Branch
+import Models.Itemsold
 
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
@@ -25,11 +25,11 @@ class ReportController (
      val toDatelabel : Label,  
      val branchdropdownlabel : Label,
      val totalSaleslabel : Label,
-     val reportTableView: TableView[itemsold],
-     val itemIdColumn: TableColumn[itemsold, Int],
-     val itemNameColumn: TableColumn[itemsold, String],
-     val quantityColumn: TableColumn[itemsold, Int],
-     val priceColumn: TableColumn[itemsold, Double]
+     val reportTableView: TableView[Itemsold],
+     val itemIdColumn: TableColumn[Itemsold, Int],
+     val itemNameColumn: TableColumn[Itemsold, String],
+     val quantityColumn: TableColumn[Itemsold, Int],
+     val priceColumn: TableColumn[Itemsold, Double]
 	) {
 		var fromDate:LocalDate = null
 		var toDate:LocalDate = null
@@ -67,12 +67,12 @@ class ReportController (
 			// formmater1.setTimeZone(TimeZone.getTimeZone("UTC"))
 			var datestring1 = formmater.format(date1)
 
-			var branch_id = BranchDatabase.CheckBranchId(branch)
-			var totalSales = CheckoutDatabase.UpdateReportlist(datestring,datestring1,branch_id)
+			var branch_id = Branch.CheckBranchId(branch)
+			var totalSales = Itemsold.UpdateReportlist(datestring,datestring1,branch_id)
 			
 			totalSaleslabel.setText(totalSales.toString())
 			//show to tableview
-			reportTableView.items = CheckoutDatabase.Reportlist
+			reportTableView.items = Itemsold.Reportlist
 
 			// initialize columns's cell values
 		  	itemIdColumn.cellValueFactory = {_.value.itemid}

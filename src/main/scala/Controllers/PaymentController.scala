@@ -1,11 +1,14 @@
 package Controllers
 import Database.myDBDetails
-import Database.CheckoutDatabase
+import Models.Sales
+import Models.Itemsold
 import Models.Checkout
+import Models.Itemstock
 import MainSystem.MainApp
 import scalafxml.core.macros.sfxml
 import scalafx.scene.control._
 import scalafx.scene.layout._
+import scalafx.geometry.HPos
 import scalafx.Includes._
 import scalafx.scene.control.Alert.AlertType
 import java.text.SimpleDateFormat
@@ -20,30 +23,39 @@ class PaymentController (
 	private val changeLabel: Label,
 	private val checkoutComplete: Label,
 	private val receivedAmount: TextField,
-	private val paymentButtons: HBox	
+	private val paymentButtons: HBox,
+	private val payButton: Button,	
+	private val backButton: Button,
+	private val paymentTable: TableView [Checkout],
+    private val idCol: TableColumn [Checkout, Int],
+    private val nameCol: TableColumn [Checkout, String],
+    private val priceCol: TableColumn [Checkout, Double],
+    private val qtyCol: TableColumn [Checkout, Int],
+    private val lineAmountCol: TableColumn [Checkout, Double]
+
 	) {
 		var itemRow = 1
 		var totalPaymentAmount: Double = 0
-		
-		for (elements <- Checkout.listOfCheckedoutItems){				
-			var rowLabel = new Label (itemRow.toString)					
-			var idLabel  = new Label(elements.id.toString)
-			var nameLabel  = new Label(elements.name.toString)
-			var priceLabel  = new Label(elements.price.toString)
-			var qtyLabel  = new Label(elements.quantity.toString)
-			var lineAmountLabel  = new Label(elements.lineAmount.toString)
-			paymentPane.addRow (itemRow, rowLabel, idLabel, nameLabel, priceLabel, qtyLabel, lineAmountLabel)
-			totalPaymentAmount += elements.lineAmount
-			itemRow += 1
+		var checkBranch:Int = 0
+
+		for (elements <- Models.Checkout.listOfCheckedoutItems) {
+			totalPaymentAmount += elements.lineAmount.value
 		}
 
 		totalAmount.text.value = totalPaymentAmount.toString
 
-		CheckoutDatabase.UpdateSaleslist()
+		paymentTable.items = Models.Checkout.listOfCheckedoutItems
+		idCol.cellValueFactory = {_.value.id}
+		nameCol.cellValueFactory = {_.value.name}
+		priceCol.cellValueFactory = {_.value.price}
+		qtyCol.cellValueFactory = {_.value.quantity}
+		lineAmountCol.cellValueFactory = {_.value.lineAmount}		
+
+		Sales.UpdateSaleslist()
 		
 		//initialize id
 		var maxid = 0
-		for(salesidlist <-CheckoutDatabase.Saleslist){
+		for(salesidlist <-Sales.Saleslist){
 			if(salesidlist.salesid.getValue() > maxid){
 				maxid = salesidlist.salesid.getValue()
 			}
@@ -52,14 +64,13 @@ class PaymentController (
 		maxid = maxid + 1
 		var idinputbox:String = maxid.toString()
 
-		def makePayment() {
+		def makePayment() = {
 			var receivedPaymentAmount = receivedAmount.text.value.toDouble
 
 			var salesid = idinputbox.toInt
-			var branchid = 1
 			var datenow = new Date()
 			var formmater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-			formmater.setTimeZone(TimeZone.getTimeZone("UTC"))
+			// formmater.setTimeZone(TimeZone.getTimeZone("UTC"))
 			var datestring = formmater.format(datenow)
 			var total = totalPaymentAmount.getValue()
 			
@@ -71,16 +82,21 @@ class PaymentController (
 				changeLabel.setVisible (true)
 				checkoutComplete.setVisible (true)				
 				paymentButtons.setVisible (true)
-				CheckoutDatabase.addCheckout(salesid,branchid,datestring,total)
+				Sales.addCheckout(salesid,checkBranch,datestring,total)
 
-				for (elements <- Checkout.listOfCheckedoutItems){								
-					var itemid  = elements.id.toInt
-					var itemname  = elements.name.toString
-					var quantity  = elements.quantity.toInt
-					var price  = elements.price.toDouble
-					CheckoutDatabase.addItemsold(salesid, itemid, itemname, quantity, price)
+				for (elements <- Checkout.listOfCheckedoutItems){
+					var itemid  = elements.id.value
+					var itemname  = elements.name.value
+					var quantity  = elements.quantity.value
+					var price  = elements.price.value
+					Itemsold.addItemsold(salesid, itemid, itemname, quantity, price)
+
+					var checkquantity:Int = Itemstock.CheckItemQuantity(itemid,checkBranch)
+					var quantityBalance:Int = checkquantity - quantity
+					Itemstock.updateItemQuantity(itemid,checkBranch,quantityBalance)
 					itemRow += 1
 				}
+				completedCheckout()
 			}	
 
 			else if (receivedPaymentAmount < totalPaymentAmount){
@@ -97,29 +113,42 @@ class PaymentController (
 				changeLabel.text.value = checkoutComplete.text.value
 				changeLabel.setVisible (true)				
 				paymentButtons.setVisible (true)
-				CheckoutDatabase.addCheckout(salesid,branchid,datestring,total)
+				Sales.addCheckout(salesid,checkBranch,datestring,total)
 
 				for (elements <- Checkout.listOfCheckedoutItems){								
-					var itemid  = elements.id.toInt
-					var itemname  = elements.name.toString
-					var quantity  = elements.quantity.toInt
-					var price  = elements.price.toDouble
-					CheckoutDatabase.addItemsold(salesid, itemid, itemname, quantity, price)
+					var itemid  = elements.id.value
+					var itemname  = elements.name.value
+					var quantity  = elements.quantity.value
+					var price  = elements.price.value
+					Itemsold.addItemsold(salesid, itemid, itemname, quantity, price)
+
+					var checkquantity:Int = Itemstock.CheckItemQuantity(itemid,checkBranch)
+					var quantityBalance:Int = checkquantity - quantity
+
+					Itemstock.updateItemQuantity(itemid,checkBranch,quantityBalance)
 					itemRow += 1
 				}
+				completedCheckout()			
+			}	
+		}
 
-			}
-			
+		def backToCheckout() {
+			MainApp.goToCheckoutMenu
 		}
 
 		def moveToMainMenu() {
-			MainApp.showMainMenu
-			Checkout.listOfCheckedoutItems.clear
+			MainApp.showMainMenu			
 		}
 
 		def checkoutAgain() {
-			MainApp.goToCheckoutMenu
-			Checkout.listOfCheckedoutItems.clear	
+			MainApp.goToCheckoutMenu			
+		}
+
+		def completedCheckout () {
+			Checkout.listOfCheckedoutItems.clear
+			payButton.setDisable (true)
+			backButton.setVisible (false)
+			receivedAmount.setDisable (true)
 		}
 
 		

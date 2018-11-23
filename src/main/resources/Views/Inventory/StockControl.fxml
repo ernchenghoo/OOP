@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="331.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StockcontrolController">
+<AnchorPane prefHeight="573.6" prefWidth="643.2" stylesheets="@../systemDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.StockcontrolController">
    <children>
-      <Label layoutX="9.0" layoutY="4.0" text="Stock Edit History">
+      <Label layoutX="14.0" layoutY="12.0" styleClass="title-text" text="Stock Edit History">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="401.0" layoutY="4.0" mnemonicParsing="false" onAction="#addstock" prefHeight="25.0" prefWidth="90.0" text="Add Stock" />
-      <Button layoutX="501.0" layoutY="4.0" mnemonicParsing="false" onAction="#minusstock" prefHeight="25.0" prefWidth="90.0" text="Minus Stock" />
-      <TableView fx:id="stocktableview" layoutY="38.0" prefHeight="293.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <TableView fx:id="stocktableview" layoutY="82.0" prefHeight="510.0" prefWidth="643.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="82.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="67.0" text="ID" />
-            <TableColumn fx:id="dateColumn" prefWidth="87.0" text="Date" />
-          <TableColumn fx:id="itemColumn" prefWidth="112.0" text="Item" />
-            <TableColumn fx:id="branchColumn" minWidth="0.0" prefWidth="86.0" text="Branch" />
-            <TableColumn fx:id="amountColumn" prefWidth="78.0" text="Amount" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="169.0" text="Description" />
+            <TableColumn fx:id="dateColumn" prefWidth="133.59998321533203" text="Date" />
+          <TableColumn fx:id="itemColumn" prefWidth="107.199951171875" text="Item" />
+            <TableColumn fx:id="branchColumn" minWidth="0.0" prefWidth="83.99993896484375" text="Branch" />
+            <TableColumn fx:id="amountColumn" prefWidth="109.5999755859375" text="Amount" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="171.19998168945312" text="Description" />
         </columns>
       </TableView>
+      <ButtonBar layoutX="369.0" layoutY="12.0" prefHeight="40.0" prefWidth="246.0" AnchorPane.rightAnchor="27.80000000000004" AnchorPane.topAnchor="12.0">
+         <buttons>
+            <Button layoutY="12.0" mnemonicParsing="false" onAction="#addstock" prefHeight="25.0" prefWidth="90.0" text="Add Stock" />
+            <Button layoutY="12.0" mnemonicParsing="false" onAction="#addstock" prefHeight="28.0" prefWidth="99.0" text="Minus stock" />
+         </buttons>
+      </ButtonBar>
    </children>
 </AnchorPane>

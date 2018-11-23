@@ -1,14 +1,15 @@
 package Controllers
 
 import Models.Item
-import Database.InventoryDatabase
-import Database.BranchDatabase
+import Models.Branch
 import Database.ReturnItemDatabase
+import Models.Returnitemhistory
+import Models.Stockedithistory
 
 import scalafx.scene.layout._
 import scalafxml.core.macros.sfxml
 import scalafx.scene.control.{ChoiceBox,TextArea,TextField, TableColumn, Label, Alert}
-import scalafx.stage.Stage
+import scalafx.stage.{Modality, Stage}
 import scalafx.event.ActionEvent
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -18,6 +19,7 @@ import java.util.TimeZone
 class ReturnitemeditdialogController (
 	val title: Label,
 	val idinputbox: TextField,
+	val salesidinputbox: TextField,
 	val itemdropdown: ChoiceBox[String],
 	val branchdropdown: ChoiceBox[String],
 	val amountinputbox: TextField,
@@ -28,39 +30,46 @@ class ReturnitemeditdialogController (
 	var addorminus:String = null
 	var  okClicked = false
 
+	//do option value for nulls
+
 
 	//initialze the data
 	def initializedata() = {
 		//set title label
 		if(addorminus == "add")
-			title.setText("Add stock")
+			title.setText("Add Return Item")
 		else
-			title.setText("Minus stock")
+			title.setText("Remove Return Item")
 
 		//initialize id
 		var maxid = 0
-		for(returnitem <-ReturnItemDatabase.returnitemlist){
+		for(returnitem <-Returnitemhistory.getAllReturnitemhistory){
 			if(returnitem.returnitemid.getValue() > maxid){
 				maxid = returnitem.returnitemid.getValue()
 			}
 		}
 		//new id
-		maxid = maxid + 1
-		idinputbox.text.value = maxid.toString()
+
+		if(addorminus == "add")
+			maxid = maxid + 1
+			idinputbox.text.value = maxid.toString()
+		if (addorminus == "minus")
+			idinputbox.text.value = null
 
 		//initialize item choose
 		itemdropdown.getItems().add("Select Item");
 		itemdropdown.setValue("Select Item")
-		for(item <- InventoryDatabase.Itemlist){
+		for(item <- Item.getAllItems){
 			itemdropdown.getItems().add(item.name.getValue());
 		}
 
 		//initialize branch choose
 		branchdropdown.getItems().add("Select Branch");
 		branchdropdown.setValue("Select Branch")
-		for(branch <- BranchDatabase.Branchlist){
+		for(branch <- Branch.getAllBranchs){
 			branchdropdown.getItems().add(branch.location.getValue());
 		}
+
 	}
 
 	def submit(action :ActionEvent) = {
@@ -68,6 +77,7 @@ class ReturnitemeditdialogController (
 		if (checkinput()) {
 			var returnitemid = idinputbox.text.value.toInt
 			var datenow = new Date()
+			var salesid = salesidinputbox.text.value.toInt
 			var formmater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 			formmater.setTimeZone(TimeZone.getTimeZone("UTC"))
 			var datestring = formmater.format(datenow)
@@ -79,25 +89,21 @@ class ReturnitemeditdialogController (
 
 			//find itemid with item name
 			var itemid = 0
-			for(item <- InventoryDatabase.Itemlist){
+			for(item <- Item.getAllItems){
 				if(item.name.getValue() == itemname)
 					itemid = item.id.getValue()
 			}
 
 			//find branchid with branch name
 			var branchid = 0
-			for(branch <- BranchDatabase.Branchlist){
+			for(branch <- Branch.getAllBranchs){
 				if(branch.location.getValue() == branchlocation)
 					branchid = branch.branchid.getValue()
 			}
 
 			if(addorminus == "add"){
-				ReturnItemDatabase.addStock(returnitemid,datestring,itemid,itemname,branchid,branchlocation,amount,desc)
-			}else{
-				ReturnItemDatabase.minusStock(returnitemid,datestring,itemid,itemname,branchid,branchlocation,amount,desc)
+				Returnitemhistory.addStock(returnitemid,datestring,salesid,itemid,itemname,branchid,branchlocation,amount,desc)
 			}
-
-			
 
 	      	okClicked = true;
 	      	dialogStage.close()
@@ -155,17 +161,17 @@ class ReturnitemeditdialogController (
 				var branchid = 0
 				var amount = amountinputbox.text.value.toInt
 
-				for(item <- InventoryDatabase.Itemlist){
+				for(item <- Item.getAllItems){
 					if(item.name.getValue() == itemdropdown.getValue())
 						itemid = item.id.getValue()
 				}
 
-				for(branch <- BranchDatabase.Branchlist){
+				for(branch <- Branch.getAllBranchs){
 					if(branch.location.getValue() == branchdropdown.getValue())
 						branchid = branch.branchid.getValue()
 				}
 
-				var stockavailable = InventoryDatabase.getstock(itemid,branchid)
+				var stockavailable = Stockedithistory.getstock(itemid,branchid)
 				if(amount > stockavailable)
 					errorMessage += s"Item Stock insufficient! Please lower the amount (Available stock:${stockavailable})\n"
 			}

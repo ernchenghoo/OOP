@@ -1,6 +1,6 @@
 package Controllers
 
-import Models.branch
+import Models.Branch
 import Database.BranchDatabase
 
 import scalafx.scene.layout._
@@ -20,14 +20,16 @@ class BrancheditdialogController (
 	var addoredit:String = null
 	var  okClicked = false
 
+	var branchinDialog: Branch = null
+
 
 	//initialze the data
-	def initializedata(branch: branch) = {
+	def initializedata() = {
 
 		if(addoredit == "add"){
 			title.setText("Add Item")
 			var maxid = 0
-			for(branch <-BranchDatabase.Branchlist){
+			for(branch <-Branch.getAllBranchs){
 				if(branch.branchid.getValue() > maxid){
 					maxid = branch.branchid.getValue()
 				}
@@ -38,24 +40,16 @@ class BrancheditdialogController (
 
 		}else{
 			title.setText("Edit Item")
-			branchidinputbox.text.value = branch.branchid.getValue().toString()
-			locationinputbox.text.value = branch.location.getValue()
+			branchidinputbox.text.value = branchinDialog.branchid.getValue().toString()
+			locationinputbox.text.value = branchinDialog.location.getValue()
 		}	
 	}
 
 	def submit(action :ActionEvent) = {
 		if (checkinput()) {
 
-			var branchid = branchidinputbox.text.value.toInt
-			var location = locationinputbox.text.value
-			
-
-			//edit data in database
-			if(addoredit == "add"){
-				BranchDatabase.AddtoBranchlist(branchid,location)
-			}else{
-				BranchDatabase.EditfromBranchlist(branchid,location)
-			}
+			branchinDialog.branchid.value = branchidinputbox.text.value.toInt
+			branchinDialog.location.value = locationinputbox.text.value.toString
 
 			
 	      	okClicked = true;
