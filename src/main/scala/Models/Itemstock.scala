@@ -1,7 +1,6 @@
 package Models
 
 import Database.myDBDetails
-import Database.BranchDatabase
 import Models.Branch
 
 import scalafx.beans.property.{StringProperty, IntegerProperty, ObjectProperty}

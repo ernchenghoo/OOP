@@ -11,8 +11,11 @@ import Models.Returnitemhistory
 
 trait myDBDetails{
     
-    val url = "jdbc:mysql://localhost:3306/oop?useTimezone=true&serverTimezone=UTC"
-    val driver = "com.mysql.cj.jdbc.Driver"
+    val url = "jdbc:h2:./myDB;"
+    val driver = "org.h2.Driver"
+
+    // val url = "jdbc:mysql://localhost:3306/oop?useTimezone=true&serverTimezone=UTC"
+    // val driver = "com.mysql.cj.jdbc.Driver"
     val username = "root"
     val password = "root"
     var connection:Connection = _
@@ -20,15 +23,18 @@ trait myDBDetails{
 }
 
 object myDBDetails{
-    
-    val url = "jdbc:mysql://localhost:3306/oop?useTimezone=true&serverTimezone=UTC"
-    val driver = "com.mysql.cj.jdbc.Driver"
+        
+    val url = "jdbc:h2:./myDB;"
+    val driver = "org.h2.Driver"
+
+    // val url = "jdbc:mysql://localhost:3306/oop?useTimezone=true&serverTimezone=UTC"
+    // val driver = "com.mysql.cj.jdbc.Driver"
     val username = "root"
     val password = "root"
     var connection:Connection = _
 
     def setupDB() = {
-        //check item table if item table not initialized then initialize it
+        // check item table if item table not initialized then initialize it
         if(!Item.hasInitialize()){
             Item.initializeTable()
         }
@@ -56,6 +62,7 @@ object myDBDetails{
             Itemsold.initializeTable()
         }
 
+
         //check Itemsold table if Sales not initialized then initialize it
         if(!Returnitemhistory.hasInitialize()){
             Returnitemhistory.initializeTable()
@@ -67,10 +74,9 @@ object myDBDetails{
     }
 
     def createDB() {
-        val createUrl = "jdbc:mysql://localhost:3306/mysql?useTimezone=true&serverTimezone=UTC"
         try {
             Class.forName(driver)
-            val connection = DriverManager.getConnection(createUrl, username, password)
+            val connection = DriverManager.getConnection(url, username, password)
             val createStatement = connection.createStatement()
             createStatement.executeUpdate("CREATE DATABASE IF NOT EXISTS oop")
         }      

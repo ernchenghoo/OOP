@@ -71,16 +71,16 @@ class SearchReportController (
 
 		if(fromDate.getValue() != null && toDate.getValue() != null){
 			if(fromDate.getValue().toEpochDay() == toDate.getValue().toEpochDay())
-				errorMessage += "From Date and to Date cannot be same date! \n"
+				errorMessage += "From Date and to Date cannot be the same date! \n"
 
 			if(fromDate.getValue().toEpochDay() > toDate.getValue().toEpochDay())
-				errorMessage += "From Date cannot greater than to Date! \n"
+				errorMessage += "From Date cannot be greater than to Date! \n"
 
 			if(fromDate.getValue().toEpochDay() > tmr.toEpochDay())
-				errorMessage += "From Date cannot greater than today! \n"
+				errorMessage += "From Date cannot be greater than today! \n"
 
 			if(toDate.getValue().toEpochDay() > tmr.toEpochDay())
-				errorMessage += "To Date cannot greater than today! \n"
+				errorMessage += "To Date cannot be greater than today! \n"
 		}
 
 		if(branchdropdown.getValue() == "Select Branch")

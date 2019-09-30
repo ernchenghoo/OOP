@@ -20,7 +20,7 @@ class PaymentController (
 	private val paymentPane: GridPane,
 	private val totalAmount: Label,
 	private val changeAmount: Label,
-	private val changeLabel: Label,
+	private var changeLabel: Label,
 	private val checkoutComplete: Label,
 	private val receivedAmount: TextField,
 	private val paymentButtons: HBox,
@@ -37,10 +37,13 @@ class PaymentController (
 		var itemRow = 1
 		var totalPaymentAmount: Double = 0
 		var checkBranch:Int = 0
+		var salesid = generateSales()
 
 		for (elements <- Models.Checkout.listOfCheckedoutItems) {
 			totalPaymentAmount += elements.lineAmount.value
 		}
+
+		totalPaymentAmount = BigDecimal(totalPaymentAmount).setScale(2,BigDecimal.RoundingMode.HALF_UP).toDouble
 
 		totalAmount.text.value = totalPaymentAmount.toString
 
@@ -51,23 +54,27 @@ class PaymentController (
 		qtyCol.cellValueFactory = {_.value.quantity}
 		lineAmountCol.cellValueFactory = {_.value.lineAmount}		
 
-		Sales.UpdateSaleslist()
 		
-		//initialize id
-		var maxid = 0
-		for(salesidlist <-Sales.Saleslist){
-			if(salesidlist.salesid.getValue() > maxid){
-				maxid = salesidlist.salesid.getValue()
+		def generateSales() = {
+			Sales.UpdateSaleslist()
+			var maxid = 0
+			for(salesidlist <-Sales.Saleslist){
+				if(salesidlist.salesid.getValue() > maxid){
+					maxid = salesidlist.salesid.getValue()
+				}
+			
 			}
+			//new id
+			maxid = maxid + 1
+			//initialize id	
+			maxid	
+			
 		}
-		//new id
-		maxid = maxid + 1
-		var idinputbox:String = maxid.toString()
+		
 
 		def makePayment() = {
 			var receivedPaymentAmount = receivedAmount.text.value.toDouble
-
-			var salesid = idinputbox.toInt
+			
 			var datenow = new Date()
 			var formmater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 			// formmater.setTimeZone(TimeZone.getTimeZone("UTC"))
@@ -110,7 +117,7 @@ class PaymentController (
 			}
 
 			else {
-				changeLabel.text.value = checkoutComplete.text.value
+				changeLabel = checkoutComplete
 				changeLabel.setVisible (true)				
 				paymentButtons.setVisible (true)
 				Sales.addCheckout(salesid,checkBranch,datestring,total)
@@ -145,7 +152,8 @@ class PaymentController (
 		}
 
 		def completedCheckout () {
-			Checkout.listOfCheckedoutItems.clear
+			checkoutComplete.text.value = "Checkout Completed\nYour sales ID = " + salesid.toString 
+			Checkout.listOfCheckedoutItems.clear 
 			payButton.setDisable (true)
 			backButton.setVisible (false)
 			receivedAmount.setDisable (true)

@@ -18,7 +18,7 @@ import scalafx.scene.image.Image
 
 object MainApp extends JFXApp {
   //initialize table
-  myDBDetails.createDB()  
+  // myDBDetails.createDB()  
   myDBDetails.setupDB()
   
   var user: User = new User()
